@@ -1,0 +1,38 @@
+import {GET_PRODUCTOIMAGENES,ADD_PRODUCTOIMAGEN,EDIT_PRODUCTOIMAGEN,DELETE_PRODUCTOIMAGEN} from '../actions/ProductoImagenAction'
+
+const initialState = {
+    lista:[]
+}
+
+export default function(state=initialState, action){
+    switch (action.type){
+        case GET_PRODUCTOIMAGENES:
+            return {
+                ...state,
+                lista: action.payload
+            };
+        
+        case ADD_PRODUCTOIMAGEN:
+            return {
+                ...state,
+                lista: [...state.lista, action.payload]
+            };
+
+        case EDIT_PRODUCTOIMAGEN:
+            return {
+                ...state,
+                lista: [...state.lista.filter(item => item.id !== action.payload.id), action.payload]
+            };
+
+        case DELETE_PRODUCTOIMAGEN:
+            return{
+                ...state,
+                lista: state.lista.filter(item=> item.id !== action.payload)
+            };
+
+        default:{
+            return state;
+        }
+            
+    }
+}

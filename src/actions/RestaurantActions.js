@@ -12,7 +12,7 @@ export const  getRestaurants = () => (dispatch, getState) => {
     axios.get(urlbase + '/restaurants/')
         .then( res => {
                 dispatch({ 
-                    type: GET_RESTAURANTS                    ,
+                    type: GET_RESTAURANTS,
                     payload: res.data 
                 });
             })
