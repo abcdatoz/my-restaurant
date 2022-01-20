@@ -1,13 +1,15 @@
 import React from 'react'
+import Header from '../components/layouts/Header'
 
 
-const Holo = () => (
+const Hello = () => (
 
     
         <div>
-            <h3>this is the greetings</h3>
+            <Header />
+            <h3>Holo this is a private component</h3>
         </div>
 )
 
 
-export default Holo
+export default Hello

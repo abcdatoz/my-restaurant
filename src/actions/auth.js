@@ -115,9 +115,14 @@ export const tokenConfig = getState => {
         }
     }
 
+    // if (token){
+    //     config.headers['x-access-token'] = token
+    // }
+
     if (token){
-        config.headers['x-access-token'] = token
+        config.headers['Authorization'] = `Token ${token}`
     }
+
 
     return config
 }

@@ -16,6 +16,11 @@ body {
   
 }
 
+nav {
+  position: absolute;
+  top: 10px;
+}
+
 .mainnav{
     background-color: #fff;
     display: flex;
@@ -24,13 +29,61 @@ body {
     margin: 0;
     height: 60px;
   }
+
+.mainnav li {
+  color: #777;
+  cursor: pointer;
+  flex: 1;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
   
-  .mainnav li {
-    color: #777;
-    cursor: pointer;
-    flex: 1;
-    padding: 20px;
-    text-align: center;
-    text-decoration: none;
-    
-  }
+}
+
+
+.card-group{
+  display: flex;
+  flex-direction: row;
+}
+
+.card-item{
+  padding: 20px;
+}
+
+.card-group h3{
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+
+.tabs-group{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+
+.tabs-item{
+  padding: 20px;
+}
+
+.tab-item {
+  border: blue 1px dashed;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.tab-item-selected{
+  border: orangered 1px dashed;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+
+.btn-acciones{
+  display: flex;
+  flex-direction: row;
+}
+
+.btn-acciones button{
+  margin: 0 5px;
+}

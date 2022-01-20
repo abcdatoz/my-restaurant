@@ -7,12 +7,14 @@ import categorias from './CategoriaReducer'
 import productos from './ProductoReducer'
 import productosImagenes from './ProductoImagenReducer'
 
+import meseros from './MeseroReducer'
 
 export default combineReducers({
     auth,
     restaurantes,
     categorias,
     productos,
-    productosImagenes
+    productosImagenes, 
+    meseros
     
 })

@@ -6,32 +6,33 @@ import { logout } from '../../actions/auth'
 
 class Header extends Component {
     render () {
-        const { isAuthenticated, username } = this.props.auth
+        const {isAuthenticated, username } = this.props.auth
 
         const authLinks = (
             <ul className="mainnav">
-                <li><Link  to="/">Home</Link></li>
-                <li><Link  to="/holo">Salute</Link></li>                
+                <li><Link  to="/Restaurantes">Restaurantes</Link></li>
+                <li><Link  to="/Meseros">Meseros</Link></li>                
+                <li><Link  to="/Mesas">Mesas</Link></li>
+                <li><Link  to="/Categorias">Categorias</Link></li>
+                <li><Link  to="/Productos">Productos</Link></li>                
+
+                <li><span><strong>{username ? `Usuario:  ${username}` : ""}</strong></span></li>
 
 
-                <li>
-                   
-                    <span><strong>{username ? `Usuario:  ${username}` : ""}</strong></span>                   
-                    
-                    <a href="#" onClick={this.props.logout }>Salir</a>                    
-                    
-                    
+                <li>                   
+                                                           
+                    <a href="#" onClick={this.props.logout }>Salir </a>                    
                 </li>   
-
             </ul>
         )
 
 
         const guestLinks = (
             <ul>                 
-                <li><Link  to="/register">Register</Link></li>
                 <li><Link  to="/login">Login</Link></li>
-                <li><Link  to="/laCarta">La Carta</Link></li>
+                
+                {/* <li><Link  to="/register">Register</Link></li> */}
+                {/* <li><Link  to="/laCarta">La Carta</Link></li> */}
             </ul>
             
         )
@@ -44,7 +45,7 @@ class Header extends Component {
                     ? authLinks
                     : guestLinks
                 }
-            </nav>
+            </nav>  
         )
     }
 }

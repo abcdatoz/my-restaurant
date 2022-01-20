@@ -1,11 +1,9 @@
-import React, {useState, useEffect} from 'react'
+import React, { useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getRestaurants } from '../actions/RestaurantActions'
+import Header from '../components/layouts/Header'
 
-
-const Home = () => {
-
-    
+const Meseros = () => {
 
     //use Selectors
     const restaurantes = useSelector(state => state.restaurantes.lista)
@@ -21,19 +19,16 @@ const Home = () => {
 
     return (    
         <div>
-            
-            
-            
-            <h3>Restaurantes </h3>
+            <Header />
+            <h3>Mis Restaurantes </h3>
+
             { restaurantes.map (x => (
-                <div key= {x.id}> 
-                    <img  src={x.logo} width="100" height="100"/>
-                    <h3>{x.nombre} </h3>
-                    {x.direccion}
+                <div key= {x.id}>                     
+                    <h3>{x.nombre} ({x.direccion}) </h3>                    
                  </div>
             ))}
         </div>
     )
 }
 
-export default Home
+export default Meseros

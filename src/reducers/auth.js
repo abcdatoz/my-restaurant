@@ -2,10 +2,11 @@ import  { LOGIN_SUCCESS, LOGIN_FAIL, REGISTER_FAIL, REGISTER_SUCCESS,LOGOUT_SUCC
 
 
 const initialState = {
-    accessToken: localStorage.getItem('token'),    
+    // accessToken: localStorage.getItem('token'),    
+    accessToken: null,
     isAuthenticated: null, 
     username: null,
-    email: null,
+    owner: null,
     roles: []
 }
 
@@ -14,22 +15,24 @@ export default function (state= initialState,action){
     switch(action.type){
         case LOGIN_SUCCESS:
         case REGISTER_SUCCESS:
-            localStorage.setItem('token', action.payload.accessToken)
+            //localStorage.setItem('token', action.payload.token)            
             return{
-                ...state,
-                ...action.payload,
-                isAuthenticated: true                
+                ...state,                
+                isAuthenticated: true,
+                username: action.payload.user.username,                           
+                accessToken: action.payload.token,
+                owner: action.payload.user.id,
             }
         case LOGIN_FAIL:
         case REGISTER_FAIL:
         case LOGOUT_SUCCESS:
-            localStorage.removeItem('token')
+            // localStorage.removeItem('token')
             return{
                 ...state,
                 accessToken:null,                
                 isAuthenticated: null,
                 username: null,
-                email: null,
+                owner: null,
                 roles: []
             }
         default: 

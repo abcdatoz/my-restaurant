@@ -20,9 +20,9 @@ export class Login extends Component {
         const {login } = this.props
         
         
-        console.log('a')
+        
         login(username, password)
-        console.log('b')
+        
     }
 
     onChange = e => {
@@ -33,7 +33,7 @@ export class Login extends Component {
 
     render() {
         if (this.props.isAuthenticated){
-            return <Navigate to='/' />
+            return <Navigate to='/Administracion' />
         }
 
 
@@ -70,7 +70,7 @@ export class Login extends Component {
                             </button>
                         </div>
 
-                        <p> ¿No tienes cuenta?<Link to="/register">Registrate...</Link> </p>
+                        <p><Link to="/">home</Link> </p>
                 </form>
 
             </>

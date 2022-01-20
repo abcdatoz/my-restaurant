@@ -20,11 +20,12 @@ export const  getRestaurants = () => (dispatch, getState) => {
 };  
 
 export const addRestaurant = (registro) => (dispatch, getState) => {
+    
     axios.post (urlbase + '/restaurants/', registro, tokenConfig(getState))
         .then(res=>{
             dispatch({
                 type: ADD_RESTAURANT,
-                payload: res.data
+                payload: {...res.data, logo :  urlbase + res.data.logo}
             });            
         })
         .catch(err => { console.log("error message :" + err.message) })
