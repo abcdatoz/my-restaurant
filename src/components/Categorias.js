@@ -1,6 +1,6 @@
 import React, {useState,  useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { getCategorias,addCategoria,editCategoria,deleteCategoria } from '../actions/CategoriaAction'
+import { addCategoria,editCategoria,deleteCategoria } from '../actions/CategoriaAction'
 import { getProductos } from '../actions/ProductoAction'
 
 import Header from '../components/layouts/Header'
@@ -73,7 +73,7 @@ const Categorias = () => {
         e.preventDefault()
 
         
-        if (clave == '' || nombre == '' ) {
+        if (clave === '' || nombre === '' ) {
             alert('No ha capturado todos los campos')
             return
         }
@@ -81,7 +81,7 @@ const Categorias = () => {
 
           
         //validations
-        let arr = categorias.filter(x =>  x.id !== idx && x.restaurant === myRest &&  x.clave.toUpperCase() == clave.toUpperCase()) 
+        let arr = categorias.filter(x =>  x.id !== idx && x.restaurant === myRest &&  x.clave.toUpperCase() === clave.toUpperCase()) 
 
         if (arr.length > 0){
             alert('Ya existe una categoria registrada con esa clave en este restaurant')
@@ -89,7 +89,7 @@ const Categorias = () => {
         }
 
 
-        arr = categorias.filter(x =>  x.id !== idx && x.restaurant === myRest &&  x.nombre.toUpperCase() == nombre.toUpperCase()) 
+        arr = categorias.filter(x =>  x.id !== idx && x.restaurant === myRest &&  x.nombre.toUpperCase() === nombre.toUpperCase()) 
         console.log(arr)
         if (arr.length > 0){
             alert('Ya existe una categoria registrada con ese nombre en esta restaurant')
@@ -104,8 +104,8 @@ const Categorias = () => {
             nombre    
         }
 
-        if (mode == 'new') dispatch(addCategoria(data))       
-        if (mode == 'edit') dispatch(editCategoria(data, idx))       
+        if (mode === 'new') dispatch(addCategoria(data))       
+        if (mode === 'edit') dispatch(editCategoria(data, idx))       
                    
 
         setClave('')
@@ -120,7 +120,7 @@ const Categorias = () => {
         <div className='card-group'>            
             {
                     restaurantes
-                    .filter( p => p.user_owner == theOwner)
+                    .filter( p => p.user_owner === theOwner)
                     .map (item => (
                         <div className="card-item" key={item.id}>
                             <img src={item.logo}  alt="imagen" width="70px" height="70px"/> 
@@ -149,7 +149,7 @@ const Categorias = () => {
         <tbody>
         {
                 categorias
-                .filter( p => p.restaurant == myRest)
+                .filter( p => p.restaurant === myRest)
                 .map (item => (
                     <tr key={item.id}>                            
                         <td>{item.clave}</td>

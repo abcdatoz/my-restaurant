@@ -11,10 +11,10 @@ class Header extends Component {
         const authLinks = (
             <ul className="mainnav">
                 <li><Link  to="/Restaurantes">Restaurantes</Link></li>
-                <li><Link  to="/Meseros">Meseros</Link></li>                
-                <li><Link  to="/Mesas">Mesas</Link></li>
                 <li><Link  to="/Categorias">Categorias</Link></li>
                 <li><Link  to="/Productos">Productos</Link></li>                
+                <li><Link  to="/Mesas">Mesas</Link></li>
+                <li><Link  to="/Meseros">Meseros</Link></li>                
 
                 <li><span><strong>{username ? `Usuario:  ${username}` : ""}</strong></span></li>
 

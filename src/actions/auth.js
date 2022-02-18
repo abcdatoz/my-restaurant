@@ -7,8 +7,9 @@ export const  LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
 export const  REGISTER_FAIL = 'REGISTER_FAIL'
 export const  LOGIN_FAIL = 'LOGIN_FAIL'
 
-// const urlbase ='http://myrestapi.rafael-lucio-ver.mx/api/'
+
 const urlbase ='http://my-rest-api.abcdatoz.net/api/'
+// const urlbase ='http://localhost:8000/api/'
 
 
 export const  login = (username, password) => dispatch => {

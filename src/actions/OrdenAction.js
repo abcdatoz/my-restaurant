@@ -1,51 +1,58 @@
 import axios from 'axios'
 import { tokenConfig } from './auth'
 
-export const GET_MESEROS = 'GET_MESEROS';
-export const ADD_MESERO = 'ADD_MESERO';
-export const EDIT_MESERO = 'EDIT_MESERO';
-export const DELETE_MESERO ='DELETE_MESERO';
+export const GET_ORDENES = 'GET_ORDENES';
+export const ADD_ORDEN = 'ADD_ORDEN';
+export const EDIT_ORDEN = 'EDIT_ORDEN';
+export const DELETE_ORDEN ='DELETE_ORDEN';
 
 const urlbase ='http://my-rest-api.abcdatoz.net/api'
+// const urlbase ='http://localhost:8000/api'
 
-export const  getMeseros = () => (dispatch, getState) => {
-    axios.get(urlbase + '/meseros/')
+const config = {
+    headers: {
+        'Content-Type': 'application/json'
+    }
+};
+
+export const  getOrdenes = () => (dispatch) => {
+    axios.get(urlbase + '/ordenes/')
         .then( res => {
                 dispatch({ 
-                    type: GET_MESEROS,
+                    type: GET_ORDENES,
                     payload: res.data 
                 });
             })
         .catch(err => { console.log("error message :" + err.message) })
 };  
 
-export const addMesero = (registro) => (dispatch, getState) => {
-    axios.post (urlbase + '/meseros/', registro, tokenConfig(getState))
+export const addOrden = (registro) => (dispatch) => {
+    axios.post (urlbase + '/ordenes/', registro, config)
         .then(res=>{
             dispatch({
-                type: ADD_MESERO,
+                type: ADD_ORDEN,
                 payload: res.data
             });            
         })
         .catch(err => { console.log("error message :" + err.message) })
 };
 
-export const editMesero = ( registro, id) => (dispatch, getState) => {
-    axios.put(urlbase + `/meseros/${id}/`, registro, tokenConfig(getState))
+export const editOrden = ( registro, id) => (dispatch) => {
+    axios.put(urlbase + `/ordenes/${id}/`, registro, config)
         .then( res => {
             dispatch({
-                type: EDIT_MESERO,
+                type: EDIT_ORDEN,
                 payload: res.data
             });            
         })
         .catch(err => { console.log("error message :" + err.message) })
 };
 
-export const deleteMesero = (id) => (dispatch, getState)=>{
-    axios.delete(urlbase + `/meseros/${id}/`, tokenConfig(getState))
+export const deleteOrden = (id) => (dispatch)=>{
+    axios.delete(urlbase + `/ordenes/${id}/`, config)
         .then( res => {
             dispatch({
-                type: DELETE_MESERO,
+                type: DELETE_ORDEN,
                 payload: id
             });            
         })

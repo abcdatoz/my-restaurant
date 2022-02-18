@@ -2,6 +2,7 @@ import React, {useState,  useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { getProductos,addProducto,editProducto,deleteProducto } from '../actions/ProductoAction'
+import { getProductoImagenes,addProductoImagen } from '../actions/ProductoImagenAction'
 
 import Header from '../components/layouts/Header'
 import Modal from './common/Modal'
@@ -14,6 +15,7 @@ const Productos = () => {
     const [myRest, setMyRest] = useState('')
     const [myCategoria, setMyCategoria] = useState('')
     const [showModal, setShowModal] = useState(false)
+    const [showModalImagen, setShowModalImagen] = useState(false)
 
     const [mode, setMode] = useState('new')
     const [idx, setIdx] = useState('')
@@ -26,12 +28,14 @@ const Productos = () => {
     const [calorias, setCalorias] = useState('')
     const [tiempoPreparacion, setTiempoPreparacion] = useState('')
 
-    const [tablaProductos, setTablaProductos] = useState([])
+    const [imagen, setImagen] = useState('');
+ 
 
     //use Selectors
     const restaurantes = useSelector(state => state.restaurantes.lista)
     const categorias = useSelector(state => state.categorias.lista)
     const productos = useSelector(state => state.productos.lista)
+    const productoImagenes = useSelector(state => state.productoImagenes.lista)
     const theOwner =  useSelector(state => state.auth.owner)
     // const ordenesdetalles = useSelector(state => state.meseros.lista)
 
@@ -40,43 +44,7 @@ const Productos = () => {
     const dispatch = useDispatch()
 
 
-    const createCategoriasProductosList = (idRestaurant) =>{
-
-        let cats = categorias.filter(x=> x.restaurant === idRestaurant)
-        
-        let arr = []
-        
-        cats.forEach(cat => {
-                        
-
-            let prods = productos.filter(x => x.categoria == cat.id )
-            prods.forEach(pro => {
-                
-                let obj = {
-                    id: pro.id,
-                    clave: pro.clave,
-                    nombre: pro.nombre,
-                    restaurant: cat.restaurant
-                }
-    
-                arr.push(obj)
-                
-
-            });
-
-             
-
-            
-
-            
-        });
-
-        
-
-
-        setTablaProductos(arr)
-
-    }
+   
 
 
 
@@ -84,14 +52,11 @@ const Productos = () => {
     //useEffect
     useEffect(() => {       
 
-        // dispatch(getProductos())
+     
 
         dispatch(getProductos())
-
-        if (restaurantes.length > 0){
-            setMyRest(restaurantes[0].id)
-            createCategoriasProductosList(restaurantes[0].id)
-        }
+        dispatch(getProductoImagenes())
+        
         
     }, [])
 
@@ -132,7 +97,7 @@ const Productos = () => {
         e.preventDefault()
 
         
-        if (clave == '' || nombre == '' || descripcionA == '' || precio == '') {
+        if (clave === '' || nombre === '' || descripcionA === '' || precio === '') {
             alert('No ha capturado todos los campos que son requeridos')
             return
         }
@@ -140,7 +105,7 @@ const Productos = () => {
 
           
         //validations
-        let arr = tablaProductos.filter(x =>  x.id !== idx && x.restaurant === myRest &&  x.clave.toUpperCase() == clave.toUpperCase()) 
+        let arr = productos.filter(x =>  x.id !== idx && x.restaurant === myRest &&  x.clave.toUpperCase() === clave.toUpperCase()) 
 
         if (arr.length > 0){
             alert('Ya existe una producto registrado con esa clave')
@@ -148,8 +113,8 @@ const Productos = () => {
         }
 
 
-        arr = tablaProductos.filter(x =>  x.id !== idx && x.restaurant === myRest &&  x.nombre.toUpperCase() == nombre.toUpperCase()) 
-        console.log(arr)
+        arr = productos.filter(x =>  x.id !== idx && x.restaurant === myRest &&  x.nombre.toUpperCase() === nombre.toUpperCase()) 
+        
         if (arr.length > 0){
             alert('Ya existe un producto registrado con ese nombre en este restaurant')
             return
@@ -157,7 +122,9 @@ const Productos = () => {
 
         ///endvalidations
 
+        
         let data = {
+            restaurant: myRest,
             categoria : myCategoria,
             clave,
             nombre,
@@ -168,11 +135,12 @@ const Productos = () => {
             calorias,
             tiempoPreparacion    
         }
-
-        if (mode == 'new') dispatch(addProducto(data))       
-        if (mode == 'edit') dispatch(editProducto(data, idx))       
-                   
-
+        
+        if (mode === 'new')  dispatch(addProducto(data))       
+        if (mode === 'edit') dispatch(editProducto(data, idx));
+        
+        
+        
         setClave('')
         setNombre('')
         setDescripcionA('')
@@ -183,6 +151,40 @@ const Productos = () => {
         setTiempoPreparacion('')
         setShowModal(false)
         
+        
+        console.log(productos.length)
+        dispatch(getProductos())        
+        console.log(productos.length)
+        // createCategoriasProductosList(myRest)
+        
+        
+        
+    }
+    
+
+    const guardarImagen = (e) => {
+      e.preventDefault();
+
+      if (imagen ==='') {
+        alert('No ha seleccionado la imagen del producto')
+        return
+    }
+ 
+
+
+    let formdata = new FormData()
+
+    
+    formdata.append('restaurant', myRest)
+    formdata.append('producto', idx)
+    formdata.append('imagen', imagen, imagen.name)
+    
+    
+    dispatch(addProductoImagen (formdata))            
+     
+    setShowModalImagen(false)
+    setIdx('')
+
     }
     
 
@@ -191,7 +193,7 @@ const Productos = () => {
         <div className='card-group'>            
             {
                     restaurantes
-                    .filter( p => p.user_owner == theOwner)
+                    .filter( p => p.user_owner === theOwner)
                     .map (item => (
                         <div className="card-item" key={item.id}>
                             <img src={item.logo}  alt="imagen" width="70px" height="70px"/> 
@@ -202,7 +204,7 @@ const Productos = () => {
                                     : (<button onClick={() => { 
                                             setMyRest(item.id);  
                                             setMyCategoria('')
-                                            createCategoriasProductosList(item.id)   
+                                        
                                          } }>Seleccionar</button>)
                             }
                             
@@ -219,7 +221,7 @@ const Productos = () => {
         <div className='tabs-group'>            
             {
                     categorias                    
-                    .filter( p => p.restaurant == myRest)
+                    .filter( p => p.restaurant === myRest)
                     .map (item => (
                         <div className="tabs-item" key={item.id}>                            
                             
@@ -239,6 +241,9 @@ const Productos = () => {
 
 
     const Listado = (
+
+        <>
+       
         <table>
         <thead>
             
@@ -247,13 +252,15 @@ const Productos = () => {
             <th width="20%">descripcionA</th>                                
             <th width="10%">Precio</th>                                
             <th width="10%">Calorias</th>                                
-            <th width="10%">Tiempo de Preparación</th>                                
+            <th width="10%">Tiempo de Preparación</th>    
+            <th width="10%">tieneImagen?</th>    
+
             <th width="20%"> acciones </th>
         </thead>     
         <tbody>
         {
                 productos
-                .filter( p => p.categoria == myCategoria)
+                .filter( p => p.categoria === myCategoria)
                 .map (item => (
                     <tr key={item.id}>                            
                         <td>{item.clave}</td>
@@ -262,7 +269,16 @@ const Productos = () => {
                         <td>{item.precio }</td>                            
                         <td>{item.calorias }</td>                            
                         <td>{item.tiempoPreparacion }</td>                            
+                        <td>{
+                             productoImagenes.filter(x => x.producto === item.id).length > 0 
+                                ? (<span>si</span>)
+                                : (<span>no</span>)
+                        }</td>                            
                         <td className='btn-acciones'>
+
+                            <button  onClick={() => { setShowModalImagen(true); setIdx(item.id) } } >
+                                add image
+                            </button>
 
                             <button  onClick={() => editar(item)} >
                                 editar
@@ -281,6 +297,41 @@ const Productos = () => {
         </tbody>
         </table>
         
+
+        <Modal 
+        show={showModalImagen} 
+        handleClose = {() => setShowModalImagen(false) } 
+        titulo = "Agregar imagen al producto"
+    >
+            
+        <form>
+
+
+            
+        <div className="form-input">
+                    <label>Imagen</label>
+                    <input 
+                        className="form-control"
+                        type="file"
+                        name="imagen"
+                        accept="image/png, image/jpeg"
+                        onChange = { e => setImagen(e.target.files[0])}
+                        required
+                    />
+                </div> 
+
+
+            <div className="form-buttons">
+                <button type="button" onClick={guardarImagen}>Guardar </button>                        
+            </div>
+    
+            
+
+        </form>
+        
+        </Modal>
+
+        </>
     )
 
 
@@ -288,7 +339,7 @@ const Productos = () => {
         <Modal 
             show={showModal} 
             handleClose = {() => setShowModal(false) } 
-            titulo = {mode} 
+            titulo = {mode === 'new' ? 'Agregar producto' : ' editar producto' } 
         >
         
         
@@ -376,8 +427,7 @@ const Productos = () => {
     )
 
 
-
-
+    
 
 
 
@@ -386,15 +436,17 @@ const Productos = () => {
     return (
         <div>
             <Header />
-
-            
-
-
             
             {SeleccionaRestaurant}
+
             {SeleccionaCategoria}
 
-            {Listado}
+
+            {
+                myCategoria === ''
+                    ? null
+                    : Listado
+            }
            
 
             {
@@ -407,23 +459,10 @@ const Productos = () => {
             }
             
 
-
+ 
             <br />
-            <br />
-            <br />
-            <br />
-            <br />
-
-            {/* <ul>
-            {
-                tablaProductos                
-                .map (item => (
-                    <li key={item.id}>                            
-                        {item.clave}  {item.nombre } {item.restaurant}                        
-                    </li>
-                ))
-            }
-            </ul> */}
+            
+            
 
            {Formulario}
 

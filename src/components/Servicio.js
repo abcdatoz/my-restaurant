@@ -1,106 +1,96 @@
-import React, { useEffect, useState} from 'react'
+import React, {useState,  useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux'
+
+
 import { getRestaurants } from '../actions/RestaurantActions'
+import { getMesas } from '../actions/MesaAction'
+import { login, logout } from '../actions/authWaiters'
+
+import { getOrdenes,addOrden,editOrden,deleteOrden } from '../actions/OrdenAction'
 import { getCategorias } from '../actions/CategoriaAction'
 import { getProductos } from '../actions/ProductoAction'
-import { getProductoImagenes } from '../actions/ProductoImagenAction'
-import Modal from './common/Modal'
 
 
-const LaCarta = () => {
-
+const Servicio = () => {
+        
 
     //useState
-    const [myRest, setMyRest] = useState('')
-    const [myCategoria, setMyCategoria] = useState('')
-   
-    const [nombreRestaurant, setNombreRestaurant] = useState('')
-    const [logo, setLogo] = useState('');
-  
-    const [verMiOrden, setVerMiOrden] = useState(false);  
+    const [usuario, setUsuario] = useState('');
+    const [password, setPassword] = useState('');
+    const [rest, setRest] = useState('');
+    const [mesa, setMesa] = useState('');
+    const [mesaNombre, setMesaNombre] = useState('');
+    
     const [myOrden, setMyOrden] = useState([]);
-    const [showModal, setShowModal] = useState(false)
+    const [verMiOrden, setVerMiOrden] = useState(false);  
 
-    const [producto, setProducto] = useState({});
-    const [imgProd, setimgProd] = useState('');
 
-        
-    //use Selectors
+    const [orden, setOrden] = useState('');
+
+    const [myCategoria, setMyCategoria] = useState('')
+
+
+    //use Selectors 
+    const waiter =  useSelector(state => state.authWaiter)
     const restaurantes = useSelector(state => state.restaurantes.lista)
     const categorias = useSelector(state => state.categorias.lista)
     const productos = useSelector(state => state.productos.lista)
-    const productosImagenes = useSelector(state => state.productoImagenes.lista)
-    
-    
+    const mesas = useSelector(state => state.mesas.lista)
+    const ordenes = useSelector(state => state.ordenes.lista)
 
-    //useDispatch
     const dispatch = useDispatch()
 
 
 
 
+
     //useEffect
-    useEffect(() => {
+    useEffect(() => {            
+
         dispatch(getRestaurants())
         dispatch(getCategorias())
         dispatch(getProductos())
-        dispatch(getProductoImagenes())      
+        dispatch(getMesas())
+        dispatch(getOrdenes())
+    
+        
     }, [])
 
 
-    const welcomeTo = () =>{
 
-        let siteurl = window.location.href
-
-        let nombreRestaurant = siteurl.indexOf('?id=',0)
-            
-        if (nombreRestaurant !== -1){
-
-            nombreRestaurant = siteurl.substring(nombreRestaurant + 4)        
-            
-            let arr = restaurantes.filter(x=>x.nombre.toUpperCase() === nombreRestaurant.toUpperCase())
-
-            if (arr.length === 0){
-
-                return (
-                    <>
-                        Page no Found!
-                    </>
-                )
-
-            }else{
-
-                return (
-                    <>
-                        <h1>Bienvenidos</h1>
-                        <h2>restaurant {nombreRestaurant}</h2>
-                        <button onClick={()=> setIdRestaurant(nombreRestaurant)}>Ver Menú</button>
-                    </>
-                )
-
-            }
-             
-
-        }else{
-
-            
-            return (
-                <>
-                    Page no Found!
-                </>
-            )
-
+    const entrar = () => {
+      
+        if (rest === '') {
+            alert('No ha capturado el restaurant al que se quiere loguear')
+            return
         }
-    }
 
-    const setIdRestaurant = (filtro) =>{
+        if (usuario === '' || password === '') {
+            alert('Noha capturado el usuario y contraseña')
+            return
+        }
 
-        let arr = restaurantes.filter( p => p.nombre.toUpperCase() === filtro.toUpperCase())  
-        setMyRest(arr[0].id)
-        setNombreRestaurant(arr[0].nombre)
-        setLogo(arr[0].logo)
-    }
+        
+        dispatch(login(usuario, password, rest)    )
+    };
+    
 
+    const verDetallesMesa = (item) => {
+
+        setMesa(item.id)
+        setMesaNombre(item.nombre)
+      
+        let arr = ordenes.filter(x => x.idMesa === item.id & x.status === 1)
+
+        if (arr.length > 0){
+            setOrden(arr[0].id)
+        }else{
+            setOrden('')
+        }
+
+        
+    };
+    
     const totalPedido = () => {
 
         let total = 0
@@ -111,20 +101,20 @@ const LaCarta = () => {
 
         return (<span>${total}</span> )
     }
-
-
+    
 
     const addIt = (item) =>{
 
         let obj = {
+            mesa: mesa,
             id: item.id,
             nombre: item.nombre,
             precio: item.precio
         }
 
 
-        let arr = myOrden.filter(x=> x.id === item.id)
-        let arr2 = myOrden.filter(x=> x.id !== item.id)
+        let arr = myOrden.filter(x=> mesa === mesa &&  x.id === item.id)
+        let arr2 = myOrden.filter(x=> mesa === mesa && x.id !== item.id)
         let arr3=[]
 
         if (arr.length > 0){
@@ -198,13 +188,75 @@ const LaCarta = () => {
 
 
 
+    const FormLogin = (
+        <div>
+                
+            <strong>
+                LOGIN
+            </strong>
+        
+            <form>
+
+                <div className='form-input'>
+                    <label>Restaurant</label>
+                    <select 
+                        name="rest"
+                        value={rest}
+                        onChange={ e=> setRest (e.target.value) } >
+                        <option value="null">Seleccione el restaurant</option>                                
+                        {restaurantes.map(x => (
+                            <option key={x.id} value={x.id}>
+                                {x.nombre}
+                            </option>
+                    ))}
+                    </select>
+                </div>
+
+
+                <div className='form-input'>
+                    <label>Usuario</label>
+                    <input 
+                        type="text"
+                        name="usuario"
+                        onChange= { e => setUsuario(e.target.value) }                            
+                        value= { usuario }
+                        />
+                </div>
+
+
+                <div className='form-input'>
+                    <label>Password</label>
+                    <input 
+                        type="password"
+                        name="password"
+                        onChange= { e => setPassword(e.target.value) }                            
+                        value= { password }
+                        />
+                </div>                  
+
+
+
+                <div className="form-buttons">
+                    <button type="button" onClick={entrar}>Entrar </button>                        
+                </div>
+
+
+
+            </form>
+          
+                
+
+        </div>
+
+    )
+
     const SeleccionaCategoria = (
-        <div className='tabs-group'>            
+        <div className='tabs-group-vertical'>            
             {
                     categorias                    
-                    .filter( p => p.restaurant === myRest)
+                    .filter( p => p.restaurant === waiter.idRestaurant)
                     .map (item => (
-                        <div className="tabs-item" key={item.id}>                            
+                        <div className="tabs-item-vertical" key={item.id}>                            
                             
                             {
                                 item.id === myCategoria
@@ -217,9 +269,9 @@ const LaCarta = () => {
                 
             }
 
-            <div className='ver_resumen' onClick={() => setVerMiOrden(true) }>                
+<div className='ver_resumen' onClick={() => setVerMiOrden(true) }>                
                 ver <br />
-                mi orden<br />
+                pre-orden<br />
                 {totalPedido()}
             </div>
 
@@ -229,40 +281,19 @@ const LaCarta = () => {
     )
 
 
- 
+
     const listaProductos = (
         <>
+
+            <table>
             { productos
                 .filter(p => p.categoria === myCategoria)
                 .map(prod => (
-                    <div  key={prod.id} className='product-card'>
+                    <tr  key={prod.id}>                        
 
-                        <div className='product-card-item'>
-                            {
-                            productosImagenes
-                                .filter(x => x.producto == prod.id)
-                                .map (prodimagen => (
-                                    <div key={prodimagen.id} onClick={() => { setShowModal(true); 
-                                        setProducto(prod); 
-                                        setimgProd(prodimagen.imagen)  } }   
-                                    >                                           
-                                        <img  src={prodimagen.imagen} width="80" height="80" />
-                                    </div>
-                                ))
-                            }
-                        </div>
-
-
-                        <div className='product-card-item'>
-                            {prod.nombre}  (${prod.precio})
-                            <ul>
-                                <li>{prod.descripcionA}</li>                                                                
-                            </ul>
-                        </div>                        
-
-
-
-                        <div className='product-card-item'>
+                        <td>{prod.nombre}</td>
+                        <td>${prod.precio}</td>
+                        <td>
                             <button  onClick={() => {  addIt(prod) } } >
                                 + add 
                             </button>
@@ -272,7 +303,7 @@ const LaCarta = () => {
                                 myOrden.filter(x=> x.id === prod.id).length
                                 ? (
                                     <>
-                                        <h2>{myOrden.filter(x=> x.id === prod.id)[0].cantidad}</h2>
+                                        <strong>{myOrden.filter(x=> x.id === prod.id)[0].cantidad}</strong>
                                         
                                         <button  onClick={() => {  removeIt(prod) } } >
                                             - remove
@@ -283,54 +314,16 @@ const LaCarta = () => {
                                 : null
 
                             }
-                            
-                        </div>
-
-                    </div>
+                        </td>
+                    </tr>
                 ))
             }
-
-
-
-
-        <Modal 
-            show={showModal} 
-            handleClose = {() => setShowModal(false) } 
-            titulo = { producto.nombre  } 
-        >
-        
-            <div className='product-card'>
-                <div>
-                    <img  src={imgProd} width="300" height="300"/>
-                </div>
-
-                <div>
-                    <strong>Descripción:</strong>
-                    <p>{producto.descripcionA}</p>
-                    <p>{producto.descripcionB}</p>
-                    <p>{producto.descripcionC}</p>
-
-
-                    <strong>Precio:</strong> ${producto.precio} <br />
-                    <strong>Calorias:</strong> {producto.calorias} <br />
-                    <strong>tiempo de preparación:</strong> {producto.tiempoPreparacion}
-
-                </div>
-
-            
-            
-
-            
-            </div> 
-            
-        </Modal>
-
-
-
+            </table>
 
 
         </>
     )
+
 
 
     const miPedido = (
@@ -401,46 +394,88 @@ const LaCarta = () => {
     ) 
 
 
-  
+      
 
-  
 
-    return (
-    <div>        
+
+  return (
+    <> 
+
         {
-            myRest === ''
-                ? welcomeTo()
-                : (
+            waiter.wAuthenticated
+                ? (
+
                     <>
-                        <div className="card-item" >
-                            <img src={logo}  alt="imagen" width="70px" height="70px"/> 
-                            <h3>{nombreRestaurant} </h3>
-                        </div>
+                    
+                    <ul>
+                        <li>{waiter.nameWaiter}</li>                        
+                        <li>Salir()</li>                        
+                    </ul>
 
 
-                        {
-                            verMiOrden
-                                ? null
-                                : SeleccionaCategoria
-                                
-                        }                        
 
-                        {
-                            verMiOrden
-                                ? miPedido
-                                : listaProductos
-                                
-                        }
 
-                        
+                    {
+                        mesa
+                            ? (
+                                <>
+                                    
+                                    <div className='mesa-item' onClick={() => {  setMesa(''); setMesaNombre(''); setOrden('') }}>
+                                        {mesaNombre}
+                                    </div>
 
-                        
+                                    <div className='card-group'>
+
+                                    
+
+                                        {
+                                            verMiOrden
+                                                ? null
+                                                : SeleccionaCategoria
+                                                
+                                        }                        
+
+                                        {
+                                            verMiOrden
+                                                ? miPedido
+                                                : listaProductos
+                                                
+                                        }
+
+                                    </div>
+
+
+                                </>
+                            )
+                            : (
+                                <div className='mesas-group'>
+                                {mesas
+                                .filter(p => p.restaurant === waiter.idRestaurant)                      
+                                .map (x => (
+                                        <div className='mesa-item' onClick={() => { verDetallesMesa(x) }}>
+                                            {x.nombre}
+                                        </div>
+                                    ))}
+                                </div>        
+                            )
+                    }
+                    
+                    
+
+
+
                     </>
-                ) 
-        }          
-              
-    </div>
-    )
-}
+                )
+                :
+                        FormLogin
+                  
 
-export default LaCarta
+
+        }
+        
+
+    </>        
+    )
+};
+
+export default Servicio;

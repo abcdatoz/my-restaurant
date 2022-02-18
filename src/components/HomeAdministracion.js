@@ -103,14 +103,14 @@ const HomeAdministracion = () => {
         e.preventDefault()
 
         
-        if (nombre == '' || direccion == '' || logo =='') {
+        if (nombre === '' || direccion === '' || logo === '') {
             alert('No ha capturado todos los campos')
             return
         }
 
 
-        if (mode == 'new') {            
-            let arr = restaurantes.filter(x => x.nombre.toUpperCase() == nombre.toUpperCase()) 
+        if (mode === 'new') {            
+            let arr = restaurantes.filter(x => x.nombre.toUpperCase() === nombre.toUpperCase()) 
 
             if (arr.length > 0){
                 alert('Ya existe un restaurante registrado con ese nombre en esta aplicacion')
@@ -118,8 +118,8 @@ const HomeAdministracion = () => {
             }
         }     
 
-        if (mode == 'edit') {            
-            let arr = restaurantes.filter(x =>  x.id !== id &&  x.nombre.toUpperCase() == nombre.toUpperCase()) 
+        if (mode === 'edit') {            
+            let arr = restaurantes.filter(x =>  x.id !== id &&  x.nombre.toUpperCase() === nombre.toUpperCase()) 
 
             if (arr.length > 0){
                 alert('Ya existe un restaurante registrado con ese nombre en esta aplicacion')
@@ -137,13 +137,13 @@ const HomeAdministracion = () => {
         formdata.append('logo', logo, logo.name)
         formdata.append('user', theOwner)
         
-        if (mode == 'new'){
+        if (mode === 'new'){
             
             dispatch(addRestaurant (formdata))            
         }                      
             
         
-        if(mode == 'edit')
+        if(mode === 'edit')
             dispatch(editRestaurant(formdata, id))
         
             dispatch(getRestaurants())
@@ -170,7 +170,7 @@ const HomeAdministracion = () => {
             <tbody>
                 {
                     restaurantes
-                    .filter( p => p.user_owner == theOwner)
+                    .filter( p => p.user_owner === theOwner)
                     .map (item => (
                         <tr key={item.id}>
                             <td> <img src={item.logo}  alt="imagen" width="100px" height="100px"/> </td>

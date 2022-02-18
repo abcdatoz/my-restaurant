@@ -1,55 +1,53 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState,  useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import {getMeseros, addMesero,editMesero,deleteMesero } from '../actions/MeseroAction'
-
+import {getMesas,addMesa,editMesa,deleteMesa } from '../actions/MesaAction'
+ 
 import Header from '../components/layouts/Header'
 
 import Modal from './common/Modal'
 
-const Meseros = () => { 
+const Mesas = () => {
 
-   //useStates
-   const [myRest, setMyRest] = useState('')
-   const [showModal, setShowModal] = useState(false)
+    //useStates
+    const [myRest, setMyRest] = useState('')
+    const [showModal, setShowModal] = useState(false)
 
-   const [mode, setMode] = useState('new')
-   const [idx, setIdx] = useState('')
-   const [nombre, setNombre] = useState('')
-   const [password, setPassword] = useState('')
-   const [nombreCompleto, setNombreCompleto] = useState('')
-   const [status, setStatus] = useState('')
-   
+    const [mode, setMode] = useState('new')
+    const [idx, setIdx] = useState('')
+    const [nombre, setNombre] = useState('')
+    const [status, setStatus] = useState('')
 
-   //use Selectors
-   const restaurantes = useSelector(state => state.restaurantes.lista)
-   const meseros = useSelector(state => state.meseros.lista)
-   const theOwner =  useSelector(state => state.auth.owner)
+
+    //use Selectors
+    const restaurantes = useSelector(state => state.restaurantes.lista)
+    const mesas = useSelector(state => state.mesas.lista)
+    const theOwner =  useSelector(state => state.auth.owner)
+     
+
     
-
-    //useDispatch
     const dispatch = useDispatch()
 
     //useEffect
-    useEffect(() => {
-        dispatch(getMeseros())   
-        
+    useEffect(() => {       
+
+        dispatch(getMesas())
+
         if (restaurantes.length > 0){
             setMyRest(restaurantes[0].id)
         }
-
+        
     }, [])
 
 
-    
+
+
     const editar = (item) => {
         setShowModal(true)
 
         
         setIdx(item.id)
         setNombre(item.nombre)
-        setPassword(item.password)
-        setNombreCompleto(item.nombre_completo)
-        
+        setStatus(item.status)
           
         setMode('edit')
     }
@@ -64,14 +62,14 @@ const Meseros = () => {
         // }
 
         
-        dispatch(deleteMesero(item.id))   
+        dispatch(deleteMesa(item.id))   
     }
     
     const guardar = (e) => {
         e.preventDefault()
 
         
-        if ( nombre === '' || nombreCompleto === '' || password === '') {
+        if ( nombre === '' ) {
             alert('No ha capturado todos los campos')
             return
         }
@@ -79,13 +77,10 @@ const Meseros = () => {
 
           
         //validations
-        let arr = meseros.filter(x =>  x.id !== idx 
-                                && x.restaurant === myRest 
-                                &&  x.nombre.toUpperCase() === nombre.toUpperCase()
-                            ) 
+        let arr = mesas.filter(x =>  x.id !== idx && x.restaurant === myRest &&  x.nombre.toUpperCase() === nombre.toUpperCase()) 
 
         if (arr.length > 0){
-            alert('Ya existe una mesero(a) registrado(a) con ese nombre en este restaurant')
+            alert('Ya existe una mesa registrada con ese nombre en este restaurant')
             return
         }
  
@@ -95,21 +90,17 @@ const Meseros = () => {
         let data = {
             restaurant : myRest,
             nombre,    
-            password,    
-            nombre_completo: nombreCompleto                
+            status,
         }
 
-        if (mode === 'new') dispatch(addMesero(data))       
-        if (mode === 'edit') dispatch(editMesero(data, idx))       
+        if (mode === 'new') dispatch(addMesa(data))       
+        if (mode === 'edit') dispatch(editMesa(data, idx))       
                    
 
         setNombre('')
-        setPassword('')
-        setNombreCompleto('')
         setShowModal(false)
         
     }
-    
     
 
 
@@ -139,18 +130,16 @@ const Meseros = () => {
         <table>
         <thead>
             
-            <th width="50%">Nombre Completo</th>                                
-            <th width="50%">Usuario</th>                                
+            <th width="50%">Nombre</th>                                
             <th width="20%">Status</th>                
-            <th width="20%">acciones </th>
+            <th width="20%"> acciones </th>
         </thead>     
         <tbody>
         {
-                meseros
+                mesas
                 .filter( p => p.restaurant === myRest)
                 .map (item => (
                     <tr key={item.id}>                            
-                        <td>{item.nombre_completo}</td>
                         <td>{item.nombre}</td>
                         <td>{item.status }</td>                            
                         <td className='btn-acciones'>
@@ -174,7 +163,6 @@ const Meseros = () => {
     )
 
 
-
     const Formulario = (
         <Modal 
             show={showModal} 
@@ -185,45 +173,31 @@ const Meseros = () => {
         
             <form>
 
-                <div className='form-input'>
-                    <label>Nombre Completo</label>
-                    <input 
-                        type="text"
-                        placeholder='introduzca el nombre del mesero'
-                        name="nombreCompleto"
-                        onChange= { e => setNombreCompleto(e.target.value) }                            
-                        value= { nombreCompleto }
-                        />
-                </div>        
-
+ 
 
 
                 <div className='form-input'>
-                    <label>usuario</label>
+                    <label>Nombre</label>
                     <input 
                         type="text"
-                        placeholder='nombre de usuario'
+                        placeholder='Capture el nombre de la mesa'
                         name="nombre"
                         onChange= { e => setNombre(e.target.value) }                            
                         value= { nombre }
                         />
-                </div>
+                </div>               
+
 
                 <div className='form-input'>
-                    <label>contraseña</label>
-                    <input 
-                        type="text"
-                        placeholder='introduzca la contraseña'
-                        name="password"
-                        onChange= { e => setPassword(e.target.value) }                            
-                        value= { password }
-                        />
-                </div>
-
-                       
-
-
-
+                    <label>Status</label>
+                    <select 
+                            name="status"
+                            value={status}
+                            onChange={ e=> setStatus (e.target.value) } >
+                            <option value="En Servicio">En servicio</option>                                
+                            <option value="Fuera de Servicio">Fuera de servicio</option>      
+                        </select>
+                </div>   
 
 
 
@@ -238,20 +212,36 @@ const Meseros = () => {
 
 
 
-    return (    
+
+
+
+
+
+
+    return (
         <div>
             <Header />
+
+            
+
+
+            
             {SeleccionaRestaurant}
 
             {Listado}
+           
 
             <button type="button" onClick={ () => { setShowModal(true); setMode('new') }}>
                 + Agregar 
             </button>
 
            {Formulario}
+
+
+
         </div>
     )
 }
 
-export default Meseros
+export default Mesas
+        

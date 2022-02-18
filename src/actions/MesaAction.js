@@ -1,52 +1,52 @@
 import axios from 'axios'
 import { tokenConfig } from './auth'
 
-export const GET_PRODUCTOS = 'GET_PRODUCTOS';
-export const ADD_PRODUCTO = 'ADD_PRODUCTO';
-export const EDIT_PRODUCTO = 'EDIT_PRODUCTO';
-export const DELETE_PRODUCTO ='DELETE_PRODUCTO';
+export const GET_MESAS = 'GET_MESAS';
+export const ADD_MESA = 'ADD_MESA';
+export const EDIT_MESA = 'EDIT_MESA';
+export const DELETE_MESA ='DELETE_MESA';
 
 const urlbase ='http://my-rest-api.abcdatoz.net/api'
 // const urlbase ='http://localhost:8000/api'
 
-export const  getProductos = () => (dispatch, getState) => {
-    axios.get(urlbase + '/productos/')
+export const  getMesas = () => (dispatch) => {
+    axios.get(urlbase + '/mesas/')
         .then( res => {
                 dispatch({ 
-                    type: GET_PRODUCTOS,
+                    type: GET_MESAS,
                     payload: res.data 
                 });
-            })
+            })  
         .catch(err => { console.log("error message :" + err.message) })
 };  
 
-export const addProducto = (registro) => (dispatch, getState) => {
-    axios.post (urlbase + '/productos/', registro, tokenConfig(getState))
+export const addMesa = (registro) => (dispatch, getState) => {
+    axios.post (urlbase + '/mesas/', registro, tokenConfig(getState))
         .then(res=>{
             dispatch({
-                type: ADD_PRODUCTO,
+                type: ADD_MESA,
                 payload: res.data
             });            
         })
         .catch(err => { console.log("error message :" + err.message) })
 };
 
-export const editProducto = ( registro, id) => (dispatch, getState) => {
-    axios.put(urlbase + `/productos/${id}/`, registro, tokenConfig(getState))
+export const editMesa = ( registro, id) => (dispatch, getState) => {
+    axios.put(urlbase + `/mesas/${id}/`, registro, tokenConfig(getState))
         .then( res => {
             dispatch({
-                type: EDIT_PRODUCTO,
+                type: EDIT_MESA,
                 payload: res.data
             });            
         })
         .catch(err => { console.log("error message :" + err.message) })
 };
 
-export const deleteProducto = (id) => (dispatch, getState)=>{
-    axios.delete(urlbase + `/productos/${id}/`, tokenConfig(getState))
+export const deleteMesa = (id) => (dispatch, getState)=>{
+    axios.delete(urlbase + `/mesas/${id}/`, tokenConfig(getState))
         .then( res => {
             dispatch({
-                type: DELETE_PRODUCTO,
+                type: DELETE_MESA,
                 payload: id
             });            
         })

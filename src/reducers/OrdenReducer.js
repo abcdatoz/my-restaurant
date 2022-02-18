@@ -1,4 +1,4 @@
-import {GET_MESEROS,ADD_MESERO,EDIT_MESERO,DELETE_MESERO} from '../actions/MeseroAction'
+import {GET_ORDENES,ADD_ORDEN,EDIT_ORDEN,DELETE_ORDEN} from '../actions/OrdenAction'
 
 const initialState = {
     lista:[]
@@ -6,25 +6,25 @@ const initialState = {
 
 export default function foo(state=initialState, action){
     switch (action.type){
-        case GET_MESEROS:
+        case GET_ORDENES:
             return {
                 ...state,
                 lista: action.payload
             };
         
-        case ADD_MESERO:
+        case ADD_ORDEN:
             return {
                 ...state,
                 lista: [...state.lista, action.payload]
             };
 
-        case EDIT_MESERO:
+        case EDIT_ORDEN:
             return {
                 ...state,
                 lista: [...state.lista.filter(item => item.id !== action.payload.id), action.payload]
             };
 
-        case DELETE_MESERO:
+        case DELETE_ORDEN:
             return{
                 ...state,
                 lista: state.lista.filter(item=> item.id !== action.payload)

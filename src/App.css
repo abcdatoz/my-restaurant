@@ -62,8 +62,18 @@ nav {
   margin-bottom: 20px;
 }
 
+.tabs-group-vertical{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
 .tabs-item{
-  padding: 20px;
+  padding: 10px;
+}
+
+.tabs-item-vertical{
+  padding-top: 20px;
 }
 
 .tab-item {
@@ -86,4 +96,34 @@ nav {
 
 .btn-acciones button{
   margin: 0 5px;
+}
+
+
+
+
+
+.product-card{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: flex-start;
+  margin: 20px 0;
+}
+
+
+
+.ver_resumen{
+  border: 1px solid green;
+  border-radius: 50%;
+  text-align: center;
+  color: #fff;
+  background-color: yellowgreen;
+}
+
+.mesa-item{  
+  border-radius: 10px;
+  color: #fff;
+  background-color: salmon;
+  padding: 1rem;
+  margin: 1rem;
 }
