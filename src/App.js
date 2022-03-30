@@ -17,6 +17,7 @@ import Mesas from './components/Mesas'
 import Meseros from './components/Meseros'
 
 import Servicio from './components/Servicio';
+import Preordenes from './components/Preordenes';
 
 
 
@@ -49,6 +50,7 @@ function App() {
 
           <Route exact path="/laCarta" element={<LaCarta />} />
           <Route exact path="/servicio" element={<Servicio />} />
+          <Route exact path="/Preordenes" element={<Preordenes />} />
 
 
           

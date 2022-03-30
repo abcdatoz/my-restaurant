@@ -150,14 +150,8 @@ const Productos = () => {
         setCalorias('')
         setTiempoPreparacion('')
         setShowModal(false)
-        
-        
-        console.log(productos.length)
+                
         dispatch(getProductos())        
-        console.log(productos.length)
-        // createCategoriasProductosList(myRest)
-        
-        
         
     }
     

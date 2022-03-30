@@ -13,6 +13,11 @@ import meseros from './MeseroReducer'
 import ordenes from './OrdenReducer'
 import ordenesDetalles from './OrdenDetalleReducer'
 
+
+import preordenes from './PreordenReducer'
+import preordenesDetalles from './PreordenDetalleReducer'
+
+
 export default combineReducers({
     auth,
     authWaiter,
@@ -23,6 +28,8 @@ export default combineReducers({
     mesas, 
     meseros,
     ordenes,
-    ordenesDetalles
+    ordenesDetalles,
+    preordenes,
+    preordenesDetalles
     
 })

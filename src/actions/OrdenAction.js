@@ -6,8 +6,10 @@ export const ADD_ORDEN = 'ADD_ORDEN';
 export const EDIT_ORDEN = 'EDIT_ORDEN';
 export const DELETE_ORDEN ='DELETE_ORDEN';
 
-const urlbase ='http://my-rest-api.abcdatoz.net/api'
-// const urlbase ='http://localhost:8000/api'
+
+
+// const urlbase ='http://my-rest-api.abcdatoz.net/api'
+const urlbase ='http://localhost:8000/api'
 
 const config = {
     headers: {
@@ -33,6 +35,8 @@ export const addOrden = (registro) => (dispatch) => {
                 type: ADD_ORDEN,
                 payload: res.data
             });            
+
+
         })
         .catch(err => { console.log("error message :" + err.message) })
 };

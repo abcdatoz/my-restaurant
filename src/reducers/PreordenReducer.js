@@ -1,34 +1,31 @@
-import {GET_ORDENES,ADD_ORDEN,EDIT_ORDEN,DELETE_ORDEN} from '../actions/OrdenAction'
+import {GET_PREORDENES,ADD_PREORDEN,EDIT_PREORDEN,DELETE_PREORDEN} from '../actions/PreordenAction'
 
 const initialState = {
-    lista:[],
-    newId: ''
-
+    lista:[]
 }
 
 export default function foo(state=initialState, action){
     switch (action.type){
-        case GET_ORDENES:
+        case GET_PREORDENES:
             return {
                 ...state,
                 lista: action.payload
 
             };
         
-        case ADD_ORDEN:
+        case ADD_PREORDEN:
             return {
                 ...state,
-                lista: [...state.lista, action.payload],
-                newId: action.payload.id
+                lista: [...state.lista, action.payload]
             };
 
-        case EDIT_ORDEN:
+        case EDIT_PREORDEN:
             return {
                 ...state,
                 lista: [...state.lista.filter(item => item.id !== action.payload.id), action.payload]
             };
 
-        case DELETE_ORDEN:
+        case DELETE_PREORDEN:
             return{
                 ...state,
                 lista: state.lista.filter(item=> item.id !== action.payload)

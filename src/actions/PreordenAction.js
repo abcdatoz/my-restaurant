@@ -1,52 +1,62 @@
 import axios from 'axios'
 import { tokenConfig } from './auth'
 
-export const GET_CATEGORIAS = 'GET_CATEGORIAS';
-export const ADD_CATEGORIA = 'ADD_CATEGORIA';
-export const EDIT_CATEGORIA = 'EDIT_CATEGORIA';
-export const DELETE_CATEGORIA ='DELETE_CATEGORIA';
+export const GET_PREORDENES = 'GET_PREORDENES';
+export const ADD_PREORDEN = 'ADD_PREORDEN';
+export const EDIT_PREORDEN = 'EDIT_PREORDEN';
+export const DELETE_PREORDEN ='DELETE_PREORDEN';
+
+
 
 // const urlbase ='http://my-rest-api.abcdatoz.net/api'
 const urlbase ='http://localhost:8000/api'
 
-export const  getCategorias = () => (dispatch, getState) => {
-    axios.get(urlbase + '/categorias/')
+const config = {
+    headers: {
+        'Content-Type': 'application/json'
+    }
+};
+
+export const  getPreordenes = () => (dispatch) => {
+    axios.get(urlbase + '/preordenes/')
         .then( res => {
                 dispatch({ 
-                    type: GET_CATEGORIAS,
+                    type: GET_PREORDENES,
                     payload: res.data 
                 });
             })
         .catch(err => { console.log("error message :" + err.message) })
 };  
 
-export const addCategoria = (registro) => (dispatch, getState) => {
-    axios.post (urlbase + '/categorias/', registro, tokenConfig(getState))
+export const addPreorden = (registro) => (dispatch) => {
+    axios.post (urlbase + '/preordenes/', registro, config)
         .then(res=>{
             dispatch({
-                type: ADD_CATEGORIA,
+                type: ADD_PREORDEN,
+                payload: res.data
+            });            
+
+
+        })
+        .catch(err => { console.log("error message :" + err.message) })
+};
+
+export const editPreorden = ( registro, id) => (dispatch) => {
+    axios.put(urlbase + `/preordenes/${id}/`, registro, config)
+        .then( res => {
+            dispatch({
+                type: EDIT_PREORDEN,
                 payload: res.data
             });            
         })
         .catch(err => { console.log("error message :" + err.message) })
 };
 
-export const editCategoria = ( registro, id) => (dispatch, getState) => {
-    axios.put(urlbase + `/categorias/${id}/`, registro, tokenConfig(getState))
+export const deletePreorden = (id) => (dispatch)=>{
+    axios.delete(urlbase + `/preordenes/${id}/`, config)
         .then( res => {
             dispatch({
-                type: EDIT_CATEGORIA,
-                payload: res.data
-            });            
-        })
-        .catch(err => { console.log("error message :" + err.message) })
-};
-
-export const deleteCategoria = (id) => (dispatch, getState)=>{
-    axios.delete(urlbase + `/categorias/${id}/`, tokenConfig(getState))
-        .then( res => {
-            dispatch({
-                type: DELETE_CATEGORIA,
+                type: DELETE_PREORDEN,
                 payload: id
             });            
         })

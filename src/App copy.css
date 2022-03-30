@@ -43,7 +43,7 @@ nav {
 
 .card-group{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .card-item{
@@ -126,12 +126,4 @@ nav {
   background-color: salmon;
   padding: 1rem;
   margin: 1rem;
-}
-
-.working{
-  background-color: cornflowerblue;
-}
-
-.detallePedido{
-  color: orange;
 }

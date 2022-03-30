@@ -6,7 +6,6 @@ import { getProductos } from '../actions/ProductoAction'
 import { getProductoImagenes } from '../actions/ProductoImagenAction'
 import Modal from './common/Modal'
 
-import { addPreorden } from '../actions/PreordenAction'
 
 const LaCarta = () => {
 
@@ -21,9 +20,6 @@ const LaCarta = () => {
     const [verMiOrden, setVerMiOrden] = useState(false);  
     const [myOrden, setMyOrden] = useState([]);
     const [showModal, setShowModal] = useState(false)
-    
-    const [showModalOrden, setShowModalOrden] = useState(false)
-    const [nombreCliente, setNombreCliente] = useState('')
 
     const [producto, setProducto] = useState({});
     const [imgProd, setimgProd] = useState('');
@@ -200,36 +196,6 @@ const LaCarta = () => {
         
     };
 
-
-    const enviarOrden = (e) => {
-        e.preventDefault()
-
-        
-        if (nombreCliente === '' ) {
-            alert('No ha capturado todos los campos que son requeridos')
-            return
-        }
-        
-        if (myOrden.length === 0){
-            alert('No ha detallado su orden')
-            return
-        }
-
-        let data = {
-            restaurant: myRest,
-            nombreCliente: nombreCliente,            
-            detalles: myOrden
-        }
-
-        dispatch(addPreorden(data) )
-        
-        setShowModalOrden(false)
-        setMyOrden([])
-        setNombreCliente('')
-        
-        
-    }
-    
 
 
     const SeleccionaCategoria = (
@@ -419,29 +385,7 @@ const LaCarta = () => {
                     </td>
                     <td></td>                                                    
                     <td></td>                                                    
-                    <td>
-                        
-
-                        {
-                            myOrden.length > 0
-                            ? (
-                                <>
-
-                                    <button  onClick={() => {  setMyOrden([]) } } >
-                                        Eliminar Todo
-                                    </button> 
-                                
-                                    <button type="button" onClick={ () => { setShowModalOrden(true);  }}>
-                                        Enviar Orden
-                                    </button>
-                                </>
-                                 
-                                 
-                                 )
-                            : null
-                        }
-                        
-                    </td>                                                    
+                    <td><button  onClick={() => {  setMyOrden([]) } } >Eliminar Todo</button></td>                                                    
                 </tr>
 
         </thead>     
@@ -449,43 +393,6 @@ const LaCarta = () => {
 
         </tbody>
         </table>
-
-        
-
-
-
-
-        <Modal 
-            show={showModalOrden} 
-            handleClose = {() => setShowModalOrden(false) } 
-            titulo = "Enviar Orden" 
-        >
-        
-        <form>
-
-
-            <div className='form-input'>
-                <label>a nombre de</label>
-                <input 
-                    type="text"
-                    placeholder='nombre del cliente'
-                    name="nombreCliente"
-                    onChange= { e => setNombreCliente(e.target.value) }                            
-                    value= { nombreCliente }
-                    />
-            </div>
-
-     
-
-
-            <div className="form-buttons">
-                <button type="button" onClick={enviarOrden}>Enviar Orden </button>                        
-            </div>
-
-
-
-            </form>
-        </Modal>
          
         
                                         
