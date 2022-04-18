@@ -6,8 +6,8 @@ export const ADD_ORDEN_DETALLE = 'ADD_ORDEN_DETALLE';
 export const EDIT_ORDEN_DETALLE = 'EDIT_ORDEN_DETALLE';
 export const DELETE_ORDEN_DETALLE ='DELETE_ORDEN_DETALLE';
 
-// const urlbase ='http://my-rest-api.abcdatoz.net/api'
-const urlbase ='http://localhost:8000/api'
+const urlbase ='http://my-rest-api.abcdatoz.net/api'
+// const urlbase ='http://localhost:8000/api'
 
 const config = {
     headers: {

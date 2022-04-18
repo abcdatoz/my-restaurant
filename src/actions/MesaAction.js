@@ -6,8 +6,8 @@ export const ADD_MESA = 'ADD_MESA';
 export const EDIT_MESA = 'EDIT_MESA';
 export const DELETE_MESA ='DELETE_MESA';
 
-// const urlbase ='http://my-rest-api.abcdatoz.net/api'
-const urlbase ='http://localhost:8000/api'
+const urlbase ='http://my-rest-api.abcdatoz.net/api'
+// const urlbase ='http://localhost:8000/api'
 
 export const  getMesas = () => (dispatch) => {
     axios.get(urlbase + '/mesas/')

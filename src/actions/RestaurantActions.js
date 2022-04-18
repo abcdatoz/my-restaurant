@@ -6,8 +6,8 @@ export const ADD_RESTAURANT = 'ADD_RESTAURANT';
 export const EDIT_RESTAURANT = 'EDIT_RESTAURANT';
 export const DELETE_RESTAURANT ='DELETE_RESTAURANT';
 
-// const urlbase ='http://my-rest-api.abcdatoz.net/api'
-const urlbase ='http://localhost:8000/api'
+const urlbase ='http://my-rest-api.abcdatoz.net/api'
+// const urlbase ='http://localhost:8000/api'
 
 export const  getRestaurants = () => (dispatch, getState) => {
     axios.get(urlbase + '/restaurants/')

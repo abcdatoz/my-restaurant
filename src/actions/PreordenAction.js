@@ -8,8 +8,8 @@ export const DELETE_PREORDEN ='DELETE_PREORDEN';
 
 
 
-// const urlbase ='http://my-rest-api.abcdatoz.net/api'
-const urlbase ='http://localhost:8000/api'
+const urlbase ='http://my-rest-api.abcdatoz.net/api'
+// const urlbase ='http://localhost:8000/api'
 
 const config = {
     headers: {
