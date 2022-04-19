@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { tokenConfig } from './auth'
+// import { tokenConfig } from './auth'
 
 export const GET_ORDENES_DETALLES = 'GET_ORDENES_DETALLES';
 export const ADD_ORDEN_DETALLE = 'ADD_ORDEN_DETALLE';

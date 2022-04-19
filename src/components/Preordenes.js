@@ -8,7 +8,7 @@ import { getMesas } from '../actions/MesaAction'
 import Modal from './common/Modal'
 
 import { getOrdenes,addOrden } from '../actions/OrdenAction'
-import { getPreordenes, addPreorden, editPreorden    } from '../actions/PreordenAction'
+import { getPreordenes, editPreorden    } from '../actions/PreordenAction'
 import {  getPreordenesDetalles} from '../actions/PreordenDetalleAction'
 
 import { getProductos } from '../actions/ProductoAction'
@@ -20,7 +20,7 @@ const Preordenes = () => {
 
     //useState
 
-    const [orden, setOrden] = useState('');
+    // const [orden, setOrden] = useState('');
     const [mesa, setMesa] = useState('')
     const [preorden, setPreorden] = useState('')
     const [showModalOrden, setShowModalOrden] = useState(false)
@@ -28,7 +28,7 @@ const Preordenes = () => {
 
     //use Selectors 
     const waiter =  useSelector(state => state.authWaiter)
-    const restaurantes = useSelector(state => state.restaurantes.lista)
+    // const restaurantes = useSelector(state => state.restaurantes.lista)
     const productos = useSelector(state => state.productos.lista)
     const mesas = useSelector(state => state.mesas.lista)
     const preordenes = useSelector(state => state.preordenes.lista)    
@@ -49,22 +49,10 @@ const Preordenes = () => {
         dispatch(getPreordenes())
         dispatch(getPreordenesDetalles())        
 
-    }, [])
+    }, [])// eslint-disable-line react-hooks/exhaustive-deps
 
 
-    const cerrarServicio = () => {
-
-        let data = {
-            orden: 1,
-            status: 2,            
-            detalles: []
-        }
-
-        dispatch( addPreorden(data))            
-
-        
-
-    }
+   
 
 
     const seleccionarMesa = (idPreorden) => {
@@ -160,7 +148,7 @@ const Preordenes = () => {
                                                 .map( element => (
                                                     <tr key={element.id} className="detallePedido">                                                                                    
                                                         <td align='center'>{element.cantidad}</td>                        
-                                                        <td> { productos.filter(x=>x.id == element.producto)[0].nombre }  </td>
+                                                        <td> { productos.filter(x=>x.id === element.producto)[0].nombre }  </td>
                                                         <td align='right'>${element.precio }</td>                            
                                                         <td align='right'>${element.cantidad  * element.precio}</td>  
                        
@@ -222,7 +210,7 @@ const Preordenes = () => {
                                         .map( element => (
                                             <tr key={element.id} className="detallePedido">                                                                                    
                                                 <td align='center'>{element.cantidad}</td>                        
-                                                <td> { productos.filter(x=>x.id == element.producto)[0].nombre }  </td>
+                                                <td> { productos.filter(x=>x.id === element.producto)[0].nombre }  </td>
                                                 <td align='right'>${element.precio }</td>                            
                                                 <td align='right'>${element.cantidad  * element.precio}</td>  
                 

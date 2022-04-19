@@ -36,7 +36,7 @@ const Mesas = () => {
             setMyRest(restaurantes[0].id)
         }
         
-    }, [])
+    }, [])// eslint-disable-line react-hooks/exhaustive-deps
 
 
 

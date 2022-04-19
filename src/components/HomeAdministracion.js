@@ -17,7 +17,7 @@ const HomeAdministracion = () => {
 
     //useState
     const [showModal, setShowModal] = useState(false)
-    const [showModalDelete, setShowModalDelete] = useState(false)
+    // const [showModalDelete, setShowModalDelete] = useState(false)
 
     const [nombre, setNombre] = useState('')
     const [direccion, setDireccion] = useState('')
@@ -41,7 +41,7 @@ const HomeAdministracion = () => {
         dispatch(getCategorias())
         // dispatch(getMeseros())
         
-    }, [])
+    }, [])// eslint-disable-line react-hooks/exhaustive-deps
 
 
     const nuevoRegistro = () => {
@@ -70,11 +70,11 @@ const HomeAdministracion = () => {
     }
     
 
-    const ConfirmaEliminar = (item) => {
+    // const ConfirmaEliminar = (item) => {
 
-        setId(item.id)
-        setShowModalDelete(true)
-    }
+    //     setId(item.id)
+    //      setShowModalDelete(true)
+    // }
     
 
     const eliminar = (item) => {

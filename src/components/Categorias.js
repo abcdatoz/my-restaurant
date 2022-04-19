@@ -29,20 +29,26 @@ const Categorias = () => {
 
 
     
+    
+    
+    //use dispatch
     const dispatch = useDispatch()
 
-    //useEffect
-    useEffect(() => {       
 
+    
+
+    //useEffect
+    useEffect( () => {
         dispatch(getProductos())
 
         if (restaurantes.length > 0){
             setMyRest(restaurantes[0].id)
         }
         
-    }, [])
+    },[])// eslint-disable-line react-hooks/exhaustive-deps
 
-
+    
+ 
 
 
     const editar = (item) => {

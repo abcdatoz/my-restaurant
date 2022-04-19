@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getRestaurants } from '../actions/RestaurantActions'
 
@@ -17,7 +17,7 @@ const Home = () => {
     useEffect(() => {
         dispatch(getRestaurants())
         
-    }, [])
+    }, [])// eslint-disable-line react-hooks/exhaustive-deps
 
     return (    
         <div>
@@ -27,7 +27,7 @@ const Home = () => {
             <h3>Restaurantes </h3>
             { restaurantes.map (x => (
                 <div key= {x.id}> 
-                    <img  src={x.logo} width="100" height="100"/>
+                    <img  src={x.logo} width="100" height="100" alt='none' />
                     <h3>{x.nombre} </h3>
                     {x.direccion}
                  </div>

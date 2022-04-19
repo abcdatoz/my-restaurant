@@ -17,7 +17,7 @@ const Meseros = () => {
    const [nombre, setNombre] = useState('')
    const [password, setPassword] = useState('')
    const [nombreCompleto, setNombreCompleto] = useState('')
-   const [status, setStatus] = useState('')
+//    const [status, setStatus] = useState('')
    
 
    //use Selectors
@@ -37,7 +37,7 @@ const Meseros = () => {
             setMyRest(restaurantes[0].id)
         }
 
-    }, [])
+    }, [])// eslint-disable-line react-hooks/exhaustive-deps
 
 
     

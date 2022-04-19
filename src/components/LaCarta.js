@@ -49,7 +49,7 @@ const LaCarta = () => {
         dispatch(getCategorias())
         dispatch(getProductos())
         dispatch(getProductoImagenes())      
-    }, [])
+    }, [])// eslint-disable-line react-hooks/exhaustive-deps
 
 
     const welcomeTo = () =>{
@@ -120,11 +120,11 @@ const LaCarta = () => {
 
     const addIt = (item) =>{
 
-        let obj = {
-            id: item.id,
-            nombre: item.nombre,
-            precio: item.precio
-        }
+        // let obj = {
+        //     id: item.id,
+        //     nombre: item.nombre,
+        //     precio: item.precio
+        // }
 
 
         let arr = myOrden.filter(x=> x.id === item.id)
@@ -168,7 +168,7 @@ const LaCarta = () => {
 
     const removeIt = (item) => {
         
-        let It = true
+        
         let arr = []
 
 
@@ -274,13 +274,13 @@ const LaCarta = () => {
                         <div className='product-card-item'>
                             {
                             productosImagenes
-                                .filter(x => x.producto == prod.id)
+                                .filter(x => x.producto === prod.id)
                                 .map (prodimagen => (
                                     <div key={prodimagen.id} onClick={() => { setShowModal(true); 
                                         setProducto(prod); 
                                         setimgProd(prodimagen.imagen)  } }   
                                     >                                           
-                                        <img  src={prodimagen.imagen} width="80" height="80" />
+                                        <img  src={prodimagen.imagen} width="80" height="80" alt='none' />
                                     </div>
                                 ))
                             }
@@ -335,7 +335,7 @@ const LaCarta = () => {
         
             <div className='product-card'>
                 <div>
-                    <img  src={imgProd} width="300" height="300"/>
+                    <img  src={imgProd} width="300" height="300" alt='none'/>
                 </div>
 
                 <div>

@@ -21,7 +21,7 @@ class Header extends Component {
 
                 <li>                   
                                                            
-                    <a href="#" onClick={this.props.logout }>Salir </a>                    
+                    <a href="/#" onClick={this.props.logout }>Salir </a>                    
                 </li>   
             </ul>
         )

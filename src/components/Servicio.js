@@ -5,15 +5,15 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { getRestaurants } from '../actions/RestaurantActions'
 import { getMesas } from '../actions/MesaAction'
-import { login, logout } from '../actions/authWaiters'
+import { login } from '../actions/authWaiters'
 
-import { getOrdenes,addOrden,editOrden,deleteOrden } from '../actions/OrdenAction'
-import { getOrdenesDetalles,addOrdenDetalle,editOrdenDetalle,deleteOrdenDetalle } from '../actions/OrdenDetalleAction'
+import { getOrdenes,addOrden,editOrden } from '../actions/OrdenAction'
+import { getOrdenesDetalles  } from '../actions/OrdenDetalleAction'
 import { getCategorias } from '../actions/CategoriaAction'
 import { getProductos } from '../actions/ProductoAction'
 
 
-import useFetch from './common/useFetch';
+// import useFetch from './common/useFetch';
 
 const Servicio = () => {
         
@@ -41,7 +41,7 @@ const Servicio = () => {
     const productos = useSelector(state => state.productos.lista)
     const mesas = useSelector(state => state.mesas.lista)
     const ordenes = useSelector(state => state.ordenes.lista)    
-    const ordenNewId = useSelector(state => state.ordenes.newId)    
+    // const ordenNewId = useSelector(state => state.ordenes.newId)    
     const ordenesdetalles = useSelector(state => state.ordenesDetalles.lista)
     
 
@@ -60,11 +60,11 @@ const Servicio = () => {
         dispatch(getMesas())
         dispatch(getOrdenes())
         dispatch(getOrdenesDetalles())        
-    }, [])
+    }, [])// eslint-disable-line react-hooks/exhaustive-deps
 
 
     //useFetch
-    const  [ordenState, postOrden] = useFetch();
+    // const  [ordenState, postOrden] = useFetch();
 
 
 
@@ -470,7 +470,7 @@ const Servicio = () => {
                             Ronda: {element.ronda}
                         </td>
                         <td align='center'>{element.cantidad}</td>                        
-                        <td> { productos.filter(x=>x.id == element.producto)[0].nombre }  </td>
+                        <td> { productos.filter(x=>x.id === element.producto)[0].nombre }  </td>
                         <td align='right'>${element.precio }</td>                            
                         <td align='right'>${element.cantidad  * element.precio}</td>  
                        
@@ -638,7 +638,7 @@ const Servicio = () => {
                                 .map (x => (
                                     <>
 
-                                    { ordenes.filter(ord => ord.mesa === x.id & ord.status == 1).length > 0
+                                    { ordenes.filter(ord => ord.mesa === x.id & ord.status === 1).length > 0
 
                                         ? ( 
                                             <div key={x.id} className='mesa-item working' onClick={() => { verDetallesMesa(x.id) }}>

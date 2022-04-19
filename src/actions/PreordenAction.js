@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { tokenConfig } from './auth'
+// import { tokenConfig } from './auth'
 
 export const GET_PREORDENES = 'GET_PREORDENES';
 export const ADD_PREORDEN = 'ADD_PREORDEN';
