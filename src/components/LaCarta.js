@@ -76,7 +76,7 @@ const LaCarta = () => {
 
                 return (
                     <>
-                        <h1>Bienvenidos</h1>
+                        <h1>Welcome</h1>
                         <h2>restaurant {nombreRestaurant}</h2>
                         <button onClick={()=> setIdRestaurant(nombreRestaurant)}>Ver Menú</button>
                     </>
