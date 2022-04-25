@@ -4,7 +4,9 @@ import { getRestaurants } from '../actions/RestaurantActions'
 import { getCategorias } from '../actions/CategoriaAction'
 import { getProductos } from '../actions/ProductoAction'
 import { getProductoImagenes } from '../actions/ProductoImagenAction'
-import Modal from './common/Modal'
+import Modal from './common/Modal';
+import portada from '../images/sushiMakizushi.jpg';
+import menuicon from '../images/menu-3.png';
 
 import { addPreorden } from '../actions/PreordenAction'
 
@@ -40,9 +42,6 @@ const LaCarta = () => {
     //useDispatch
     const dispatch = useDispatch()
 
-
-
-
     //useEffect
     useEffect(() => {
         dispatch(getRestaurants())
@@ -76,9 +75,16 @@ const LaCarta = () => {
 
                 return (
                     <>
-                        <h1>Welcome</h1>
-                        <h2>restaurant {nombreRestaurant}</h2>
-                        <button onClick={()=> setIdRestaurant(nombreRestaurant)}>Ver Menú</button>
+                    <div className='portada' >
+                        <div className='banner-img-wp'>
+                            <img className='banner-img' src={portada}></img>
+                        </div>   
+                        <div className='mensajes'>
+                            <h1 className='h1-title'>Bienvenidos</h1>
+                            <h2>Restaurant <span>{nombreRestaurant}</span> </h2>
+                            <button onClick={()=> setIdRestaurant(nombreRestaurant)}>Ver Menú</button>
+                        </div>                                             
+                    </div>
                     </>
                 )
 
@@ -230,230 +236,202 @@ const LaCarta = () => {
         
     }
     
-
-
     const SeleccionaCategoria = (
-        <div className='tabs-group'>            
-            {
-                    categorias                    
-                    .filter( p => p.restaurant === myRest)
-                    .map (item => (
-                        <div className="tabs-item" key={item.id}>                            
-                            
-                            {
-                                item.id === myCategoria
-                                    ? (<span className='tab-item-selected'> {item.nombre}  </span>)
-                                    : (<span className='tab-item' onClick= { () => setMyCategoria(item.id) }> {item.nombre}  </span>)
-                            }
-                            
+        <div className='sec-wp'>
+            <div className='container'>
+                <div className='menu-tab-wp'>
+                    <div className='menu-tab text-center'>
+                        <ul className='filters'>
+                            <div className='filter-active'></div>                
+                                {
+                                    categorias                    
+                                    .filter( p => p.restaurant === myRest)
+                                    .map (item => (
+                                        <li key={item.id} className='filter'> 
+                                            <img src={menuicon}/>
+                                            {
+                                                item.id === myCategoria
+                                                    ? (<span> { item.nombre} </span>)
+                                                    : (<span  onClick= { () => setMyCategoria(item.id) }> {item.nombre}  </span>)
+                                            }                            
+                                        </li>
+                                ))                
+                                }                
+                        </ul>            
+
+                        <div className='header-btn header-cart' onClick={() => setVerMiOrden(true) }>                
+                            <i className='uil uil-shopping-bag'>Orden {totalPedido()}</i>  
                         </div>
-                ))
-                
-            }
-
-            <div className='ver_resumen' onClick={() => setVerMiOrden(true) }>                
-                ver <br />
-                mi orden<br />
-                {totalPedido()}
+                    </div>
+                </div>
             </div>
-
-
-
-            </div>
+        </div>
     )
-
-
  
     const listaProductos = (
-        <>
+        <>            
             { productos
                 .filter(p => p.categoria === myCategoria)
                 .map(prod => (
-                    <div  key={prod.id} className='product-card'>
+                    <div  key={prod.id} className='course'>
 
-                        <div className='product-card-item'>
+                        <div className='course-preview'>
                             {
                             productosImagenes
-                                .filter(x => x.producto === prod.id)
+                                .filter(x => x.producto == prod.id)
                                 .map (prodimagen => (
                                     <div key={prodimagen.id} onClick={() => { setShowModal(true); 
                                         setProducto(prod); 
                                         setimgProd(prodimagen.imagen)  } }   
-                                    >                                           
-                                        <img  src={prodimagen.imagen} width="80" height="80" alt='none' />
+                                    >   
+                                        <img  src={prodimagen.imagen} />
                                     </div>
-                                ))
-                            }
+                                ))                            }
                         </div>
 
+                        <div className='course-info'>
+                                <h5>{prod.nombre} <span>(${prod.precio})</span></h5>
+                                <p>{prod.descripcionA}</p>
+                        </div>  
 
-                        <div className='product-card-item'>
-                            {prod.nombre}  (${prod.precio})
-                            <ul>
-                                <li>{prod.descripcionA}</li>                                                                
-                            </ul>
-                        </div>                        
-
-
-
-                        <div className='product-card-item'>
-                            <button  onClick={() => {  addIt(prod) } } >
-                                + add 
+                        <div>
+                            <button className='icon-btn add-btn' onClick={() => {  addIt(prod) } } >
+                                <div className='add-icon'></div>
+                                <div className='btn-txt'>Add</div>
                             </button>
                             
                             {
-
                                 myOrden.filter(x=> x.id === prod.id).length
                                 ? (
                                     <>
-                                        <h2>{myOrden.filter(x=> x.id === prod.id)[0].cantidad}</h2>
+                                        <div className='colorText'>
+                                            <h3>{myOrden.filter(x=> x.id === prod.id)[0].cantidad}</h3>    
+                                        </div>                                        
                                         
-                                        <button  onClick={() => {  removeIt(prod) } } >
-                                            - remove
+                                        <button className='icon-btn add-btn' onClick={() => {  removeIt(prod) } } >                                        
+                                            <div className='btn-txt'>Remove</div>
                                         </button>
 
                                     </>
                                 )
                                 : null
 
-                            }
-                            
-                        </div>
-
-                    </div>
+                            }                            
+                        </div>                        
+                    </div>                    
                 ))
             }
 
-
-
-
-        <Modal 
+        <Modal
             show={showModal} 
             handleClose = {() => setShowModal(false) } 
             titulo = { producto.nombre  } 
-        >
-        
-            <div className='product-card'>
-                <div>
-                    <img  src={imgProd} width="300" height="300" alt='none'/>
+        >        
+        <div>
+            <div className='photo'>
+                <div className='product_image'>
+                    <img src={imgProd}/>
                 </div>
-
                 <div>
                     <strong>Descripción:</strong>
                     <p>{producto.descripcionA}</p>
                     <p>{producto.descripcionB}</p>
                     <p>{producto.descripcionC}</p>
 
-
-                    <strong>Precio:</strong> ${producto.precio} <br />
-                    <strong>Calorias:</strong> {producto.calorias} <br />
-                    <strong>tiempo de preparación:</strong> {producto.tiempoPreparacion}
-
-                </div>
-
-            
-            
-
-            
-            </div> 
-            
+                    <div className='contenido_modal'>
+                        <strong>Precio:</strong> ${producto.precio} <br />
+                        <strong>Calorias:</strong> {producto.calorias} <br />
+                        <strong>tiempo de preparación:</strong> {producto.tiempoPreparacion}
+                    </div> 
+                </div>            
+            </div>
+        </div>    
         </Modal>
-
-
-
-
-
         </>
     )
 
-
     const miPedido = (
         <>
-        <h2>Mi orden</h2>
-        <table>
-        <thead>
-            
-            <th align='center'></th>
-            <th align='center'>Cantidad</th>                
-            <th align='center'>Nombre</th>                                
-            <th align='center'>Precio</th>                                
-            <th align='center'>Subtotal</th>                                
-            <th align='center'></th>
-            {
-                myOrden.map( element => (
-                    <tr key={element.id}>                            
-                        <td align='center'>
-                            <button  onClick={() => {  removeIt(element) } } >- remove</button>
+        <h2 className='miorden'>Mi orden</h2>
+        <div className='table_responsive'>
+        <table className='formato'>
+            <thead>                
+                <th align='center'></th>
+                <th align='center'>Cantidad</th>                
+                <th align='center'>Nombre</th>                                
+                <th align='center'>Precio</th>                                
+                <th align='center'>Subtotal</th>                                
+                <th align='center'></th>
+                {
+                    myOrden.map( element => (
+                        <tr key={element.id}>                            
+                            <td align='center'>
+                                <button className='boton-' onClick={() => {  removeIt(element) } } >-</button>
+                            </td>
+                            <td align='center'>{element.cantidad}</td>
+                            <td>{element.nombre }</td>                                                    
+                            <td align='right'>${element.precio }</td>                            
+                            <td align='right'>${element.cantidad  * element.precio}</td>  
+                            <td align='center'>
+                                <button className='botonmas'  onClick={() => {  addIt(element) } } >
+                                    +
+                                </button>
+                            </td>
+                        </tr>                    
+                    ))
+                }
+                    <tr><td>&nbsp;</td></tr>
+                    <tr>                            
+                        <td></td>
+                        <td></td>                                                    
+                        <td>Total</td>                            
+                        <td></td>             
+                        <td align='right'>{totalPedido()} </td>  
+                    </tr>     
+
+                    <tr><td>&nbsp;</td></tr>
+
+                    <tr>
+                        <td></td>                                                    
+                        <td>
+                        <div className='ver_resumen' onClick={() => setVerMiOrden(false) }>                
+                            &nbsp;<br />
+                            Regresar<br />
+                            &nbsp;
+                        </div>    
                         </td>
-                        <td align='center'>{element.cantidad}</td>
-                        <td>{element.nombre }</td>                                                    
-                        <td align='right'>${element.precio }</td>                            
-                        <td align='right'>${element.cantidad  * element.precio}</td>  
-                        <td align='center'>
-                            <button  onClick={() => {  addIt(element) } } >
-                                + add 
-                            </button>
-                        </td>
-                    </tr>                    
-                ))
-            }
-                <tr><td>&nbsp;</td></tr>
-                <tr>                            
-                    <td></td>
-                    <td></td>                                                    
-                    <td>Total</td>                            
-                    <td></td>             
-                    <td align='right'>{totalPedido()} </td>  
-                </tr>     
+                        <td></td>                                                    
+                        <td></td>                                                    
+                        <td>                           
 
-                <tr><td>&nbsp;</td></tr>
+                            {
+                                myOrden.length > 0
+                                ? (
+                                    <>
 
-                <tr>
-                    <td></td>                                                    
-                    <td>
-                    <div className='ver_resumen' onClick={() => setVerMiOrden(false) }>                
-                        &nbsp;<br />
-                        Regresar<br />
-                        &nbsp;
-                    </div>    
-                    </td>
-                    <td></td>                                                    
-                    <td></td>                                                    
-                    <td>
-                        
+                                        <button className='eliminarTodo' onClick={() => {  setMyOrden([]) } } >
+                                            Eliminar
+                                        </button> 
+                                    
+                                        <button type="button" onClick={ () => { setShowModalOrden(true);  }}>
+                                            Enviar Orden
+                                        </button>
+                                    </>
+                                    
+                                    
+                                    )
+                                : null
+                            }
+                            
+                        </td>                                                    
+                    </tr>
 
-                        {
-                            myOrden.length > 0
-                            ? (
-                                <>
-
-                                    <button  onClick={() => {  setMyOrden([]) } } >
-                                        Eliminar Todo
-                                    </button> 
-                                
-                                    <button type="button" onClick={ () => { setShowModalOrden(true);  }}>
-                                        Enviar Orden
-                                    </button>
-                                </>
-                                 
-                                 
-                                 )
-                            : null
-                        }
-                        
-                    </td>                                                    
-                </tr>
-
-        </thead>     
+            </thead>     
         <tbody>
 
         </tbody>
         </table>
-
-        
-
-
-
+        </div>
 
         <Modal 
             show={showModalOrden} 
@@ -507,7 +485,7 @@ const LaCarta = () => {
                     <>
                         <div className="card-item" >
                             <img src={logo}  alt="imagen" width="70px" height="70px"/> 
-                            <h3>{nombreRestaurant} </h3>
+                            <h2 className='h2-title'>{nombreRestaurant}</h2>
                         </div>
 
 

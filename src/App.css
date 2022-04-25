@@ -1,5 +1,1190 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap");
-* {
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+.montserrat {
+  font-family: 'Montserrat', sans-serif;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 100vh; 
+  font-family: 'Muli', sans-serif;
+}
+/*---------- PORTADA ----------*/
+.portada{
+  text-align: center;
+}
+.portada img{
+  width: 100%;
+  --object-fit: contain;
+}
+.portada h1{
+  font-size: 40;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+.portada h2{
+  margin-top: 20px;
+  color: #777;
+}
+.portada button{
+  min-width: 200px;
+  min-height: 40px;
+  background-color: #FABD44;
+  box-shadow: 9px 9px 12px #b2b2b3, -9px -9px 12px #ffffff;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  color: #fff;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  outline: none !important;
+  transition:  0.8s cubic-bezier(0.22, 0.78,0.45, 1.02);
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+  padding: 6px 30px;
+
+}
+.portada button:hover{
+  --cursor: pointer;
+  --background-color: #FABD44;
+  border-color: #0d0d25;
+  box-shadow: inset 9px 9px 12px #f8901c, inset -9px -9px 12px #FABD44;
+  color: #fff;
+}
+.mensajes span{
+  color: #ff8243;
+  background-image: linear-gradient(0deg, rgb(13 13 37 /8%), rgb(13 13 37 /8%));
+  background-size: 100% 20px;
+  background-position: 0 90%;
+  background-repeat: no-repeat;
+  display: inline;
+  transition: 0.8s cubic-bezier(0.22,0.78,0.45,1.02);
+}
+.h1-title{
+  text-transform: capitalize;
+  margin-bottom: 25px;
+  font-weight: 900;
+}
+.banner-img{
+  background-size: cover;
+  background-position: center;
+  animation: biani 4.5s linear infinite alternate;
+  box-shadow: 0 0px 20px rgba(36, 39,37, 0.3);
+}
+@keyframes biani {
+  0% {
+      border-radius: 48% 52% 57% 43% / 34% 44% 56% 66%;
+  }
+  25% {
+      border-radius: 62% 38% 64% 36% / 34% 55% 45% 66%;
+  }
+  50% {
+      border-radius: 43% 57% 51% 49% / 33% 42% 58% 67%;
+  }
+  100% {
+      border-radius: 40% 60% 43% 57% / 52% 32% 68% 48%;
+  }
+}
+
+
+
+
+/*---------- Información de la categoría de los productos ----------*/
+.menu-tab-wp{
+  margin-top: 80px;
+}
+.menu-tab ul{
+  padding: 10px;
+  display: inline-block;
+  border-radius: 60px;
+  background: linear-gradient(145deg, #ececec, #ffffff);
+  --box-shadow: 28px 28px 55px #d4d4d4, -28px -28px 55px #FFFFFF;
+  position: relative;
+  z-index: 2;
+}
+.menu-tab ul li, .menu-tab ul .filter-active{
+  display: inline-flex;
+  text-transform: capitalize;
+  font-size: 18px;
+  line-height: normal;
+  cursor: pointer;
+  padding: 10px 26px;
+  border-radius: 30px;
+  transition: 0.3s;
+  justify-content: center;
+  align-items: center;
+}
+.filter-active{
+  position: absolute;
+  left: 0;
+  top: 12px;
+  min-height: 50px;
+  z-index: -1;
+}
+.menu-tab ul .filter-active {
+  color: #ffffff;
+}
+.sec-sub-title {
+  text-align: center;
+  text-transform: uppercase;
+  display: inline-block;
+  background: #f3f3f5;
+  box-shadow: 9px 9px 12px #e4e4e4, -9px -9px 12px #ffffff;
+  padding: 3px 20px;
+  border-radius: 60px;
+  color: #ff8243;
+  font-size: 14px;
+  text-align: center;
+}
+.h2-title {
+  font-size: 46px;
+  line-height: 56px;
+  margin-bottom: 15px;
+  text-transform: capitalize;
+  position: relative;
+  z-index: -2;
+}
+.h2-title span, .h3-title span, .h4-title span, .h5-title span, .sub-title span {
+  display: block;
+}
+.text-center{
+  text-align: center !important;
+}
+.header-btn {
+  width: 80px;
+  height: 80px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position: relative;
+  margin-left: 20px;
+  transition: 0.3s;
+  align-items: center;
+  transition: 0.5s;
+  border: 1px solid gray;
+  cursor: pointer;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0);
+}
+.header-btn::after{
+  border-radius: 50%;
+  content: "";
+  background-color: #66f2d5;
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  top: 7px;
+  left: 7px;
+}
+.header-btn:hover {
+  background: linear-gradient(145deg, #dcdcdc, #ffffff);
+  box-sizing: border-box;
+  box-shadow: 20px 20px 60px #cfcfd0, -20px -20px 60px #ffffff;
+}
+
+/*---------- Lista de Productos ----------*/
+.course {
+	background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+  transition: 0.8s cubic-bezier(0.22, 0.78, 0.45, 1.02);
+	display: flex;
+	max-width: 100%;
+	margin: 20px;
+	overflow: hidden;
+	width: 900px;
+}
+.course:hover{
+  transform: scale(1.03);
+}
+.course h6 {
+	opacity: 0.6;
+	margin: 0;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+  justify-content: center;
+}
+.course h2 {
+	letter-spacing: 1px;
+	margin: 10px 0;
+}
+.course-preview img{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-position: center;
+  background-size: cover;
+  padding: 10px;
+  justify-content: center;
+  --transition: ease-in-out .3s;
+}
+.course-preview a {
+	color: #fff;
+	display: inline-block;
+	font-size: 12px;
+	opacity: 0.6;
+	margin-top: 30px;
+	text-decoration: none;
+}
+.course-info {
+	--padding: 30px;
+	position: relative;
+	width: 100%;
+}
+.course-info span{
+  text-align: center;
+  color: orange;
+  letter-spacing: 1px;
+}
+.button-five{
+  background-color: #777;
+  border-radius: 25px;
+}
+/*BOTONES ADD Y REMOVE*/
+.icon-btn {
+  width: 50px;
+  height: 40px;
+  border: 1px solid #fff;
+  background: transparent;
+  border-radius: 25px;
+  overflow: hidden;
+  position: relative;
+  transition: width 0.2s ease-in-out;
+}
+.add-btn:hover {
+  width: 80px;
+}
+.add-btn::before,
+.add-btn::after {
+  transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+  content: "";
+  position: absolute;
+  height: 4px;
+  width: 10px;
+  top: calc(50% - 2px);
+  background: orange;
+}
+.add-btn::after {
+  right: 14px;
+  overflow: hidden;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+.add-btn::before {
+  left: 14px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+.icon-btn:focus {
+  outline: none;
+}
+.btn-txt {
+  opacity: 0;
+  transition: opacity 0.2s;
+  color: orange;
+}
+.add-btn:hover::before,
+.add-btn:hover::after {
+  width: 4px;
+  border-radius: 2px;
+}
+.add-btn:hover .btn-txt {
+  opacity: 1;
+}
+.add-icon::after,
+.add-icon::before {
+  transition: all 0.2s ease-in-out;
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 2px;
+  top: calc(50% - 10px);
+  background: orange;
+  overflow: hidden;
+}
+.add-icon::before {
+  left: 22px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+.add-icon::after {
+  right: 22px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+.add-btn:hover .add-icon::before {
+  left: 15px;
+  height: 4px;
+  top: calc(50% - 2px);
+}
+.add-btn:hover .add-icon::after {
+  right: 15px;
+  height: 4px;
+  top: calc(50% - 2px);
+}
+.colorText{
+  color: gray;
+  text-align: center;
+}
+/*MODAL*/
+.photo{
+  --padding: 0;
+  position: absolute;
+  left:50%;
+  transform: translate(-50%, -50%);
+  display: block;
+}
+.photo img{
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  box-shadow: 10px 15px 25px 0 rgba(0,0,0,.2);
+  display: block;
+  transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1);
+  margin-top: -10px;
+}
+/*Tablets*/
+@media (min-width: 481px) and (max-width:767px){
+  .photo{
+    top: 55%;
+  }
+  .photo img {
+    width: 200px;
+    height: 200px;
+  }
+  .photo strong, p{
+    font-size: 12px;
+  }
+}
+.photo:hover img{
+  box-shadow: 1px 1px 10px 0 rgba(0,0,0,.1);
+}
+.photo:hover img,
+.photo:hover .glow-wrap{
+  margin-top: 0;
+}
+
+/*---------- PEDIDO ----------*/
+.miorden{
+  text-align: center;
+  font-size: 16px;
+}
+.formato{
+  border-collapse: collapse;
+  width: 100%;
+}
+.formato thead{
+  overflow-x: auto;
+  min-height: .01%;
+}
+.formato td, th{
+  border:  1px solid #ddd;
+  padding: 8px;
+}
+.formato tr:nth-child(even){background-color: #f2f2f2;}
+
+.formato tr:hover {background-color: #ddd;}
+
+.formato th {
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  text-align: center;
+  background-color: #f8901c;
+  color: white;
+}
+.formato button {
+	cursor: pointer;
+	height: 30px;
+	width: 30px;
+	--color: black;
+	border-radius: 10px;
+	--box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+	--background: white;
+	margin: 5px;
+	transition: 1s;
+  border: none;
+}
+
+.table_responsive table{
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+.table_responsive tr{
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+.table_responsive th, .table_responsive td{
+  padding: .625em;
+  text-align: center;
+}
+.table_responsive th{
+  font-size: 13px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.h1-title{
+  text-transform: capitalize;
+  margin-bottom: 25px;
+  font-weight: 900;
+}
+.mensajes span{
+  color: #ff8243;
+  background-image: linear-gradient(0deg, rgb(13 13 37 /8%), rgb(13 13 37 /8%));
+  background-size: 100% 20px;
+  background-position: 0 90%;
+  background-repeat: no-repeat;
+  display: inline;
+  transition: 0.8s cubic-bezier(0.22,0.78,0.45,1.02);
+}
+
+/*Menu principal*/
+.h2-title {
+  font-size: 46px;
+  line-height: 56px;
+  margin-bottom: 15px;
+  text-transform: capitalize;
+  position: relative;
+  z-index: -2;
+}
+.h2-title span, .h3-title span, .h4-title span, .h5-title span, .sub-title span {
+  display: block;
+}
+.text-center{
+  text-align: center !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Información de la portada*/
+
+/*MEDIDAS EN DISPOSITIVOS*/
+
+/*iPhone 4 y 4s*/
+@media only screen 
+  and (min-width: 320px) 
+  and (max-width: 480px) {
+    .banner-img-wp{
+      padding: 0;
+    }
+    .banner-img{
+      width: 200px;
+      height: 200px;
+    }
+    .mensajes{
+      line-height: 80%;
+    }
+    .portada{
+      object-fit: none;
+    }
+    .course {
+      width: 300px;
+    }
+    .photo{
+      top: 60%;
+    }
+    .photo p{
+      font-size: 10px;
+    }
+    .photo img {
+      width: 120px;
+      height: 120px;
+    }
+    .photo strong{
+      font-size: 8px;
+    }
+    .contenido_modal{
+      font-size: 10px;
+      color: #24cf5f;
+    }
+    .contenido_modal strong{
+      color: gray;
+    }
+    .table_responsive table{
+      border:  0;
+    }
+    .table_responsive thead{
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      width: 1px;
+    }
+    .table_responsive tr{      
+      margin-bottom: .625em;
+    }
+    .table_responsive td{
+      font-size: 9px;
+      text-align: left;
+    }
+    .table_responsive td::before{
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    .table_responsive td:last-child {
+      border-bottom: 0;
+    }    
+    .table_responsive th{
+      font-size: 7px;
+    }
+    .boton-{
+      border: none;
+      border-bottom: none;
+      font-size: 30px;
+      padding: 0;
+      background-color: transparent;
+      color: red;   
+      }   
+      .boton-:hover,
+      .boton-:focus{
+        border-color: hsla(0, 0%, 100%, .6);
+        transform: translateY(-.2rem);
+        outline: none !important;
+      } 
+      .botonmas{
+        background-color: transparent;
+        color: green;
+        font-size: 24px;
+        border: none;
+        border-bottom: none;
+        padding: 0;
+      }
+}
+
+/*iPhone 6, 6s, 7 y 8, iPhone SE (2020)*/
+@media only screen 
+  and (min-width: 360px) 
+  and (max-width: 667px)  { 
+    .banner-img-wp{
+      padding: 0;
+    }
+    .banner-img{
+      width: 290px;
+      height: 290px;
+    }    
+    .portada{
+      object-fit: none;
+    }
+    .mensajes{
+      line-height: 90%;
+    }
+    .course {
+      width: 320px;
+    }
+    .photo{
+      top: 55%;
+    }
+    .photo p{
+      font-size: 10px;
+    }
+    .photo img {
+      width: 200px;
+      height: 200px;
+    }
+    .photo strong{
+      font-size: 9px;
+    }
+    .contenido_modal{
+      font-size: 11px;
+      color: #24cf5f;
+    }
+    .contenido_modal strong{
+      color: gray;
+    }
+    .table_responsive table{
+      border:  0;
+    }
+    .table_responsive thead{
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      width: 1px;
+    }
+    .table_responsive tr{      
+      margin-bottom: .625em;
+    }
+    .table_responsive td{
+      font-size: 9px;
+      text-align: left;
+    }
+    .table_responsive td::before{
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    .table_responsive td:last-child {
+      border-bottom: 0;
+    }    
+    .table_responsive th{
+      font-size: 8px;
+    }
+    .boton-{
+    border: none;
+    border-bottom: none;
+    font-size: 30px;
+    padding: 0;
+    background-color: transparent;
+    color: red;   
+    }   
+    .boton-:hover,
+    .boton-:focus{
+      border-color: hsla(0, 0%, 100%, .6);
+      transform: translateY(-.2rem);
+      outline: none !important;
+    } 
+    .botonmas{
+      background-color: transparent;
+      color: green;
+      font-size: 24px;
+      border: none;
+      border-bottom: none;
+      padding: 0;
+    }
+}
+
+/*iPhone 6+, 7+ y 8+*/
+@media only screen 
+  and (min-width: 414px) 
+  and (max-width: 736px)  { 
+    .banner-img-wp{
+      padding: 0;
+    }
+    .banner-img{
+      width: 300px;
+      height: 300px;
+    }    
+    .portada{
+      object-fit: none;
+    }
+    .mensajes{
+      line-height: 90%;
+    }
+    .course {
+      width: 400px;
+    }
+}
+
+/*iPhone X, iPhone 11 pro, iPhone 13 Mini, iPhone 11 Pro Max*/
+@media only screen 
+  and (min-width: 375px) 
+  and (max-width: 812px)  { 
+    .banner-img-wp{
+      padding: 0;
+    }
+    .banner-img{
+      width: 320px;
+      height: 320px;
+    }    
+    .portada{
+      object-fit: none;
+    }
+    .mensajes{
+      line-height: 200%;
+    }
+    .course {
+      width: 335px;
+    }
+}
+/*https://es.stackoverflow.com/questions/50334/c%C3%B3mo-detectar-si-el-dispositivo-es-iphone-con-css*/
+
+/*iPhone 11, 11pro max, iPhone XR,iPhone XS Max */
+@media only screen 
+  and (min-width: 414px) 
+  and (max-width: 896px)  { 
+    .banner-img-wp{
+      padding: 0;
+    }
+    .banner-img{
+      width: 350px;
+      height: 350px;
+    }    
+    .portada{
+      object-fit: none;
+    }
+    .mensajes{
+      line-height: 200%;
+    }
+    .course {
+      width: 400px;
+    }
+}
+
+/*iPhone 12 ,iPhone 12 Pro, iPhone 12 pro Max, iPhone 13, iPhone 13 PRO*/
+@media only screen 
+  and (min-width: 390px) 
+  and (max-width: 844px)  { 
+    .banner-img-wp{
+      padding: 0;
+    }
+    .banner-img{
+      width: 300px;
+      height: 300px;
+    }    
+    .portada{
+      object-fit: none;
+    }
+    .mensajes{
+      line-height: 200%;
+    }
+    .course {
+      width: 370px;
+    }
+}
+/*iPhonE 12 mini*/
+@media only screen 
+  and (min-width: 360px) 
+  and (max-width: 780px)  { 
+    .banner-img-wp{
+      padding: 0;
+    }
+    .banner-img{
+      width: 280px;
+      height: 280px;
+    }    
+    .portada{
+      object-fit: none;
+    }
+    .mensajes{
+      line-height: 200%;
+    }
+    .course {
+      width: 320px;
+    }
+}
+
+/*iPhone 12 pro max, iPhone 13 PRO MAX*/
+@media only screen 
+  and (min-width: 428px) 
+  and (max-width: 926px)  { 
+    .banner-img-wp{
+      padding: 0;
+    }
+    .banner-img{
+      width: 380px;
+      height: 380px;
+    }    
+    .portada{
+      object-fit: none;
+    }
+    .mensajes{
+      line-height: 200%;
+    }
+    .course {
+      width: 388px;
+    }
+}
+
+
+/*ANDROID*/
+/*Xiaomi Mi 11i, Xiaomi 12 2022*/
+@media only screen 
+  and (min-width: 360px) 
+  and (max-width: 800px)  { 
+    .banner-img-wp{
+      padding: 0;
+    }
+    .banner-img{
+      width: 300px;
+      height: 300px;
+    }    
+    .portada{
+      object-fit: none;
+    }
+    .mensajes{
+      line-height: 200%;
+    }
+    .sec-title text-center{
+      line-height: 10%;
+    }
+    .course {
+      width: 320px;
+    }
+}
+
+/*Xiaomi Redmi Note 9 Pro*/
+@media only screen 
+  and (min-width: 393px) 
+  and (max-width: 873px)  { 
+    .banner-img-wp{
+      padding: 0;
+    }
+    .banner-img{
+      width: 320px;
+      height: 320px;
+    }    
+    .portada{
+      object-fit: none;
+    }
+    .mensajes{
+      line-height: 90%;
+    }
+    .course {
+      width: 353px;
+    }
+}
+
+/*Xiaomi Redmi Note 7, Xiaomi Redmi Note 8, Xiaomi Redmi Note 8 Pro*/
+@media only screen 
+  and (min-width: 393px) 
+  and (max-width: 851px)  { 
+    .banner-img-wp{
+      padding: 0;
+    }
+    .banner-img{
+      width: 320px;
+      height: 320px;
+    }    
+    .portada{
+      object-fit: none;
+    }
+    .mensajes{
+      line-height: 80%;
+    }
+    .course {
+      width: 353px;
+    }
+}
+
+/*Samsung Galaxy A12, Samsung Galaxy S22+, Samsung Galaxy S22 ULTRA (2022),
+Samsung Galaxy S22 (2022), Samsung Galaxy S21 Ultra, Samsung Galaxy S20,
+Samsung Galaxy S21+, Samsung Galaxy S21, Samsung Galaxy S10, Samsung Galaxy S9+,
+Samsung Galaxy S8+, Samsung Galaxy J6*/
+@media only screen 
+  and (min-width: 360px) 
+  and (max-width: 800px)  { 
+    .banner-img-wp{
+      padding: 0;
+    }
+    .banner-img{
+      width: 320px;
+      height: 320px;
+    }    
+    .portada{
+      object-fit: none;
+    }
+    .mensajes{
+      line-height: 250%;
+    }
+    .course {
+      width: 320px;
+    }
+}
+
+/*Samsung Galaxy Note20 Ultra, Samsung Note10+ Samsung Galaxy S10+,
+Samsung Galaxy Note8*/
+@media only screen 
+  and (min-width: 412px) 
+  and (max-width: 883px)  { 
+    .banner-img-wp{
+      padding: 0;
+    }
+    .banner-img{
+      width: 220px;
+      height: 220px;
+    }    
+    .portada{
+      object-fit: none;
+    }    
+    .course {
+      width: 380px;
+    }
+}
+
+/*Samsung Galaxy Z Fold 2 (2020)*/
+@media only screen 
+  and (min-width: 820px) 
+  and (max-width: 1104px)  { 
+    .banner-img-wp{
+      padding: 0;
+    }
+    .banner-img{
+      width: 450px;
+      height: 450px;
+    }    
+    .portada{
+      object-fit: none;
+    }
+    .course {
+      width: 844px;
+    }
+    .photo{
+      top: 50%;
+    }
+    .photo p{
+      font-size: 12px;
+    }
+    .photo img {
+      width: 200px;
+      height: 200px;
+    }
+    .photo strong{
+      font-size: 11px;
+    }
+    .contenido_modal{
+      font-size: 13px;
+      color: #24cf5f;
+    }
+    .contenido_modal strong{
+      color: gray;
+    }
+}
+
+/*Samsung Galaxy Fold (2019)*/
+@media only screen 
+  and (min-width: 768px) 
+  and (max-width: 1076px)  { 
+    .banner-img-wp{
+      padding: 0;
+    }
+    .banner-img{
+      width: 470px;
+      height: 470px;
+    }    
+    .portada{
+      object-fit: none;
+    }
+    .course {
+      width: 728px;
+    }
+    .photo{
+      top: 50%;
+    }
+    .photo p{
+      font-size: 12px;
+    }
+    .photo img {
+      width: 200px;
+      height: 200px;
+    }
+    .photo strong{
+      font-size: 11px;
+    }
+    .contenido_modal{
+      font-size: 13px;
+      color: #24cf5f;
+    }
+    .contenido_modal strong{
+      color: gray;
+    }
+}
+
+/*Samsung Galaxy S20+*/
+@media only screen 
+  and (min-width: 384px) 
+  and (max-width: 854px)  { 
+    .banner-img-wp{
+      padding: 0;
+    }
+    .banner-img{
+      width: 250px;
+      height: 250px;
+    }    
+    .portada{
+      object-fit: none;
+    }
+    .course {
+      width: 344px;
+    }
+}
+/*Samsung S6, Samsung S6 edge, Samsung S7, Samsung S7 edge, Samsung Galaxy On8,
+Samsung Galaxy J7 Prime, Samsung Galaxy J7*/
+@media only screen 
+  and (min-width: 360px) 
+  and (max-width: 640px)  { 
+    .banner-img-wp{
+      padding: 0;
+    }
+    .banner-img{
+      width: 280px;
+      height: 280px;
+    }    
+    .portada{
+      object-fit: none;
+    }
+    .mensajes{
+      line-height: 100%;
+    }
+    .course {
+      width: 320px;
+    }
+}
+/*Samsung Galaxy S8*/
+@media only screen 
+  and (min-width: 360px) 
+  and (max-width: 740px)  { 
+    .banner-img-wp{
+      padding: 0;
+    }
+    .banner-img{
+      width: 260px;
+      height: 260px;
+    }    
+    .portada{
+      object-fit: none;
+    }
+    .course {
+      width: 320px;
+    }
+}
+
+/*Apple iPad PRO 11*/
+@media only screen 
+  and (min-width: 834px) 
+  and (max-width: 1194px)  { 
+    .banner-img-wp{
+      padding: 0;
+    }
+    .banner-img{
+      width: 500px;
+      height: 500px;
+    }    
+    .portada{
+      object-fit: none;
+    }
+    .mensajes{
+      line-height: 400%;
+    }
+    .course {
+      width: 794px;
+    }
+}
+/*Samsung Galaxy Tab S7*/
+@media only screen 
+  and (min-width: 800px) 
+  and (max-width: 1280px)  { 
+    .banner-img-wp{
+      padding: 0;
+    }
+    .banner-img{
+      width: 500px;
+      height: 500px;
+    }    
+    .portada{
+      object-fit: none;
+    }
+    .mensajes{
+      line-height: 400%;
+    }
+    .course {
+      width: 760px;
+    }
+}
+/*Surface Pro 7*/
+@media only screen 
+  and (min-width: 912px) 
+  and (max-width: 1368px)  { 
+    .banner-img-wp{
+      padding: 0;
+    }
+    .banner-img{
+      width: 700px;
+      height: 700px;
+    }    
+    .portada{
+      object-fit: none;
+    }
+    .mensajes{
+      line-height: 400%;
+    }
+    .course {
+      width: 872px;
+    }
+}
+/*Samsung Galaxy A51/71*/
+@media only screen 
+  and (min-width: 412px) 
+  and (max-width: 914px)  { 
+    .banner-img-wp{
+      padding: 0;
+    }
+    .banner-img{
+      width: 250px;
+      height: 250px;
+    }    
+    .portada{
+      object-fit: none;
+    }
+    .mensajes{
+      line-height: 200%;
+    }
+    .course {
+      width: 380px;
+    }
+}
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/** {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -134,4 +1319,4 @@ nav {
 
 .detallePedido{
   color: orange;
-}
+}*/
