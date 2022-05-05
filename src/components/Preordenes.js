@@ -133,7 +133,7 @@ const Preordenes = () => {
 
                                             
 
-                                            <table>
+                                            <table className='formato'>
                                             <thead>            
                                                 
                                                 <th align='center'>Cantidad</th>                
@@ -158,7 +158,7 @@ const Preordenes = () => {
                                             </tbody>
                                             </table>
 
-                                            <button  onClick={() => {  seleccionarMesa(pre.id) } } >
+                                            <button className='GenerarOrden'  onClick={() => {  seleccionarMesa(pre.id) } } >
                                                 Generar Orden de { pre.nombreCliente }
                                             </button>
 

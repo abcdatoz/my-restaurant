@@ -13,7 +13,7 @@ const Modal = ({ handleClose, show, children, titulo }) => {
                 <div className='modal-titulo'>
                     <h1>{titulo}</h1>                    
                     <button  type="button" onClick={handleClose}>
-                        X
+                    ✘
                     </button>
                 </div>                
 

@@ -237,34 +237,26 @@ const LaCarta = () => {
     }
     
     const SeleccionaCategoria = (
-        <div className='sec-wp'>
-            <div className='container'>
-                <div className='menu-tab-wp'>
-                    <div className='menu-tab text-center'>
-                        <ul className='filters'>
-                            <div className='filter-active'></div>                
+        <div className='tabs-group'>
+            {
+                        categorias                    
+                        .filter( p => p.restaurant === myRest)
+                        .map (item => (
+                            <div className="tabs-item" key={item.id}>                                                            
                                 {
-                                    categorias                    
-                                    .filter( p => p.restaurant === myRest)
-                                    .map (item => (
-                                        <li key={item.id} className='filter'> 
-                                            <img src={menuicon}/>
-                                            {
-                                                item.id === myCategoria
-                                                    ? (<span> { item.nombre} </span>)
-                                                    : (<span  onClick= { () => setMyCategoria(item.id) }> {item.nombre}  </span>)
-                                            }                            
-                                        </li>
-                                ))                
-                                }                
-                        </ul>            
+                                    item.id === myCategoria
+                                    ? (<span className='tab-item-selected btn-icon'> {item.nombre}  </span>)
+                                    : (<span className='tab-item btn-icon' onClick= { () => setMyCategoria(item.id) }> {item.nombre}  </span>)
+                                }
+                            
+                            </div>
+                ))                
+            }
 
-                        <div className='header-btn header-cart' onClick={() => setVerMiOrden(true) }>                
-                            <i className='uil uil-shopping-bag'>Orden {totalPedido()}</i>  
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div className='header-btn header-cart' onClick={() => setVerMiOrden(true) }>                
+                <i className='uil uil-shopping-bag'>Orden {totalPedido()}</i>  
+            </div>           
+            
         </div>
     )
  
@@ -351,7 +343,7 @@ const LaCarta = () => {
     )
 
     const miPedido = (
-        <>
+        <>        
         <h2 className='miorden'>Mi orden</h2>
         <div className='table_responsive'>
         <table className='formato'>
@@ -380,7 +372,7 @@ const LaCarta = () => {
                         </tr>                    
                     ))
                 }
-                    <tr><td>&nbsp;</td></tr>
+                    <br></br>
                     <tr>                            
                         <td></td>
                         <td></td>                                                    
@@ -389,20 +381,16 @@ const LaCarta = () => {
                         <td align='right'>{totalPedido()} </td>  
                     </tr>     
 
-                    <tr><td>&nbsp;</td></tr>
+                    <br></br>                                                  
+                        
+                    <div className='ver_resumen' onClick={() => setVerMiOrden(false) }>
+                          
+                        <a className='btns'>
+                            <div className='arrow'></div>
+                        </a>                       
+                    </div>  
 
-                    <tr>
-                        <td></td>                                                    
-                        <td>
-                        <div className='ver_resumen' onClick={() => setVerMiOrden(false) }>                
-                            &nbsp;<br />
-                            Regresar<br />
-                            &nbsp;
-                        </div>    
-                        </td>
-                        <td></td>                                                    
-                        <td></td>                                                    
-                        <td>                           
+                    <br></br>                        
 
                             {
                                 myOrden.length > 0
@@ -410,11 +398,11 @@ const LaCarta = () => {
                                     <>
 
                                         <button className='eliminarTodo' onClick={() => {  setMyOrden([]) } } >
-                                            Eliminar
+                                        ✘
                                         </button> 
                                     
-                                        <button type="button" onClick={ () => { setShowModalOrden(true);  }}>
-                                            Enviar Orden
+                                        <button type="button" className='EnviarPedido' onClick={ () => { setShowModalOrden(true);  }}>
+                                        ✔
                                         </button>
                                     </>
                                     
@@ -422,9 +410,6 @@ const LaCarta = () => {
                                     )
                                 : null
                             }
-                            
-                        </td>                                                    
-                    </tr>
 
             </thead>     
         <tbody>
@@ -438,31 +423,29 @@ const LaCarta = () => {
             handleClose = {() => setShowModalOrden(false) } 
             titulo = "Enviar Orden" 
         >
-        
-        <form>
-
-
-            <div className='form-input'>
-                <label>a nombre de</label>
+            <div>
+            <div className='photo'>
+                <strong>A nombre de:</strong> <br />
                 <input 
+                    className='inputNombrede'
                     type="text"
                     placeholder='nombre del cliente'
                     name="nombreCliente"
                     onChange= { e => setNombreCliente(e.target.value) }                            
                     value= { nombreCliente }
-                    />
+                />   
+                <br /><br />              
+                
+                <button type="button" className='EnviarPedido' onClick={enviarOrden}>Enviar Orden </button>                        
+            
+            </div>    
             </div>
 
-     
 
-
-            <div className="form-buttons">
-                <button type="button" onClick={enviarOrden}>Enviar Orden </button>                        
-            </div>
+            
 
 
 
-            </form>
         </Modal>
          
         
@@ -483,10 +466,9 @@ const LaCarta = () => {
                 ? welcomeTo()
                 : (
                     <>
-                        <div className="card-item" >
-                            <img src={logo}  alt="imagen" width="70px" height="70px"/> 
-                            <h2 className='h2-title'>{nombreRestaurant}</h2>
-                        </div>
+                        <div className="sec-title text-center mb-5" >  
+                            <p className='sec-sub-title mb-3'>our menu</p>                                
+                        </div>   
 
 
                         {

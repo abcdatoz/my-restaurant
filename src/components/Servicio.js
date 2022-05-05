@@ -11,6 +11,7 @@ import { getOrdenes,addOrden,editOrden } from '../actions/OrdenAction'
 import { getOrdenesDetalles  } from '../actions/OrdenDetalleAction'
 import { getCategorias } from '../actions/CategoriaAction'
 import { getProductos } from '../actions/ProductoAction'
+import imagen from '../images/BackgroundMenu.png';
 
 
 // import useFetch from './common/useFetch';
@@ -293,79 +294,85 @@ const Servicio = () => {
 
 
     const FormLogin = (
-        <div>
-                
-            <strong>
-                LOGIN
-            </strong>
-        
-            <form>
+        <div className='modal_menu'>
+        <div className='modal__container'>
+            <div className='modal__featured'>
+            <div class="modal__circle"></div>
+                <img src={imagen} class="modal__product" />
+            </div>
 
-                <div className='form-input'>
-                    <label>Restaurant</label>
-                    <select 
-                        name="rest"
-                        value={rest}
-                        onChange={ e=> setRest (e.target.value) } >
-                        <option value="null">Seleccione el restaurant</option>                                
-                        {restaurantes.map(x => (
-                            <option key={x.id} value={x.id}>
-                                {x.nombre}
-                            </option>
-                    ))}
-                    </select>
-                </div>
+            <div className='modal__content'>
+            <h2>Login</h2>
+            
+        <form>
 
+            <div className='form-input'>
+                <label>Restaurante </label>
+                <select  
+                    name="rest"
+                    value={rest}
+                    onChange={ e=> setRest (e.target.value) } >
+                    <option value="null" className='dropdown-list_item'>Seleccione el restaurante</option>                                
+                    {restaurantes.map(x => (
+                        <option key={x.id} value={x.id}>
+                            {x.nombre}
+                        </option>
+                ))}
+                </select>
+            </div>
 
-                <div className='form-input'>
+            <ul className='form-list'>
+                <li className='form-list_row'>
                     <label>Usuario</label>
                     <input 
-                        type="text"
-                        name="usuario"
-                        onChange= { e => setUsuario(e.target.value) }                            
-                        value= { usuario }
-                        />
-                </div>
+                    type="text"
+                    name="usuario"
+                    onChange= { e => setUsuario(e.target.value) }                            
+                    value= { usuario }
+                    />
+                </li>
+            </ul>
 
-
-                <div className='form-input'>
-                    <label>Password</label>
+            <ul className='form-list'>
+                <li className='form-list_row'>
+                    <label>Contraseña</label>
                     <input 
-                        type="password"
-                        name="password"
-                        onChange= { e => setPassword(e.target.value) }                            
-                        value= { password }
-                        />
-                </div>                  
+                    type="password"
+                    name="password"
+                    onChange= { e => setPassword(e.target.value) }                            
+                    value= { password }
+                    />
+                </li>                            
+            </ul>
+
+            <br></br>
+            <div>
+                <button type="button" className='button' onClick={entrar}>Entrar </button>                        
+            </div>
+    </form>
+</div>
 
 
-
-                <div className="form-buttons">
-                    <button type="button" onClick={entrar}>Entrar </button>                        
-                </div>
-
-
-
-            </form>
-          
-                
 
         </div>
+      
+</div>
 
     )
 
     const SeleccionaCategoria = (
-        <div className='tabs-group'>            
+        <div>
+            <div className='tabs-group-vertical'>            
             {
                     categorias                    
                     .filter( p => p.restaurant === waiter.idRestaurant)
                     .map (item => (
-                        <div className="tabs-item" key={item.id}>                            
+                        <div className="tabs-item-vertical" key={item.id}>                            
                             
                             {
                                 item.id === myCategoria
-                                    ? (<span className='tab-item-selected'> {item.nombre}  </span>)
-                                    : (<span className='tab-item' onClick= { () => setMyCategoria(item.id) }> {item.nombre}  </span>)
+                                    ? (<span className='tab-item-selected-vertical'> {item.nombre}  </span>)
+                                    : (<span className='tab-item-vertical' onClick= { () => setMyCategoria(item.id) }> {item.nombre}  </span>)
                             }
                             
                         </div>
@@ -373,13 +380,17 @@ const Servicio = () => {
                 
             }
 
-            <div className='ver_resumen' onClick={() => setVerMiOrden(true) }>                
-                ver <br />
-                pre-orden<br />
-                {totalPedido()}
+            </div>  
+
+            <div className='pp'>
+                <div className='ver_resumen' onClick={() => setVerMiOrden(true) }>                
+                    <div className='resumen_orden'>Resumen Orden</div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div className='resumen_pre-orden'>
+                        <div className='pre-orden'>Visualizar pre-orden</div>
+                    </div>
+                </div>
             </div>
-
-
         </div>
     )
 
@@ -387,8 +398,9 @@ const Servicio = () => {
 
     const listaProductos = (
         <>
-
-            <table>
+    <br></br>
+    <div className='ListaProductos'>
+    <table>
             { productos
                 .filter(p => p.categoria === myCategoria)
                 .map(prod => (
@@ -397,19 +409,22 @@ const Servicio = () => {
                         <td>{prod.nombre}</td>
                         <td>${prod.precio}</td>
                         <td>
-                            <button  onClick={() => {  addIt(prod) } } >
-                                + add 
+                            
+                            <button className='icon-btn add-btn' onClick={() => {  addIt(prod) } } >
+                                <div className='add-icon'></div>
+                                <div className='btn-txt'>Add</div>
                             </button>
                             
                             {
 
                                 myOrden.filter(x=> x.id === prod.id && x.mesa === mesa).length
                                 ? (
-                                    <>
-                                        <strong>{myOrden.filter(x=> x.id === prod.id && x.mesa === mesa)[0].cantidad}</strong>
+                                    <>                                        
+                                        <strong className='colorTextoVertical'>{myOrden.filter(x=> x.id === prod.id && x.mesa === mesa)[0].cantidad}</strong>
                                         
-                                        <button  onClick={() => {  removeIt(prod) } } >
-                                            - remove
+                                        
+                                        <button className='icon-btn add-btn' onClick={() => {  removeIt(prod) } } >                                        
+                                            <div className='btn-txt'>Remove</div>
                                         </button>
 
                                     </>
@@ -422,6 +437,8 @@ const Servicio = () => {
                 ))
             }
             </table>
+    </div>
+            
             
 
 
@@ -432,34 +449,27 @@ const Servicio = () => {
 
     const miPedido = (
         <>
-
-
-            <h2>Mi orden</h2>
+            <h2 className='miorden'>Mi orden</h2>
             {
                 ordenesdetalles.filter (x => x.orden === orden).length > 0
                 ? (
-                    <button  onClick={() => {  cerrarServicio() } } >
+                    <button className='cerrarPedido' onClick={() => {  cerrarServicio() } } >
                         cerrar servicio en esta mesa
                     </button>
                 )
                 : null
             }
-            
-            
- 
-        
 
-
-
-        <table>
+    <div className='table_responsive'>
+    <table className='formato'>
         <thead>
             
             <th align='center'></th>
             <th align='center'>Cantidad</th>                
             <th align='center'>Nombre</th>                                
             <th align='center'>Precio</th>                                
-            <th align='center'>Subtotal</th>                                
-            <th align='center'></th>
+            <th align='center'>Subtotal</th>                               
+            
 
             {
                 ordenesdetalles
@@ -485,93 +495,67 @@ const Servicio = () => {
                     .map( element => (
                     <tr key={element.id} >                            
                         <td align='center'>
-                            <button  onClick={() => {  removeIt(element) } } >- remove</button>
+                            <button className='boton-' onClick={() => {  removeIt(element) } } >-</button>
                         </td>
                         <td align='center'>{element.cantidad}</td>
                         <td>{element.nombre }</td>                                                    
                         <td align='right'>${element.precio }</td>                            
                         <td align='right'>${element.cantidad  * element.precio}</td>  
                         <td align='center'>
-                            <button  onClick={() => {  addIt(element) } } >
-                                + add 
+                            <button className='botonmas'  onClick={() => {  addIt(element) } } >
+                                + 
                             </button>
                         </td>
                     </tr>                    
                 ))
             }
-                <tr><td>&nbsp;</td></tr>
-                <tr>                            
-                    <td></td>
-                    <td></td>                                                    
-                    <td>Total</td>                            
-                    <td></td>             
-                    <td align='right'>{totalPedido()} </td>  
-                </tr>     
+                    <br></br>
+                    <tr>                            
+                        <td></td>
+                        <td></td>                                                    
+                        <td>Total</td>                            
+                        <td></td>             
+                        <td align='right'>{totalPedido()} </td>  
+                    </tr>     
 
-                <tr><td>&nbsp;</td></tr>
+                    <br></br>
 
-                <tr>
+                    <div className='ver_resumen' onClick={() => setVerMiOrden(false) }>
+                          
+                          <a className='btns'>
+                              <div className='arrow'></div>
+                          </a>                       
+                      </div>  
 
-                    <td>
-
-                    {
+                {
                         myOrden.filter (x => x.mesa === mesa).length > 0
                         ? (
-                            <div className='ver_resumen' onClick={() => {removeAll() } }>                
-                                &nbsp;<br />
-                                Limpiar <br />
-                                &nbsp;
-                            </div>
+                            <>
+                            <button className='eliminarTodo' onClick={() => {  removeAll() } } >
+                            ✘
+                            </button>
+
+                            <div className='EnviarPedidoServicio' onClick={() => generarOrden() }>                
+                            ✔
+                            </div> 
+
+                            </>
                             
                         )
                         : null
-                    }                       
-
-                    </td>                                                    
-
-
-                    <td></td>
-
-                    <td>
-
-                        
-
-                        {
-                            myOrden.filter (x => x.mesa === mesa).length > 0
-                            ? (
-                                <div className='ver_resumen' onClick={() => generarOrden() }>                
-                                    &nbsp;<br />
-                                    agregar a la ORDEN<br />
-                                    &nbsp;
-                                </div> 
-                            )
-                            : null
-                        }
-                        </td>
-                      
-                      
-                    <td></td>
-
-                    <td>
-                        <div className='ver_resumen' onClick={() => setVerMiOrden(false) }>                
-                            &nbsp;<br />
-                            Regresar<br />
-                            &nbsp;
-                        </div>       
-                    </td>                                                    
-
+                    }   
                     
 
-                </tr>
+                        
+                
 
         </thead>     
         <tbody>
 
         </tbody>
         </table>
-         
-        
-                                        
+    </div>
+                                       
 
         </>
     ) 
@@ -589,16 +573,13 @@ const Servicio = () => {
                 ? (
 
                     <>
-                    
-                    <ul>
-                        <li>{waiter.nameWaiter}</li>            
-                        <li><Link  to="/Preordenes">Pre-Ordenes</Link></li>            
-                        <li>Salir()</li>                        
-                    </ul>
-
-
-
-
+                    <div>
+                        <ul>
+                            <li>{waiter.nameWaiter}</li>            
+                            <li><Link  to="/Preordenes">Pre-Ordenes</Link></li>            
+                            <li>Salir()</li>                        
+                        </ul>
+                    </div>
                     {
                         mesa
                             ? (
@@ -608,9 +589,7 @@ const Servicio = () => {
                                         {mesaNombre}  
                                     </div>
 
-                                    <div className='card-group'>
-
-                                    
+                                    <div className='card-group'>                                   
 
                                         {
                                             verMiOrden
@@ -641,14 +620,14 @@ const Servicio = () => {
                                     { ordenes.filter(ord => ord.mesa === x.id & ord.status === 1).length > 0
 
                                         ? ( 
-                                            <div key={x.id} className='mesa-item working' onClick={() => { verDetallesMesa(x.id) }}>
-                                                {x.nombre} atendiendose
+                                            <div key={x.id} className='mesa-item' onClick={() => { verDetallesMesa(x.id) }}>
+                                                {x.nombre} <div className='working'>En Servicio</div> 
                                             </div>                                           
                                         )
                                         :( 
 
-                                            <div key={x.id} className='mesa-item working' onClick={() => { verDetallesMesa(x.id) }}>
-                                                {x.nombre} --libre
+                                            <div key={x.id} className='mesa-item' onClick={() => { verDetallesMesa(x.id) }}>
+                                                {x.nombre} <div className='libre'>Disponible</div> 
                                             </div>  
                                         
                                         )
