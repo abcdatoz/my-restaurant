@@ -134,7 +134,7 @@ const Preordenes = () => {
                                             
 
                                             <table className='formato'>
-                                            <thead>            
+                                            <thead>           
                                                 
                                                 <th align='center'>Cantidad</th>                
                                                 <th align='center'>Nombre</th>                                
@@ -174,22 +174,18 @@ const Preordenes = () => {
                                 titulo = "Enviar Orden" 
                             >
 
-
-                               
-
-                                            {
-                                                preordenes.filter(p => p.id === preorden).length === 0
-                                                ? null
-                                                :(
-                                                    <>
-                                                        <h3>Orden de{ preordenes.filter(p => p.id === preorden)[0].nombreCliente}</h3>                                                
-                                                    </>
-                                                )
-                                            }
+                            <div className='photo'>
+                                {
+                                    preordenes.filter(p => p.id === preorden).length === 0
+                                    ? null
+                                    :(
+                                        <>
+                                            <h3>Orden de { preordenes.filter(p => p.id === preorden)[0].nombreCliente}</h3>                                                
+                                        </>
+                                    )
+                                }
 
 
-
-                                   
                             
                                 
 
@@ -225,12 +221,12 @@ const Preordenes = () => {
                             
                                 <form>
                                     <div className='form-input'>
-                                        <label>Seleccione Mesa</label>
+                                        <strong>Seleccione la Mesa</strong><br />
                                         <select 
                                             name="mesa"
                                             value={mesa}
                                             onChange={ e=> setMesa (e.target.value) } >
-                                            <option value="null">Seleccione la mesa</option>                                
+                                            <option value="null">Seleccione la mesa</option>                           
                                             {
                                                 mesas
                                                     .filter(p => p.restaurant === waiter.idRestaurant)                      
@@ -252,11 +248,11 @@ const Preordenes = () => {
                                                 ))
                                             }
                                         </select>
-
-                                        <button type="button" onClick={() => { crearOrden() }}>Seleccionar </button>                        
+                                        <br />
+                                        <button className='SeleccionarMesa' type="button" onClick={() => { crearOrden() }}>Agregar Mesa </button>                        
                                     </div>
                                 </form>
-
+                            </div>            
 
                             </Modal>
 
