@@ -15,7 +15,7 @@
 }
 .modal-main {
   position:fixed;
-  background: rgba(255, 255, 255, 0.95);
+  background: white;
   text-align: center;
   border-radius: 15px;
   height: 350px;
@@ -24,10 +24,24 @@
   left:50%;
   transform: translate(-50%,-50%);   
 	overflow: hidden;
-	margin: 5em auto; 
+	--margin: 5em auto; 
+  display: block;
+  --overflow-y: initial !important;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.6); 
+  overflow: scroll; 
 }
 .modal-titulo {
   display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  color: #f8901c;
+  font-weight: bold;
+  text-align: left;
+  overflow: hidden;
+  position: relative;
+  padding:5px; 
+  
+  /*display: flex;
   justify-content: space-between; 
   padding:5px;  
   font-size: 15px;
@@ -36,7 +50,7 @@
   position: relative;
   text-align: left;
   overflow: hidden;
-  height: 100%;  
+  height: 100%;  */
 }
 .displayModal-block {
   display: block;
@@ -61,6 +75,10 @@
   border-color: hsla(0, 0%, 100%, .6);
   transform: translateY(-.2rem);
   outline: none !important;
+}
+.modal-main{
+  height: 60%;
+  width: 50%;
 }
 /*MEDIDAS EN DISPOSITIVOS*/
 /*iPhone 5, 5s, 5c y 5SE*/
@@ -232,3 +250,6 @@
       font-size: 12px;
     }
 }
+
+
+

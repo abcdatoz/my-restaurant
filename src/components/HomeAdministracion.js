@@ -6,7 +6,10 @@ import { getCategorias } from '../actions/CategoriaAction'
 
 import Header from '../components/layouts/Header'
 
-import Modal from './common/Modal'
+import Modal from './common/Modal';
+
+import edit from '../images/edit_48px.png';
+import deletes from '../images/Delete_48px.png';
 
 
 // import Form from './common/Form'
@@ -155,12 +158,14 @@ const HomeAdministracion = () => {
 
     const ListaRestaurantes = (
         <>
-         <h3>Mis Restaurantes </h3>
+         <h5>Mis Restaurantes </h5>
 
-                        
-            <table>
-            <thead>
-                
+            <button type="button" className='button admin' onClick={nuevoRegistro}>
+                Agregar Nuevo Restaurant
+            </button>      
+
+            <table className='styled-table'>
+            <thead>                
                 <th width="10%">Logo</th>                
                 <th width="30%">Nombre</th>
                 <th width="30%">Dirección</th>
@@ -173,48 +178,46 @@ const HomeAdministracion = () => {
                     .filter( p => p.user_owner === theOwner)
                     .map (item => (
                         <tr key={item.id}>
-                            <td> <img src={item.logo}  alt="imagen" width="100px" height="100px"/> </td>
-                            <td>{item.nombre}</td>
+                            <td> <img className='logoAdmin' src={item.logo}  alt="imagen"/> </td>
+                            <td><strong>{item.nombre}</strong></td>
                             <td>{item.direccion }</td>
-                            <td>{item.status}</td>
+                            <td><strong>{item.status}</strong></td>
                             <td>
-                                <button  onClick={() => editar(item)} >
-                                    editar
+                                <button className='buttonAcciones' onClick={() => editar(item)} >
+                                    <img className='iconEdit' src={edit}  alt="imagen"/>
                                 </button>
-                                     
-                                <button  onClick={ ()=>{ eliminar(item)  }} >                                                                
-                                    eliminar
+                                     <br></br>
+                                <button className='buttonAcciones' onClick={ ()=>{ eliminar(item)  }} >                                                                
+                                    <img className='iconEdit' src={deletes}  alt="imagen"/>     
                                 </button>   
 
                                 {/* <button  onClick={ ()=>{ setId(item.id); setShowModalDelete(true)  }} >                                                                
                                     eliminar
                                 </button>    */}
-
-
                             </td>
                         </tr>
                     ))
-                }
-                            
+                }                            
             </tbody>
             </table>
 
 
 
 
-            <button type="button" onClick={nuevoRegistro}>
-                Agregar Nuevo Restaurant
-            </button>
+            
 
             <Modal 
                 show={showModal} 
                 handleClose = {() => setShowModal(false) } 
                 titulo = 'Nuevo Restaurant'
             >
-               
-               
+                <div class="modal-content">                                
+                    <hr />                               
+                    
+                </div>
+                <strong>Proporcione información del nuevo Restaurant: </strong>
+                
                <form>
-
                     <div className='form-input'>
                         <label>Nombre</label>
                         <input 
@@ -235,9 +238,7 @@ const HomeAdministracion = () => {
                             onChange= { e => setDireccion(e.target.value) }                            
                             value= { direccion }
                             />
-                    </div>
-
-   
+                    </div>   
 
                     <div className="form-input">
                         <label>Logo</label>
@@ -253,7 +254,7 @@ const HomeAdministracion = () => {
 
 
                     <div className="form-buttons">
-                        <button type="button" onClick={guardar}>Guardar</button>                        
+                        <button type="button" className='EnviarPedido' onClick={guardar}>✔ Guardar</button>                        
                     </div>
 
                 </form>
@@ -272,8 +273,7 @@ const HomeAdministracion = () => {
 
     return (    
         <div>
-            <Header />
-            <h2>Bienvenido  </h2>
+            <Header />                        
             <br />
             {
                 theOwner  

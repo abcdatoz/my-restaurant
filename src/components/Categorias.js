@@ -1,11 +1,14 @@
-import React, {useState,  useEffect} from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { addCategoria,editCategoria,deleteCategoria } from '../actions/CategoriaAction'
-import { getProductos } from '../actions/ProductoAction'
+import React, {useState,  useEffect} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addCategoria,editCategoria,deleteCategoria } from '../actions/CategoriaAction';
+import { getProductos } from '../actions/ProductoAction';
 
-import Header from '../components/layouts/Header'
+import Header from '../components/layouts/Header';
 
-import Modal from './common/Modal'
+import Modal from './common/Modal';
+
+import edit from '../images/edit_48px.png';
+import deletes from '../images/Delete_48px.png';
 
 
 
@@ -123,31 +126,33 @@ const Categorias = () => {
 
 
     const SeleccionaRestaurant = (
-        <div className='card-group'>            
+        <div className='card-group'>           
             {
                     restaurantes
                     .filter( p => p.user_owner === theOwner)
                     .map (item => (
-                        <div className="card-item" key={item.id}>
-                            <img src={item.logo}  alt="imagen" width="70px" height="70px"/> 
-                            <h3>{item.nombre} </h3>
+                        <div className="mensajes" key={item.id}>
+                            <br></br>
+                            <img className='logoAdmin' src={item.logo}  alt="imagen"/> 
+                            <span>{item.nombre} </span>
                             {
                                 item.id === myRest
                                     ? null
-                                    : (<button onClick={() =>{ setMyRest(item.id)} }>Seleccionar</button>)
+                                    : (<button className='botonmas' onClick={() =>{ setMyRest(item.id)} }>
+                                        <img className='iconEdit' src={edit}  alt="imagen"/> 
+                                    </button>)
                             }
                             
                         </div>
                     ))
                 }
-
             </div>
     )
+    
 
     const Listado = (
-        <table>
-        <thead>
-            
+        <table className='styled-table'>
+        <thead>            
             <th width="20%">clave</th>                
             <th width="50%">Nombre</th>                                
             <th width="20%"> acciones </th>
@@ -162,12 +167,12 @@ const Categorias = () => {
                         <td>{item.nombre }</td>                            
                         <td className='btn-acciones'>
 
-                            <button  onClick={() => editar(item)} >
-                                editar
+                            <button className='buttonAcciones' onClick={() => editar(item)} >                                
+                                <img className='iconEdit' src={edit}  alt="imagen"/> 
                             </button>
                                  
-                            <button  onClick={ ()=>{ eliminar(item)  }} >                                                                
-                                eliminar
+                            <button className='buttonAcciones'  onClick={ ()=>{ eliminar(item)  }} >                                                                
+                                <img className='iconEdit' src={deletes}  alt="imagen"/> 
                             </button>   
 
                       
@@ -215,10 +220,8 @@ const Categorias = () => {
                         />
                 </div>                  
 
-
-
                 <div className="form-buttons">
-                    <button type="button" onClick={guardar}>Guardar</button>                        
+                    <button type="button" className='EnviarPedido' onClick={guardar}> ✔ Guardar</button>                        
                 </div>
 
             </form>
@@ -237,17 +240,13 @@ const Categorias = () => {
     return (
         <div>
             <Header />
-
-            
-
-
             
             {SeleccionaRestaurant}
 
             {Listado}
            
 
-            <button type="button" onClick={ () => { setShowModal(true); setMode('new') }}>
+            <button type="button" className='button admin' onClick={ () => { setShowModal(true); setMode('new') }}>
                 + Agregar 
             </button>
 

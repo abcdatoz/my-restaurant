@@ -132,10 +132,12 @@ const Preordenes = () => {
                                             <>
 
                                             
+                                            <button className='GenerarOrden'  onClick={() => {  seleccionarMesa(pre.id) } } >
+                                                Generar Orden de { pre.nombreCliente }
+                                            </button>
 
                                             <table className='formato'>
-                                            <thead>           
-                                                
+                                            <thead>  
                                                 <th align='center'>Cantidad</th>                
                                                 <th align='center'>Nombre</th>                                
                                                 <th align='center'>Precio</th>                                
@@ -158,9 +160,7 @@ const Preordenes = () => {
                                             </tbody>
                                             </table>
 
-                                            <button className='GenerarOrden'  onClick={() => {  seleccionarMesa(pre.id) } } >
-                                                Generar Orden de { pre.nombreCliente }
-                                            </button>
+                                            
 
                                             </>                                        
 
@@ -173,33 +173,30 @@ const Preordenes = () => {
                                 handleClose = {() => setShowModalOrden(false) } 
                                 titulo = "Enviar Orden" 
                             >
-
-                            <div className='photo'>
+                            
+                            <div class="modal-content">                                
+                                <hr />                                
                                 {
                                     preordenes.filter(p => p.id === preorden).length === 0
                                     ? null
                                     :(
                                         <>
-                                            <h3>Orden de { preordenes.filter(p => p.id === preorden)[0].nombreCliente}</h3>                                                
+                                        <div>
+                                            <p className='ordende'>Orden de { preordenes.filter(p => p.id === preorden)[0].nombreCliente}</p>                                                
+                                        </div>                                            
                                         </>
                                     )
-                                }
+                                }                                
+                            </div>
 
-
-                            
-                                
-
-                                <br />
-
-
-                                <table>
-                                    <thead>
-                                        <th align='center'>Cantidad</th>                
-                                        <th align='center'>Nombre</th>                                
-                                        <th align='center'>Precio</th>                                
-                                        <th align='center'>Subtotal</th>                                                                                
-                                    </thead>
-                                    <tbody>
+                            <table className='styled-table'>
+                                <thead>
+                                    <th align='center'>Cantidad</th>                
+                                    <th align='center'>Nombre</th>                                
+                                    <th align='center'>Precio</th>                                
+                                    <th align='center'>Subtotal</th>                                                                                
+                                </thead>
+                                <tbody>
                                     {
                                         preordenesdetalles
                                         .filter (x => x.preorden === preorden)
@@ -209,67 +206,47 @@ const Preordenes = () => {
                                                 <td> { productos.filter(x=>x.id === element.producto)[0].nombre }  </td>
                                                 <td align='right'>${element.precio }</td>                            
                                                 <td align='right'>${element.cantidad  * element.precio}</td>  
-                
                                             </tr>                    
                                         ))
                                     }
-                                    </tbody>
-                                </table>
+                                </tbody>
+                            </table>
 
-                                <br />
-
-                            
-                                <form>
-                                    <div className='form-input'>
-                                        <strong>Seleccione la Mesa</strong><br />
-                                        <select 
-                                            name="mesa"
-                                            value={mesa}
-                                            onChange={ e=> setMesa (e.target.value) } >
-                                            <option value="null">Seleccione la mesa</option>                           
+                            <br></br>
+                            <form>
+                                <div className='form-input'>
+                                    <strong>Seleccione la Mesa</strong><br /><br />
+                                    <select 
+                                        name="mesa"
+                                        value={mesa}
+                                        onChange={ e=> setMesa (e.target.value) } >
+                                        <option value="null">Seleccione la mesa</option>                           
                                             {
                                                 mesas
-                                                    .filter(p => p.restaurant === waiter.idRestaurant)                      
-                                                    .map (x => (
-                                                        <>
-
-                                                        { ordenes.filter(ord => ord.mesa === x.id & ord.status === 1).length > 0
-
-                                                            ? null
-                                                            :( 
-
-                                                                <option key={x.id} value={x.id}>
-                                                                    {x.nombre}
-                                                                </option>                                                        
-                                                            )
-                                                        }
-
-                                                        </>                                                
-                                                ))
+                                                .filter(p => p.restaurant === waiter.idRestaurant)                      
+                                                .map (x => (
+                                                <>
+                                                    { ordenes.filter(ord => ord.mesa === x.id & ord.status === 1).length > 0
+                                                        ? null
+                                                        :( 
+                                                        <option key={x.id} value={x.id}>
+                                                            {x.nombre}
+                                                        </option>                                                        
+                                                        )
+                                                    }
+                                                </>                                                
+                                            ))
                                             }
-                                        </select>
-                                        <br />
-                                        <button className='SeleccionarMesa' type="button" onClick={() => { crearOrden() }}>Agregar Mesa </button>                        
-                                    </div>
-                                </form>
-                            </div>            
-
+                                    </select>
+                                    <br />
+                                    <button className='SeleccionarMesa' type="button" onClick={() => { crearOrden() }}>Agregar Mesa </button>                        
+                                </div>
+                            </form> 
                             </Modal>
-
-                           
-
-
-                    
                     </>
                 )
-                :
-                    null
-                  
-
-
+                :null
         }
-        
-
     </>        
     )
 };

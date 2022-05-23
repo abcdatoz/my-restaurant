@@ -1,4 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+:root{
+  --button-primary: #FABD44;
+  --item-select:#f4952f;
+  --item-unselect: #EEEEED;
+  --button-orden: #66f2d5;
+  --button-generate-pedido:#05cb6c;
+  --message-restaurant:#777;
+  --mesage-name-restaurant:#ff8243;
+  --content-white:#ffffff;
+  --color-red: red;
+  --content-table-service: #04AA6D;
+  --color-generate-orden: #8Dcadb;
+  --color-cards-admin: #008bf8;
+}
 .montserrat {
   font-family: 'Montserrat', sans-serif;
 }
@@ -25,18 +39,18 @@ body {
 }
 .portada h2{
   margin-top: 20px;
-  color: #777;
+  color: var(--message-restaurant);
 }
 .portada button{
   min-width: 200px;
   min-height: 40px;
-  background-color: #FABD44;
-  box-shadow: 9px 9px 12px #b2b2b3, -9px -9px 12px #ffffff;
+  background-color: var(--button-primary);
+  box-shadow: 9px 9px 12px #b2b2b3, -9px -9px 12px var(--content-white);
   display: inline-flex;
   justify-content: center;
   align-items: center;
   border-radius: 30px;
-  color: #fff;
+  color: var(--content-white);
   text-align: center;
   border: none;
   cursor: pointer;
@@ -46,17 +60,14 @@ body {
   position: relative;
   z-index: 2;
   padding: 6px 30px;
-
 }
 .portada button:hover{
-  --cursor: pointer;
-  --background-color: #FABD44;
   border-color: #0d0d25;
-  box-shadow: inset 9px 9px 12px #f8901c, inset -9px -9px 12px #FABD44;
-  color: #fff;
+  box-shadow: inset 9px 9px 12px var(--item-select), inset -9px -9px 12px var(--button-primary);
+  color: var(--content-white);
 }
 .mensajes span{
-  color: #ff8243;
+  color: var(--mesage-name-restaurant);
   background-image: linear-gradient(0deg, rgb(13 13 37 /8%), rgb(13 13 37 /8%));
   background-size: 100% 20px;
   background-position: 0 90%;
@@ -92,7 +103,6 @@ body {
 
 
 
-
 /*---------- Información de la categoría de los productos ----------*/
 .menu-tab-wp{
   margin-top: 80px;
@@ -101,8 +111,7 @@ body {
   padding: 10px;
   display: inline-block;
   border-radius: 60px;
-  background: linear-gradient(145deg, #ececec, #ffffff);
-  --box-shadow: 28px 28px 55px #d4d4d4, -28px -28px 55px #FFFFFF;
+  background: linear-gradient(145deg, #ececec, var(--content-white));
   position: relative;
   z-index: 2;
 }
@@ -126,17 +135,17 @@ body {
   z-index: -1;
 }
 .menu-tab ul .filter-active {
-  color: #ffffff;
+  color: var(--content-white);
 }
 .sec-sub-title {
   text-align: center;
   text-transform: uppercase;
   display: inline-block;
   background: #f3f3f5;
-  box-shadow: 9px 9px 12px #e4e4e4, -9px -9px 12px #ffffff;
+  box-shadow: 9px 9px 12px #e4e4e4, -9px -9px 12px var(--content-white);
   padding: 3px 20px;
   border-radius: 60px;
-  color: #ff8243;
+  color: var(--mesage-name-restaurant);
   font-size: 14px;
   text-align: center;
 }
@@ -174,7 +183,7 @@ body {
 .header-btn::after{
   border-radius: 50%;
   content: "";
-  background-color: #66f2d5;
+  background-color: var(--button-orden);
   width: 100%;
   z-index: -1;
   position: absolute;
@@ -183,14 +192,14 @@ body {
   left: 7px;
 }
 .header-btn:hover {
-  background: linear-gradient(145deg, #dcdcdc, #ffffff);
+  background: linear-gradient(145deg, #dcdcdc, var(--content-white));
   box-sizing: border-box;
-  box-shadow: 20px 20px 60px #cfcfd0, -20px -20px 60px #ffffff;
+  box-shadow: 20px 20px 60px #cfcfd0, -20px -20px 60px var(--content-white);
 }
 
 /*---------- Lista de Productos ----------*/
 .course {
-	background-color: #fff;
+	background-color: var(--content-white);
 	border-radius: 10px;
 	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
   transition: 0.8s cubic-bezier(0.22, 0.78, 0.45, 1.02);
@@ -225,7 +234,7 @@ body {
   --transition: ease-in-out .3s;
 }
 .course-preview a {
-	color: #fff;
+	color: var(--content-white);
 	display: inline-block;
 	font-size: 12px;
 	opacity: 0.6;
@@ -239,18 +248,18 @@ body {
 }
 .course-info span{
   text-align: center;
-  color: orange;
+  color: var(--item-select);
   letter-spacing: 1px;
 }
 .button-five{
-  background-color: #777;
+  background-color: var(--message-restaurant);
   border-radius: 25px;
 }
 /*BOTONES ADD Y REMOVE*/
 .icon-btn {
   width: 50px;
   height: 40px;
-  border: 1px solid #fff;
+  border: 1px solid var(--content-white);
   background: transparent;
   border-radius: 25px;
   overflow: hidden;
@@ -268,7 +277,7 @@ body {
   height: 4px;
   width: 10px;
   top: calc(50% - 2px);
-  background: orange;
+  background: var(--item-select);
 }
 .add-btn::after {
   right: 14px;
@@ -287,7 +296,7 @@ body {
 .btn-txt {
   opacity: 0;
   transition: opacity 0.2s;
-  color: orange;
+  color: var(--item-select);
 }
 .add-btn:hover::before,
 .add-btn:hover::after {
@@ -305,7 +314,7 @@ body {
   height: 20px;
   width: 2px;
   top: calc(50% - 10px);
-  background: orange;
+  background: var(--item-select);
   overflow: hidden;
 }
 .add-icon::before {
@@ -338,10 +347,8 @@ body {
 }
 /*MODAL*/
 .photo{
-  --padding: 0;
-  position: absolute;
-  left:50%;
-  transform: translate(-50%, -50%);
+  padding: 0;
+  left:30%;  
   display: block;
 }
 .photo img{
@@ -351,7 +358,8 @@ body {
   box-shadow: 10px 15px 25px 0 rgba(0,0,0,.2);
   display: block;
   transition: all .5s cubic-bezier(0.645, 0.045, 0.355, 1);
-  margin-top: -10px;
+  margin-left: auto;
+  margin-right: auto;
 }
 /*Tablets*/
 @media (min-width: 481px) and (max-width:767px){
@@ -399,17 +407,14 @@ body {
   --padding-top: 12px;
   --padding-bottom: 12px;
   text-align: center;
-  background-color: #f8901c;
-  color: white;
+  background-color: var(--item-select);
+  color: var(--content-white);
 }
 .formato button {
 	cursor: pointer;
 	height: 30px;
 	width: 30px;
-	--color: black;
 	border-radius: 10px;
-	--box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
-	--background: white;
 	margin: 5px;
 	transition: 1s;
   border: none;
@@ -444,7 +449,7 @@ body {
   font-weight: 900;
 }
 .mensajes span{
-  color: #ff8243;
+  color: var(--mesage-name-restaurant);
   background-image: linear-gradient(0deg, rgb(13 13 37 /8%), rgb(13 13 37 /8%));
   background-size: 100% 20px;
   background-position: 0 90%;
@@ -468,27 +473,6 @@ body {
 .text-center{
   text-align: center !important;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -534,7 +518,7 @@ body {
     }
     .contenido_modal{
       font-size: 10px;
-      color: #24cf5f;
+      color: var(--button-generate-pedido);
     }
     .contenido_modal strong{
       color: gray;
@@ -576,7 +560,7 @@ body {
       font-size: 30px;
       padding: 0;
       background-color: transparent;
-      color: red;   
+      color: var(--color-red);   
       }   
       .boton-:hover,
       .boton-:focus{
@@ -586,11 +570,17 @@ body {
       } 
       .botonmas{
         background-color: transparent;
-        color: green;
+        color: var(--button-generate-pedido);
         font-size: 24px;
         border: none;
         border-bottom: none;
         padding: 0;
+      }
+      .formato td, th{
+        font-size: 50%;
+      }
+      .GenerarOrden{
+        font-size: 70%;
       }
 }
 
@@ -616,6 +606,7 @@ body {
     }
     .photo{
       top: 55%;
+      --transform:translate(-50%, -300%);
     }
     .photo p{
       font-size: 10px;
@@ -629,7 +620,7 @@ body {
     }
     .contenido_modal{
       font-size: 11px;
-      color: #24cf5f;
+      color: var(--button-generate-pedido);
     }
     .contenido_modal strong{
       color: gray;
@@ -671,7 +662,7 @@ body {
     font-size: 30px;
     padding: 0;
     background-color: transparent;
-    color: red;   
+    color: var(--color-red);   
     }   
     .boton-:hover,
     .boton-:focus{
@@ -681,11 +672,17 @@ body {
     } 
     .botonmas{
       background-color: transparent;
-      color: green;
+      color: var(--button-generate-pedido);
       font-size: 24px;
       border: none;
       border-bottom: none;
       padding: 0;
+    }
+    .formato td, th{
+      font-size: 50%;
+    }
+    .GenerarOrden{
+      font-size: 70%;
     }
 }
 
@@ -709,6 +706,12 @@ body {
     .course {
       width: 400px;
     }
+    .formato td, th{
+      font-size: 50%;
+    }
+    .GenerarOrden{
+      font-size: 70%;
+    }
 }
 
 /*iPhone X, iPhone 11 pro, iPhone 13 Mini, iPhone 11 Pro Max*/
@@ -730,6 +733,12 @@ body {
     }
     .course {
       width: 335px;
+    }
+    .formato td, th{
+      font-size: 50%;
+    }
+    .GenerarOrden{
+      font-size: 70%;
     }
 }
 /*https://es.stackoverflow.com/questions/50334/c%C3%B3mo-detectar-si-el-dispositivo-es-iphone-con-css*/
@@ -754,6 +763,12 @@ body {
     .course {
       width: 400px;
     }
+    .formato td, th{
+      font-size: 50%;
+    }
+    .GenerarOrden{
+      font-size: 70%;
+    }
 }
 
 /*iPhone 12 ,iPhone 12 Pro, iPhone 12 pro Max, iPhone 13, iPhone 13 PRO*/
@@ -776,6 +791,12 @@ body {
     .course {
       width: 370px;
     }
+    .formato td, th{
+      font-size: 50%;
+    }
+    .GenerarOrden{
+      font-size: 70%;
+    }
 }
 /*iPhonE 12 mini*/
 @media only screen 
@@ -796,6 +817,12 @@ body {
     }
     .course {
       width: 320px;
+    }
+    .formato td, th{
+      font-size: 50%;
+    }
+    .GenerarOrden{
+      font-size: 70%;
     }
 }
 
@@ -818,6 +845,12 @@ body {
     }
     .course {
       width: 388px;
+    }
+    .formato td, th{
+      font-size: 50%;
+    }
+    .GenerarOrden{
+      font-size: 70%;
     }
 }
 
@@ -846,6 +879,12 @@ body {
     .course {
       width: 320px;
     }
+    .formato td, th{
+      font-size: 50%;
+    }
+    .GenerarOrden{
+      font-size: 70%;
+    }
 }
 
 /*Xiaomi Redmi Note 9 Pro*/
@@ -868,6 +907,12 @@ body {
     .course {
       width: 353px;
     }
+    .formato td, th{
+      font-size: 50%;
+    }
+    .GenerarOrden{
+      font-size: 70%;
+    }
 }
 
 /*Xiaomi Redmi Note 7, Xiaomi Redmi Note 8, Xiaomi Redmi Note 8 Pro*/
@@ -889,6 +934,12 @@ body {
     }
     .course {
       width: 353px;
+    }
+    .formato td, th{
+      font-size: 50%;
+    }
+    .GenerarOrden{
+      font-size: 70%;
     }
 }
 
@@ -915,6 +966,12 @@ Samsung Galaxy S8+, Samsung Galaxy J6*/
     .course {
       width: 320px;
     }
+    .formato td, th{
+      font-size: 50%;
+    }
+    .GenerarOrden{
+      font-size: 70%;
+    }
 }
 
 /*Samsung Galaxy Note20 Ultra, Samsung Note10+ Samsung Galaxy S10+,
@@ -934,6 +991,12 @@ Samsung Galaxy Note8*/
     }    
     .course {
       width: 380px;
+    }
+    .formato td, th{
+      font-size: 50%;
+    }
+    .GenerarOrden{
+      font-size: 70%;
     }
 }
 
@@ -969,10 +1032,16 @@ Samsung Galaxy Note8*/
     }
     .contenido_modal{
       font-size: 13px;
-      color: #24cf5f;
+      color: var(--button-generate-pedido);
     }
     .contenido_modal strong{
       color: gray;
+    }
+    .formato td, th{
+      font-size: 50%;
+    }
+    .GenerarOrden{
+      font-size: 70%;
     }
 }
 
@@ -1008,10 +1077,16 @@ Samsung Galaxy Note8*/
     }
     .contenido_modal{
       font-size: 13px;
-      color: #24cf5f;
+      color: var(--button-generate-pedido);
     }
     .contenido_modal strong{
       color: gray;
+    }
+    .formato td, th{
+      font-size: 50%;
+    }
+    .GenerarOrden{
+      font-size: 70%;
     }
 }
 
@@ -1031,6 +1106,12 @@ Samsung Galaxy Note8*/
     }
     .course {
       width: 344px;
+    }
+    .formato td, th{
+      font-size: 50%;
+    }
+    .GenerarOrden{
+      font-size: 70%;
     }
 }
 /*Samsung S6, Samsung S6 edge, Samsung S7, Samsung S7 edge, Samsung Galaxy On8,
@@ -1054,6 +1135,12 @@ Samsung Galaxy J7 Prime, Samsung Galaxy J7*/
     .course {
       width: 320px;
     }
+    .formato td, th{
+      font-size: 50%;
+    }
+    .GenerarOrden{
+      font-size: 70%;
+    }
 }
 /*Samsung Galaxy S8*/
 @media only screen 
@@ -1071,6 +1158,12 @@ Samsung Galaxy J7 Prime, Samsung Galaxy J7*/
     }
     .course {
       width: 320px;
+    }
+    .formato td, th{
+      font-size: 50%;
+    }
+    .GenerarOrden{
+      font-size: 70%;
     }
 }
 
@@ -1094,6 +1187,12 @@ Samsung Galaxy J7 Prime, Samsung Galaxy J7*/
     .course {
       width: 794px;
     }
+    .formato td, th{
+      font-size: 50%;
+    }
+    .GenerarOrden{
+      font-size: 70%;
+    }
 }
 /*Samsung Galaxy Tab S7*/
 @media only screen 
@@ -1114,6 +1213,12 @@ Samsung Galaxy J7 Prime, Samsung Galaxy J7*/
     }
     .course {
       width: 760px;
+    }
+    .formato td, th{
+      font-size: 50%;
+    }
+    .GenerarOrden{
+      font-size: 70%;
     }
 }
 /*Surface Pro 7*/
@@ -1136,6 +1241,12 @@ Samsung Galaxy J7 Prime, Samsung Galaxy J7*/
     .course {
       width: 872px;
     }
+    .formato td, th{
+      font-size: 50%;
+    }
+    .GenerarOrden{
+      font-size: 70%;
+    }
 }
 /*Samsung Galaxy A51/71*/
 @media only screen 
@@ -1157,6 +1268,12 @@ Samsung Galaxy J7 Prime, Samsung Galaxy J7*/
     .course {
       width: 380px;
     }
+    .formato td, th{
+      font-size: 50%;
+    }
+    .GenerarOrden{
+      font-size: 70%;
+    }
 }
 
   .boton-{
@@ -1165,7 +1282,7 @@ Samsung Galaxy J7 Prime, Samsung Galaxy J7*/
     font-size: 30px;
     padding: 0;
     background-color: transparent;
-    color: red;   
+    color: var(--color-red);   
     }   
     .boton-:hover,
     .boton-:focus{
@@ -1175,7 +1292,7 @@ Samsung Galaxy J7 Prime, Samsung Galaxy J7*/
     } 
     .botonmas{
       background-color: transparent;
-      color: green;
+      color: var(--button-generate-pedido);
       font-size: 24px;
       border: none;
       border-bottom: none;
@@ -1190,7 +1307,7 @@ Samsung Galaxy J7 Prime, Samsung Galaxy J7*/
   justify-content: center;
   --position: -webkit-sticky;
   --position: sticky;
-  background: white;
+  background: var(--content-white);
   position: -webkit-sticky;
   position: sticky;
   top: 5px;
@@ -1201,7 +1318,7 @@ Samsung Galaxy J7 Prime, Samsung Galaxy J7*/
 }
 .tab-item-selected{ 
   text-decoration: underline;
-  text-decoration-color: white;
+  text-decoration-color: var(--content-white);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1212,8 +1329,8 @@ Samsung Galaxy J7 Prime, Samsung Galaxy J7*/
       -ms-flex-align: center;
         align-items: center;
   height: 10px;
-  background-color: #f4952f;  
-  color: white;
+  background-color: var(--item-select);  
+  color: var(--content-white);
   border-radius: 80px;
   padding: 0 18px;
   will-change: transform;
@@ -1235,7 +1352,7 @@ Samsung Galaxy J7 Prime, Samsung Galaxy J7*/
     --cursor: pointer;
     --width: 90px;
     height: 10px;
-    background-color: #EEEEED;
+    background-color: var(--item-unselect);
     border-radius: 80px;
     padding: 0 18px;
     will-change: transform;
@@ -1269,7 +1386,7 @@ Samsung Galaxy J7 Prime, Samsung Galaxy J7*/
 .tab-item > span{
   padding: 14px 18px 16px;
   white-space: nowrap;
-  color: #fff;
+  color: var(--content-white);
   background: #b8b8b8;
 }
 .tab-item:focus > span{
@@ -1293,7 +1410,7 @@ Samsung Galaxy J7 Prime, Samsung Galaxy J7*/
     --cursor: pointer;
     --width: 90px;
     height: 50px;
-    background-color: #EEEEED;
+    background-color: var(--item-unselect);
     border-radius: 80px;
     padding: 0 18px;
     will-change: transform;
@@ -1302,7 +1419,7 @@ Samsung Galaxy J7 Prime, Samsung Galaxy J7*/
 }
 .tab-item-selected-vertical{ 
   text-decoration: underline;
-  text-decoration-color: white;
+  text-decoration-color: var(--content-white);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1313,8 +1430,8 @@ Samsung Galaxy J7 Prime, Samsung Galaxy J7*/
       -ms-flex-align: center;
         align-items: center;
   height: 30px;
-  background-color: #f4952f;  
-  color: white;
+  background-color: var(--item-select);  
+  color: var(--content-white);
   border-radius: 80px;
   padding: 0 18px;
   will-change: transform;
@@ -1336,7 +1453,7 @@ Samsung Galaxy J7 Prime, Samsung Galaxy J7*/
     --cursor: pointer;
     --width: 90px;
     height: 30px;
-    background-color: #EEEEED;
+    background-color: var(--item-unselect);
     border-radius: 80px;
     padding: 0 19px;
     will-change: transform;
@@ -1346,63 +1463,60 @@ Samsung Galaxy J7 Prime, Samsung Galaxy J7*/
 .tab-item-vertical:hover{
   box-shadow: 0 5px 15px 0 rgba(0,0,0,0.45);
 }
-
 .tab-item-vertical:focus{
   box-shadow: 0 3px 10px 0 rgba(0,0,0,0.4);
 }
 
-
 /*Boton Regresar*/
-
 .btns{
-  text-decoration: none;
-  font-size: 10px;
-  user-select: none;
-  color: #158531;
   display: flex;
+  height: 3em;
+  width: 100px;
   align-items: center;
+  justify-content: center;
+  background-color: #eeeeee4b;
+  border-radius: 3px;
+  letter-spacing: 1px;
+  transition: all 0.2s linear;
+  cursor: pointer;
+  border: none;
+  background: var(--content-white);
 }
-.btns .arrow{
-  margin-right: 1rem;
-  height: .1rem;
-  width: 1.5rem;
-  position: relative;
-  background: #158531;
-  transition:  width .2s ease;
+.btns > svg{
+  margin-right: 5px;
+  margin-left: 5px;
+  font-size: 15px;
+  transition: all 0.4s ease-in;
 }
-.btns .arrow::before, .btns .arrow::after{
-  content: '';
-  display: block;
-  position: absolute;
-  left: 0;
-  top: 0;
-  background:  #158531;
-  height: .1rem;
-  width: .5rem;
+.btns:hover > svg{
+  font-size: 1.2em;
+  transform: translateX(-5px);
 }
-.btns .arrow::before{
-  transform: rotate(45deg);
-  transform-origin: left bottom;
-}
-.btns .arrow::after{
-  transform: rotate(-45deg);
-  transform-origin: left top;
+.btns:hover{
+  --box-shadow: 9px 9px 33px #d1d1d1, -9px -9px 33px var(--content-white);
+  transform: translateY(-2px);
 }
 
 /*Eliminar Todo*/
 .eliminarTodo{
-  background: #ff7b7b;
-  color: white;
-  width: 80px;
-  height: 10px;
-  position: relative;
+  background: grey;
+  color: var(--content-white);  
+  font-size: 9px;
   transition: 0.3s ease;
-  justify-content: right;
+  justify-content: center;
   text-align: center;
+  border-radius: 5px;
+  border: none;
+  height: 25px;
+  align-items: center;
+  width: 100px;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
 }
 .EnviarPedido{
-  color: white;
-  background: #158531;
+  color: var(--content-white);
+  background: var(--button-generate-pedido);
   position: relative;
   transition: 0.3s ease;
   justify-content: right;
@@ -1410,10 +1524,32 @@ Samsung Galaxy J7 Prime, Samsung Galaxy J7*/
   border-radius: 5px;
   border: none;
   height: 30px;
+  font-size: 12px;
+}
+.padre{
+  display: flex;
+  justify-content: center;
+}
+.generaOrdenstyle{
+  font-size: 9px;
+  background: var(--button-generate-pedido);
+  --position: relative;
+  transition: 0.3s ease;
+  justify-content: center;
+  text-align: center;
+  border-radius: 5px;
+  border: none;
+  height: 25px;
+  color: var(--content-white);
+  align-items: center;
+  width: 100px;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
 }
 .EnviarPedidoServicio{
   background: #158531;
-  color: white;
+  color: var(--content-white);
   width: 80px;
   height: 10px;
   position: relative;
@@ -1428,9 +1564,9 @@ Samsung Galaxy J7 Prime, Samsung Galaxy J7*/
   border: none;
   outline:none;
   text-align: center;
-  background-color: #FEDEBE;
+  background-color: var(--button-primary);
   cursor: pointer;  
-  color: #777;
+  color: var(--content-white);
 }
 .inputNombrede:active{
   border: none;
@@ -1440,7 +1576,7 @@ Samsung Galaxy J7 Prime, Samsung Galaxy J7*/
   border: none;
   border-radius: 5px;
   background: #158531;
-  color: white;
+  color: var(--content-white);
   font-size: 14px;
   width: 100px;
   height: 25px;
@@ -1450,8 +1586,8 @@ Samsung Galaxy J7 Prime, Samsung Galaxy J7*/
 /*Servicio*/
 
 .button {
-  color: #ffffff;
-  background-color: #24cf5f;
+  color: var(--content-white);
+  background-color: var(--button-generate-pedido);
   padding: 12px 25px;
   font-size: 12px;
   letter-spacing: 1px;
@@ -1465,42 +1601,6 @@ Samsung Galaxy J7 Prime, Samsung Galaxy J7*/
     -ms-transform: scale(1.1);
         transform: scale(1.1); }
 
-.button--transparent {
-  background: transparent;
-  border: 0;
-  outline: 0; }
-
-.button--close {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-      align-items: center;
-  -ms-flex-pack: center;
-      justify-content: center;
-  width: 30px;
-  height: 30px;
-  color: #ffffff;
-  border-radius: 50%;
-  transition: all .25s;
-  z-index: 10; }
-  .button--close svg {
-    width: 20px;
-    height: 20px; }
-    .button--close svg * {
-      fill: currentColor; }
-  .button--close:hover, .button--close:active, .button--close:focus {
-    color: #fbcf34;
-    background-color: #ffffff;
-    box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.1); }
-
-.button--info {
-  position: absolute;
-  top: 0;
-  right: 0; }
-
 input {
   width: calc(100% - 10px);
   min-height: 30px;
@@ -1510,10 +1610,11 @@ input {
   border: 0;
   border-bottom: 2px solid #f0f0f0; }
   input:valid {
-    border-color: #24cf5f; }
+    border-color: var(--button-generate-pedido) }
   input:focus {
     outline: none;
-    border-color: #fbcf34; }
+    border-color: #fbcf34; 
+  }
 
 .form-list {
   padding-left: 0;
@@ -1575,7 +1676,7 @@ overflow-y: auto;
     max-width: 675px;
     min-height: 400px;
     margin-bottom: 125px;
-    background-color: #ffffff;
+    background-color: var(--content-white);
     border-radius: 5px;
     box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.1); }
   .modal__featured {
@@ -1619,7 +1720,7 @@ select{
 }
 option{
   border-radius: 4px;
-  background-color: white;
+  background-color: var(--content-white);
   position: absolute;
   top: 110%;
   left: 0;
@@ -1637,15 +1738,14 @@ select:hover, option{
   visibility: visible;
 }
 select:valid {
-  border-color: #24cf5f; }
+  border-color: var(--button-generate-pedido); }
 select:focus {
   outline: none;
   border-color: #fbcf34; }
 
   /*Información de Mesa Ocupada - libre*/
-  .mesa-item{    
-    --background: radial-gradient(#fed89e, #FA944F);
-    background: radial-gradient(#1fd1f5, #3f95fe);
+  .mesa-item{        
+    background: #afafaf;
     margin: 20px;
     padding: 20px;
     width: 200px;
@@ -1656,16 +1756,26 @@ select:focus {
     transition: all 0.2s;
     grid-row: 3/4;
     font-weight: 550;
-    color: #ffffff;
+    color: var(--content-white);
     text-align: center;
   }
-  .working{
-    color: red;
-    text-decoration: underline;
+  .mesa-item-into{
+    background-color: #afafaf;
+    min-height: 30px;
+    display: grid;
+    border-radius: 15px;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
+    transition: all 0.2s;
+    grid-row: 3/4;
+    color: var(--content-white);
+    text-align: center;
+    align-items: center;    
   }
-  .libre{
-    color:#158531;
-    text-decoration: underline;
+  .disponible{
+    background: var(--button-generate-pedido);
+  }
+  .servicio{
+    background: #afafaf;
   }
   .mesa-item:hover{
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
@@ -1678,7 +1788,7 @@ select:focus {
   }
   .mesa-item::after {
     position: absolute;
-    top: 61px;
+    top: 55px;
     left: 0;
     content: "";
     width: 0%;
@@ -1727,7 +1837,7 @@ select:focus {
     }
   }
   .pre-orden{
-    color: #24cf5f;
+    color: var(--button-generate-pedido);
     text-decoration: none;
     position: relative;
     text-align: center;    
@@ -1739,7 +1849,7 @@ select:focus {
     right: 0;
     width: 0;
     height: 2px;
-    background-color: #24cf5f;
+    background-color: var(--button-generate-pedido);
     transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
   }
   @media (hover: hover) and (pointer: fine) {
@@ -1777,8 +1887,8 @@ select:focus {
 }
 /*Cerrar pedido*/
 .cerrarPedido{
-  color:white;
-  background:rgba(0, 0, 0, 0.2);
+  color:var(--content-white);
+  background: var(--color-generate-orden);
   position: relative;
   transition: 0.3s ease;
   justify-content: right;
@@ -1787,14 +1897,15 @@ select:focus {
   border-radius: 5px;
   height: 30px;
   border: none;
+  transform: translateY(-2px);
 }
 /*Preordenes*/
 .GenerarOrden{
   border: none;
   height: 35px;
-  width: 250px;
-  background: #8Dcadb;
-  color: white;
+  width: 200px;
+  background: var(--color-generate-orden);
+  color: var(--content-white);
   border-radius: 5px;
   margin-top: 5px;
   text-decoration: underline;
@@ -1805,156 +1916,129 @@ select:focus {
   width: 150px;
   height: 30px;
   border-radius: 5px;
-  background: #24cf5f;
-  color: white;
+  background: var(--button-generate-pedido);
+  color: var(--content-white);
   margin-top: 10px;
   cursor: pointer;
 }
 
 
-
-
-
-
-
-
-
-
-
-
-/** {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-} 
-
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  min-height: 100vh; 
-  
+/*Información de las Cards*/
+.card{
+  width: 100px;
+ height: 15px;
+ border-radius: 10px;
+ background: var(--content-white);
+ position: relative;
+ padding: 1.8rem;
+ border: 2px solid #c3c6ce;
+ transition: 0.5s ease-out;
+ overflow: visible;
 }
-
-nav {
+.card-details {
+  color: var(--message-restaurant);
+  height: 100%;
+  gap: .5em;
+  display: grid;
+  place-content: center;
+ }
+ .card-button {
+  transform: translate(-50%, 125%);
+  width: 60%;
+  border-radius: 1rem;
+  border: none;
+  background-color: var(--color-cards-admin);
+  color: var(--content-white);
+  font-size: 1rem;
+  padding: .5rem 1rem;
   position: absolute;
-  top: 10px;
+  left: 50%;
+  bottom: 0;
+  opacity: 0;
+  transition: 0.3s ease-out;
+ }
+ .text-body-card {
+  color: rgb(134, 134, 134);
+ } 
+ .text-title-card {
+  --font-size: 1.5em;
+  font-weight: bold;
+ }
+ .card:hover {
+  border-color: var(--color-cards-admin);
+  box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+ } 
+ .card:hover .card-button {
+  transform: translate(-50%, 50%);
+  opacity: 1;
+ }
+ .mainnav{
+  background-color: var(--content-white);
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  height: 60px;
 }
-
-.mainnav{
-    background-color: #fff;
-    display: flex;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    height: 60px;
-  }
-
 .mainnav li {
-  color: #777;
-  cursor: pointer;
-  flex: 1;
-  padding: 20px;
-  text-align: center;
-  text-decoration: none;
-  
+color: var(--message-restaurant);
+cursor: pointer;
+flex: 1;
+padding: 20px;
+text-align: center;
+text-decoration: none;
 }
+.detallePedido{
+  --font-size: 40%;  
+}
+.ordende{
+  color: var(--item-select);
+}
+/*Design Table Service*/
+.styled-table {
+  border-collapse: collapse;
+  border-spacing: 15px;
+  width: 100%;
+}
+.styled-table tr:nth-child(even){background-color: #f2f2f2;}
 
+.styled-table tr:hover{
+  background-color: #ddd;
+}
+.styled-table th{
+  background-color: var(--content-table-service);
+  color: var(--content-white);
+}
+.styled-table td{
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-size: 9px;
+  text-align: center;
+}
+.logoAdmin{
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+}
+.admin{
+  background: var(--color-generate-orden);
+}
 
 .card-group{
   display: flex;
-  flex-direction: column;
 }
-
 .card-item{
   padding: 20px;
 }
-
-.card-group h3{
-  font-size: 1rem;
-  font-weight: normal;
+.selecciona{
+  font-size: 12px;
 }
-
-
-.tabs-group{
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 20px;
+.iconEdit{
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }
-
-.tabs-group-vertical{
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
+.buttonAcciones{
+  background: transparent;
+  border: none;
 }
-
-.tabs-item{
-  padding: 10px;
-}
-
-.tabs-item-vertical{
-  padding-top: 20px;
-}
-
-.tab-item {
-  border: blue 1px dashed;
-  border-radius: 5px;
-  padding: 5px;
-}
-
-.tab-item-selected{
-  border: orangered 1px dashed;
-  border-radius: 5px;
-  padding: 5px;
-}
-
-
-.btn-acciones{
-  display: flex;
-  flex-direction: row;
-}
-
-.btn-acciones button{
-  margin: 0 5px;
-}
-
-
-
-
-
-.product-card{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-content: flex-start;
-  margin: 20px 0;
-}
-
-
-
-.ver_resumen{
-  border: 1px solid green;
-  border-radius: 50%;
-  text-align: center;
-  color: #fff;
-  background-color: yellowgreen;
-}
-
-.mesa-item{  
-  border-radius: 10px;
-  color: #fff;
-  background-color: salmon;
-  padding: 1rem;
-  margin: 1rem;
-}
-
-.working{
-  background-color: cornflowerblue;
-}
-
-.detallePedido{
-  color: orange;
-}*/

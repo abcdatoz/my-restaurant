@@ -4,7 +4,9 @@ import {getMesas,addMesa,editMesa,deleteMesa } from '../actions/MesaAction'
  
 import Header from '../components/layouts/Header'
 
-import Modal from './common/Modal'
+import Modal from './common/Modal';
+import edit from '../images/edit_48px.png';
+import deletes from '../images/Delete_48px.png';
 
 const Mesas = () => {
 
@@ -110,13 +112,16 @@ const Mesas = () => {
                     restaurantes
                     .filter( p => p.user_owner === theOwner)
                     .map (item => (
-                        <div className="card-item" key={item.id}>
-                            <img src={item.logo}  alt="imagen" width="70px" height="70px"/> 
-                            <h3>{item.nombre} </h3>
+                        <div className="mensajes" key={item.id}>
+                            <br></br>
+                            <img className='logoAdmin' src={item.logo}  alt="imagen" width="70px" height="70px"/> 
+                            <span>{item.nombre} </span>
                             {
                                 item.id === myRest
                                     ? null
-                                    : (<button onClick={() =>{ setMyRest(item.id)} }>Seleccionar</button>)
+                                    : (<button className='botonmas' onClick={() =>{ setMyRest(item.id)} }>
+                                        <img className='iconEdit' src={edit}  alt="imagen"/> 
+                                    </button>)
                             }
                             
                         </div>
@@ -127,7 +132,7 @@ const Mesas = () => {
     )
 
     const Listado = (
-        <table>
+        <table className='styled-table'>
         <thead>
             
             <th width="50%">Nombre</th>                                
@@ -144,12 +149,12 @@ const Mesas = () => {
                         <td>{item.status }</td>                            
                         <td className='btn-acciones'>
 
-                            <button  onClick={() => editar(item)} >
-                                editar
+                            <button className='buttonAcciones'  onClick={() => editar(item)} >
+                                <img className='iconEdit' src={edit}  alt="imagen"/> 
                             </button>
                                  
-                            <button  onClick={ ()=>{ eliminar(item)  }} >                                                                
-                                eliminar
+                            <button className='buttonAcciones' onClick={ ()=>{ eliminar(item)  }} >                                                                
+                                <img className='iconEdit' src={deletes}  alt="imagen"/>
                             </button>   
 
                       
@@ -202,7 +207,7 @@ const Mesas = () => {
 
 
                 <div className="form-buttons">
-                    <button type="button" onClick={guardar}>Guardar</button>                        
+                    <button className='EnviarPedido' type="button" onClick={guardar}>✔ Guardar</button>                        
                 </div>
 
             </form>
@@ -231,7 +236,7 @@ const Mesas = () => {
             {Listado}
            
 
-            <button type="button" onClick={ () => { setShowModal(true); setMode('new') }}>
+            <button className='button admin' type="button" onClick={ () => { setShowModal(true); setMode('new') }}>
                 + Agregar 
             </button>
 

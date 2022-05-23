@@ -351,9 +351,6 @@ const Servicio = () => {
             </div>
     </form>
 </div>
-
-
-
         </div>
       
 </div>
@@ -387,7 +384,7 @@ const Servicio = () => {
                     <div className='resumen_orden'>Resumen Orden</div>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <div className='resumen_pre-orden'>
-                        <div className='pre-orden'>Visualizar pre-orden</div>
+                        {/*<div className='pre-orden'>Visualizar pre-orden</div>*/}
                     </div>
                 </div>
             </div>
@@ -444,13 +441,20 @@ const Servicio = () => {
 
         </>
     )
-
+            
 
 
     const miPedido = (
         <>
             <h2 className='miorden'>Mi orden</h2>
-            {
+
+            <a className='btns' onClick={() => setVerMiOrden(false) }>
+            {/*<a className='btns' onClick={() => {  setMesa(''); setMesaNombre(''); setOrden('') }}>*/}
+                <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1024 1024"><path d="M874.690416 495.52477c0 11.2973-9.168824 20.466124-20.466124 20.466124l-604.773963 0 188.083679 188.083679c7.992021 7.992021 7.992021 20.947078 0 28.939099-4.001127 3.990894-9.240455 5.996574-14.46955 5.996574-5.239328 0-10.478655-1.995447-14.479783-5.996574l-223.00912-223.00912c-3.837398-3.837398-5.996574-9.046027-5.996574-14.46955 0-5.433756 2.159176-10.632151 5.996574-14.46955l223.019353-223.029586c7.992021-7.992021 20.957311-7.992021 28.949332 0 7.992021 8.002254 7.992021 20.957311 0 28.949332l-188.073446 188.073446 604.753497 0C865.521592 475.058646 874.690416 484.217237 874.690416 495.52477z"></path></svg>
+                <span>Back</span>
+            </a>                     
+            
+            {   
                 ordenesdetalles.filter (x => x.orden === orden).length > 0
                 ? (
                     <button className='cerrarPedido' onClick={() => {  cerrarServicio() } } >
@@ -461,16 +465,14 @@ const Servicio = () => {
             }
 
     <div className='table_responsive'>
-    <table className='formato'>
-        <thead>
-            
+    <table className='styled-table'>
+        <thead>            
             <th align='center'></th>
             <th align='center'>Cantidad</th>                
             <th align='center'>Nombre</th>                                
             <th align='center'>Precio</th>                                
             <th align='center'>Subtotal</th>                               
-            
-
+        
             {
                 ordenesdetalles
                     .filter (x => x.orden === orden)
@@ -482,13 +484,10 @@ const Servicio = () => {
                         <td align='center'>{element.cantidad}</td>                        
                         <td> { productos.filter(x=>x.id === element.producto)[0].nombre }  </td>
                         <td align='right'>${element.precio }</td>                            
-                        <td align='right'>${element.cantidad  * element.precio}</td>  
-                       
+                        <td align='right'>${element.cantidad  * element.precio}</td> 
                     </tr>                    
                 ))
             }
-
-
             {
                 myOrden
                     .filter (x => x.mesa === mesa)
@@ -497,10 +496,10 @@ const Servicio = () => {
                         <td align='center'>
                             <button className='boton-' onClick={() => {  removeIt(element) } } >-</button>
                         </td>
-                        <td align='center'>{element.cantidad}</td>
+                        <td align='center'><strong>{element.cantidad}</strong></td>
                         <td>{element.nombre }</td>                                                    
                         <td align='right'>${element.precio }</td>                            
-                        <td align='right'>${element.cantidad  * element.precio}</td>  
+                        <td align='right'><strong>${element.cantidad  * element.precio}</strong></td>  
                         <td align='center'>
                             <button className='botonmas'  onClick={() => {  addIt(element) } } >
                                 + 
@@ -513,58 +512,37 @@ const Servicio = () => {
                     <tr>                            
                         <td></td>
                         <td></td>                                                    
-                        <td>Total</td>                            
+                        <td><strong>Total</strong></td>                            
                         <td></td>             
-                        <td align='right'>{totalPedido()} </td>  
-                    </tr>     
-
-                    <br></br>
-
-                    <div className='ver_resumen' onClick={() => setVerMiOrden(false) }>
-                          
-                          <a className='btns'>
-                              <div className='arrow'></div>
-                          </a>                       
-                      </div>  
-
-                {
-                        myOrden.filter (x => x.mesa === mesa).length > 0
-                        ? (
-                            <>
-                            <button className='eliminarTodo' onClick={() => {  removeAll() } } >
-                            ✘
-                            </button>
-
-                            <div className='EnviarPedidoServicio' onClick={() => generarOrden() }>                
-                            ✔
-                            </div> 
-
-                            </>
-                            
-                        )
-                        : null
-                    }   
-                    
-
+                        <td align='right'><strong>{totalPedido()} </strong></td>  
                         
-                
-
+                    </tr>   
         </thead>     
         <tbody>
 
         </tbody>
         </table>
+        <br></br>
+        {
+            myOrden.filter (x => x.mesa === mesa).length > 0
+                ? (
+                <>                          
+                <div className='padre'>
+                    <div className='eliminarTodo' onClick={() => {  removeAll() } }>
+                        ✘ Eliminar Orden
+                    </div> 
+
+                    <div className='generaOrdenstyle' onClick={() => generarOrden() }>
+                        ✔ Generar Orden
+                    </div> 
+                </div>
+                </>            
+                )
+            : null
+        }
     </div>
-                                       
-
-        </>
-    ) 
-
-
-      
-
-
-
+    </>
+)
   return (
     <> 
 
@@ -585,7 +563,7 @@ const Servicio = () => {
                             ? (
                                 <>
                                     
-                                    <div className='mesa-item' onClick={() => {  setMesa(''); setMesaNombre(''); setOrden('') }}>
+                                    <div className='mesa-item-into' onClick={() => {  setMesa(''); setMesaNombre(''); setOrden('') }}>
                                         {mesaNombre}  
                                     </div>
 
@@ -620,14 +598,14 @@ const Servicio = () => {
                                     { ordenes.filter(ord => ord.mesa === x.id & ord.status === 1).length > 0
 
                                         ? ( 
-                                            <div key={x.id} className='mesa-item' onClick={() => { verDetallesMesa(x.id) }}>
-                                                {x.nombre} <div className='working'>En Servicio</div> 
+                                            <div key={x.id} className='mesa-item servicio' onClick={() => { verDetallesMesa(x.id) }}>
+                                                {x.nombre} {/*<div className='working'>En Servicio</div>*/}
                                             </div>                                           
                                         )
                                         :( 
 
-                                            <div key={x.id} className='mesa-item' onClick={() => { verDetallesMesa(x.id) }}>
-                                                {x.nombre} <div className='libre'>Disponible</div> 
+                                            <div key={x.id} className='mesa-item disponible' onClick={() => { verDetallesMesa(x.id) }}>
+                                                {x.nombre} {/*<div className='libre'>Disponible</div>*/}
                                             </div>  
                                         
                                         )

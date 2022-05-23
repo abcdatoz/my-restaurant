@@ -5,7 +5,12 @@ import { getProductos,addProducto,editProducto,deleteProducto } from '../actions
 import { getProductoImagenes,addProductoImagen } from '../actions/ProductoImagenAction'
 
 import Header from '../components/layouts/Header'
-import Modal from './common/Modal'
+import Modal from './common/Modal';
+
+
+import edit from '../images/edit_48px.png';
+import deletes from '../images/Delete_48px.png';
+import image from '../images/image_48px.png';
 
 
 
@@ -189,17 +194,20 @@ const Productos = () => {
                     restaurantes
                     .filter( p => p.user_owner === theOwner)
                     .map (item => (
-                        <div className="card-item" key={item.id}>
-                            <img src={item.logo}  alt="imagen" width="70px" height="70px"/> 
-                            <h3>{item.nombre} </h3>
+                        <div className="mensajes" key={item.id}>
+                            <br></br>
+                            <img src={item.logo} className="logoAdmin" alt="imagen"/>                                                           
+                            <span>{item.nombre} </span>  
                             {
                                 item.id === myRest
                                     ? null
-                                    : (<button onClick={() => { 
+                                    : (<button className='botonmas' onClick={() => { 
                                             setMyRest(item.id);  
                                             setMyCategoria('')
                                         
-                                         } }>Seleccionar</button>)
+                                         } }>
+                                             <img className='iconEdit' src={edit}  alt="imagen"/>
+                                         </button>)
                             }
                             
                         </div>
@@ -221,8 +229,8 @@ const Productos = () => {
                             
                             {
                                 item.id === myCategoria
-                                    ? (<span className='tab-item-selected'> {item.nombre}  </span>)
-                                    : (<span className='tab-item' onClick= { () => setMyCategoria(item.id) }> {item.nombre}  </span>)
+                                    ? (<span className='tab-item-selected btn-icon'> {item.nombre}  </span>)
+                                    : (<span className='tab-item btn-icon' onClick= { () => setMyCategoria(item.id) }> {item.nombre}  </span>)
                             }
                             
                         </div>
@@ -238,9 +246,8 @@ const Productos = () => {
 
         <>
        
-        <table>
-        <thead>
-            
+        <table className='styled-table'>
+        <thead>            
             <th width="10%">clave</th>                
             <th width="20%">Nombre</th>                                
             <th width="20%">descripcionA</th>                                
@@ -270,16 +277,16 @@ const Productos = () => {
                         }</td>                            
                         <td className='btn-acciones'>
 
-                            <button  onClick={() => { setShowModalImagen(true); setIdx(item.id) } } >
-                                add image
+                            <button className='buttonAcciones' onClick={() => { setShowModalImagen(true); setIdx(item.id) } } >
+                                <img className='iconEdit' src={image}  alt="imagen"/>
                             </button>
 
-                            <button  onClick={() => editar(item)} >
-                                editar
+                            <button className='buttonAcciones'  onClick={() => editar(item)} >
+                                <img className='iconEdit' src={edit}  alt="imagen"/> 
                             </button>
                                  
-                            <button  onClick={ ()=>{ eliminar(item)  }} >                                                                
-                                eliminar
+                            <button  className='buttonAcciones'  onClick={ ()=>{ eliminar(item)  }} >                                                                
+                                <img className='iconEdit' src={deletes}  alt="imagen"/> 
                             </button>   
 
                       
@@ -316,7 +323,7 @@ const Productos = () => {
 
 
             <div className="form-buttons">
-                <button type="button" onClick={guardarImagen}>Guardar </button>                        
+                <button className='EnviarPedido' type="button" onClick={guardarImagen}> ✔ Guardar </button>                        
             </div>
     
             
@@ -410,7 +417,7 @@ const Productos = () => {
 
 
                 <div className="form-buttons">
-                    <button type="button" onClick={guardar}>Guardar </button>                        
+                    <button className='EnviarPedido' type="button" onClick={guardar}>✔ Guardar </button>                        
                 </div>
         
                 
@@ -445,7 +452,7 @@ const Productos = () => {
 
             {
                 myCategoria
-                ? (<button type="button" onClick={ () => { setShowModal(true); setMode('new') }}>
+                ? (<button className='button admin' type="button" onClick={ () => { setShowModal(true); setMode('new') }}>
                         + Agregar 
                     </button>
                     )

@@ -4,7 +4,10 @@ import {getMeseros, addMesero,editMesero,deleteMesero } from '../actions/MeseroA
 
 import Header from '../components/layouts/Header'
 
-import Modal from './common/Modal'
+import Modal from './common/Modal';
+
+import edit from '../images/edit_48px.png';
+import deletes from '../images/Delete_48px.png';
 
 const Meseros = () => { 
 
@@ -119,13 +122,16 @@ const Meseros = () => {
                     restaurantes
                     .filter( p => p.user_owner === theOwner)
                     .map (item => (
-                        <div className="card-item" key={item.id}>
-                            <img src={item.logo}  alt="imagen" width="70px" height="70px"/> 
-                            <h3>{item.nombre} </h3>
+                        <div className="mensajes" key={item.id}>
+                            <br></br>
+                            <img className='logoAdmin' src={item.logo}  alt="imagen"/> 
+                            <span>{item.nombre} </span>
                             {
                                 item.id === myRest
                                     ? null
-                                    : (<button onClick={() =>{ setMyRest(item.id)} }>Seleccionar</button>)
+                                    : (<button className='botonmas' onClick={() =>{ setMyRest(item.id)} }>
+                                       <img className='iconEdit' src={edit}  alt="imagen"/>  
+                                    </button>)
                             }
                             
                         </div>
@@ -136,7 +142,7 @@ const Meseros = () => {
     )
 
     const Listado = (
-        <table>
+        <table className='styled-table'>
         <thead>
             
             <th width="50%">Nombre Completo</th>                                
@@ -155,15 +161,13 @@ const Meseros = () => {
                         <td>{item.status }</td>                            
                         <td className='btn-acciones'>
 
-                            <button  onClick={() => editar(item)} >
-                                editar
+                            <button className='buttonAcciones' onClick={() => editar(item)} >
+                                <img className='iconEdit' src={edit}  alt="imagen"/> 
                             </button>
                                  
-                            <button  onClick={ ()=>{ eliminar(item)  }} >                                                                
-                                eliminar
-                            </button>   
-
-                      
+                            <button className='buttonAcciones' onClick={ ()=>{ eliminar(item)  }} >                                                                
+                                <img className='iconEdit' src={deletes}  alt="imagen"/> 
+                            </button> 
 
                         </td>
                     </tr>
@@ -220,15 +224,8 @@ const Meseros = () => {
                         />
                 </div>
 
-                       
-
-
-
-
-
-
                 <div className="form-buttons">
-                    <button type="button" onClick={guardar}>Guardar</button>                        
+                    <button className='EnviarPedido' type="button" onClick={guardar}>✔ Guardar</button>                        
                 </div>
 
             </form>
@@ -245,7 +242,7 @@ const Meseros = () => {
 
             {Listado}
 
-            <button type="button" onClick={ () => { setShowModal(true); setMode('new') }}>
+            <button className='button admin' type="button" onClick={ () => { setShowModal(true); setMode('new') }}>
                 + Agregar 
             </button>
 

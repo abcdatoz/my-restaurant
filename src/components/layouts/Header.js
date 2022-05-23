@@ -9,36 +9,53 @@ class Header extends Component {
         const {isAuthenticated, username } = this.props.auth
 
         const authLinks = (
-            <ul className="mainnav">
-                <li><Link  to="/Restaurantes">Restaurantes</Link></li>
-                <li><Link  to="/Categorias">Categorias</Link></li>
-                <li><Link  to="/Productos">Productos</Link></li>                
-                <li><Link  to="/Mesas">Mesas</Link></li>
-                <li><Link  to="/Meseros">Meseros</Link></li>                
+            <div className='mainnav'>
+                <div className='card'>
+                    <div className='card-details'>
+                        <p className='text-title-card'>Restaurantes</p>
+                    </div>
+                    <li><Link className='card-button'  to="/Restaurantes">Ingresar</Link></li>                
+                </div>
+                <br></br>
+                <div className='card'>
+                    <div className='card-details'>
+                        <p className='text-title-card'>Categorias</p>
+                    </div>
+                    <li><Link className='card-button'  to="/Categorias">Ingresar</Link></li>
+                </div>
 
-                <li><span><strong>{username ? `Usuario:  ${username}` : ""}</strong></span></li>
+                <div className='card'>
+                    <div className='card-details'>
+                        <p className='text-title-card'>Productos</p>
+                    </div>
+                    <li><Link className='card-button' to="/Productos">Ingresar</Link></li>                
+                </div>
 
+                <div className='card'>
+                    <div className='card-details'>
+                        <p className='text-title-card'>Mesas</p>
+                    </div>
+                    <li><Link className='card-button' to="/Mesas">Ingresar</Link></li>
+                </div>
 
-                <li>                   
-                                                           
-                    <a href="/#" onClick={this.props.logout }>Salir </a>                    
-                </li>   
-            </ul>
+                <div className='card'>
+                    <div className='card-details'>
+                        <p className='text-title-card'>Meseros</p>
+                    </div>
+                    <li><Link className='card-button' to="/Meseros">Ingresar</Link></li>               
+                </div>
+            </div>           
         )
+        
 
 
         const guestLinks = (
             <ul>                 
-                <li><Link  to="/login">Login</Link></li>
-                
+                <li><Link  to="/login">Login</Link></li>                
                 {/* <li><Link  to="/register">Register</Link></li> */}
                 {/* <li><Link  to="/laCarta">La Carta</Link></li> */}
-            </ul>
-            
+            </ul>            
         )
-
-
-
         return (
             <nav>
                 {isAuthenticated 
@@ -49,7 +66,6 @@ class Header extends Component {
         )
     }
 }
-
 const mapState = state => ({ auth: state.auth })
 
 export default connect(mapState, {logout}) (Header)

@@ -6,7 +6,6 @@ import { getProductos } from '../actions/ProductoAction'
 import { getProductoImagenes } from '../actions/ProductoImagenAction'
 import Modal from './common/Modal';
 import portada from '../images/sushiMakizushi.jpg';
-import menuicon from '../images/menu-3.png';
 
 import { addPreorden } from '../actions/PreordenAction'
 
@@ -319,11 +318,10 @@ const LaCarta = () => {
             handleClose = {() => setShowModal(false) } 
             titulo = { producto.nombre  } 
         >        
-        <div>
+        <div class="modal-content">                                
+            <hr /> 
             <div className='photo'>
-                <div className='product_image'>
-                    <img src={imgProd}/>
-                </div>
+                <img src={imgProd}/>                
                 <div>
                     <strong>Descripción:</strong>
                     <p>{producto.descripcionA}</p>
@@ -336,8 +334,8 @@ const LaCarta = () => {
                         <strong>tiempo de preparación:</strong> {producto.tiempoPreparacion}
                     </div> 
                 </div>            
-            </div>
-        </div>    
+            </div>                                           
+        </div>   
         </Modal>
         </>
     )
@@ -360,7 +358,7 @@ const LaCarta = () => {
                             <td align='center'>
                                 <button className='boton-' onClick={() => {  removeIt(element) } } >-</button>
                             </td>
-                            <td align='center'>{element.cantidad}</td>
+                            <td align='center'><strong>{element.cantidad}</strong></td>
                             <td>{element.nombre }</td>                                                    
                             <td align='right'>${element.precio }</td>                            
                             <td align='right'>${element.cantidad  * element.precio}</td>  
@@ -376,46 +374,40 @@ const LaCarta = () => {
                     <tr>                            
                         <td></td>
                         <td></td>                                                    
-                        <td>Total</td>                            
+                        <td><strong>Total</strong></td>                            
                         <td></td>             
-                        <td align='right'>{totalPedido()} </td>  
-                    </tr>     
-
-                    <br></br>                                                  
-                        
-                    <div className='ver_resumen' onClick={() => setVerMiOrden(false) }>
-                          
-                        <a className='btns'>
-                            <div className='arrow'></div>
-                        </a>                       
-                    </div>  
-
-                    <br></br>                        
-
-                            {
-                                myOrden.length > 0
-                                ? (
-                                    <>
-
-                                        <button className='eliminarTodo' onClick={() => {  setMyOrden([]) } } >
-                                        ✘
-                                        </button> 
-                                    
-                                        <button type="button" className='EnviarPedido' onClick={ () => { setShowModalOrden(true);  }}>
-                                        ✔
-                                        </button>
-                                    </>
-                                    
-                                    
-                                    )
-                                : null
-                            }
-
-            </thead>     
+                        <td align='right'><strong>{totalPedido()}</strong></td>  
+                        <td></td>  
+                    </tr>  
+            </thead>  
         <tbody>
-
         </tbody>
         </table>
+
+        <div className='ver_resumen' onClick={() => setVerMiOrden(false) }>
+            <a className='btns'>
+                <div className='arrow'></div>
+            </a>                       
+        </div> 
+        {
+            myOrden.length > 0
+            ? (
+            <>
+            <div className='padre'>
+                <div className='eliminarTodo' onClick={() => {  setMyOrden([]) } }>
+                    ✘ Eliminar Orden
+                </div> 
+
+                <div className='generaOrdenstyle' onClick={ () => { setShowModalOrden(true);  }}>
+                    ✔ Generar Orden
+                </div> 
+            </div>
+             
+            </>
+                                    
+            )
+            : null
+        } 
         </div>
 
         <Modal 
@@ -423,39 +415,25 @@ const LaCarta = () => {
             handleClose = {() => setShowModalOrden(false) } 
             titulo = "Enviar Orden" 
         >
-            <div>
-            <div className='photo'>
-                <strong>A nombre de:</strong> <br />
-                <input 
-                    className='inputNombrede'
-                    type="text"
-                    placeholder='nombre del cliente'
-                    name="nombreCliente"
-                    onChange= { e => setNombreCliente(e.target.value) }                            
-                    value= { nombreCliente }
-                />   
-                <br /><br />              
-                
-                <button type="button" className='EnviarPedido' onClick={enviarOrden}>Enviar Orden </button>                        
-            
-            </div>    
-            </div>
-
-
-            
-
-
-
-        </Modal>
-         
         
-                                        
-
+        <div class="modal-content">                                
+            <hr />  
+            <strong>A nombre de:</strong> <br /><br />
+            <input 
+                className='inputNombrede'
+                type="text"
+                placeholder='Nombre del cliente'
+                name="nombreCliente"
+                onChange= { e => setNombreCliente(e.target.value) }                            
+                value= { nombreCliente }
+            />   
+            <br /><br /> 
+            <button type="button" className='EnviarPedido' onClick={enviarOrden}>✔ Enviar Orden </button>                                                 
+                                                               
+        </div>
+        </Modal>
         </>
     ) 
-
-
-  
 
   
 
