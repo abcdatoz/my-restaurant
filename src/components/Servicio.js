@@ -297,8 +297,8 @@ const Servicio = () => {
         <div className='modal_menu'>
         <div className='modal__container'>
             <div className='modal__featured'>
-            <div class="modal__circle"></div>
-                <img src={imagen} class="modal__product" />
+            <div class="modal__circle"></div>                
+               <img src={imagen} class="modal__product" /> 
             </div>
 
             <div className='modal__content'>
@@ -403,13 +403,13 @@ const Servicio = () => {
                 .map(prod => (
                     <tr  key={prod.id}>                        
 
-                        <td>{prod.nombre}</td>
-                        <td>${prod.precio}</td>
+                        <td className='tituloTable'>{prod.nombre}</td>
+                        <td className='tituloTable'><strong className='textoColor'>${prod.precio}</strong></td>
                         <td>
                             
                             <button className='icon-btn add-btn' onClick={() => {  addIt(prod) } } >
                                 <div className='add-icon'></div>
-                                <div className='btn-txt'>Add</div>
+                                <div className='btn-txt tituloTable'>Add</div>
                             </button>
                             
                             {
@@ -417,11 +417,11 @@ const Servicio = () => {
                                 myOrden.filter(x=> x.id === prod.id && x.mesa === mesa).length
                                 ? (
                                     <>                                        
-                                        <strong className='colorTextoVertical'>{myOrden.filter(x=> x.id === prod.id && x.mesa === mesa)[0].cantidad}</strong>
+                                        <strong className='colorTextoVertical '>{myOrden.filter(x=> x.id === prod.id && x.mesa === mesa)[0].cantidad}</strong>
                                         
                                         
-                                        <button className='icon-btn add-btn' onClick={() => {  removeIt(prod) } } >                                        
-                                            <div className='btn-txt'>Remove</div>
+                                        <button className='icon-btn add-btn ' onClick={() => {  removeIt(prod) } } >                                        
+                                            <div className='btn-txt tituloTable'>Remove</div>
                                         </button>
 
                                     </>
