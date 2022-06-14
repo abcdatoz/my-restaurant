@@ -4,8 +4,7 @@ export const GET_ORDENES_DETALLES = 'GET_ORDENES_DETALLES';
 
 
 
-const urlbase ='http://my-rest-api.abcdatoz.net/api'
-// const urlbase ='http://localhost:8000/api'
+const urlbase = require('../config/url.config').address
 
 // const config = {
 //     headers: {

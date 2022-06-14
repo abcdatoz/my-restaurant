@@ -73,11 +73,11 @@ const Preordenes = () => {
 
 
         preordenesdetalles
-        .filter (x=> x.preorden === preorden)
+        .filter (x=> x.preordenId === preorden)
         .forEach(element => {
 
             let newobj = {
-                id: element.producto,                               
+                id: element.productoId,                               
                 precio: element.precio,
                 cantidad: element.cantidad
             }
@@ -100,7 +100,7 @@ const Preordenes = () => {
 
 
         let dataPreorden = {
-            status: 2
+            estatus: 2
         }
 
         dispatch(editPreorden(dataPreorden, preorden))
@@ -127,7 +127,7 @@ const Preordenes = () => {
 
                     
                             { preordenes
-                                .filter(p => p.restaurant === waiter.idRestaurant && p.status === 1)                      
+                                .filter(p => p.restaurantId === waiter.idRestaurant && p.estatus === 1)                      
                                 .map (pre => (
                                             <>
 
@@ -146,11 +146,11 @@ const Preordenes = () => {
                                             <tbody>
                                             {
                                                preordenesdetalles
-                                                .filter (x => x.preorden === pre.id)
+                                                .filter (x => x.preordenId === pre.id)
                                                 .map( element => (
                                                     <tr key={element.id} className="detallePedido">                                                                                    
                                                         <td align='center'>{element.cantidad}</td>                        
-                                                        <td> { productos.filter(x=>x.id === element.producto)[0].nombre }  </td>
+                                                        <td> { productos.filter(x=>x.id === element.productoId)[0].nombre }  </td>
                                                         <td align='right'>${element.precio }</td>                            
                                                         <td align='right'>${element.cantidad  * element.precio}</td>  
                        
@@ -199,11 +199,11 @@ const Preordenes = () => {
                                 <tbody>
                                     {
                                         preordenesdetalles
-                                        .filter (x => x.preorden === preorden)
+                                        .filter (x => x.preordenId === preorden)
                                         .map( element => (
                                             <tr key={element.id} className="detallePedido">                                                                                    
                                                 <td align='center'>{element.cantidad}</td>                        
-                                                <td> { productos.filter(x=>x.id === element.producto)[0].nombre }  </td>
+                                                <td> { productos.filter(x=>x.id === element.productoId)[0].nombre }  </td>
                                                 <td align='right'>${element.precio }</td>                            
                                                 <td align='right'>${element.cantidad  * element.precio}</td>  
                                             </tr>                    
@@ -223,10 +223,10 @@ const Preordenes = () => {
                                         <option value="null">Seleccione la mesa</option>                           
                                             {
                                                 mesas
-                                                .filter(p => p.restaurant === waiter.idRestaurant)                      
+                                                .filter(p => p.restaurantId === waiter.idRestaurant)                      
                                                 .map (x => (
                                                 <>
-                                                    { ordenes.filter(ord => ord.mesa === x.id & ord.status === 1).length > 0
+                                                    { ordenes.filter(ord => ord.mesaId === x.id & ord.estatus === 1).length > 0
                                                         ? null
                                                         :( 
                                                         <option key={x.id} value={x.id}>

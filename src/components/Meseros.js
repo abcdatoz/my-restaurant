@@ -83,12 +83,12 @@ const Meseros = () => {
           
         //validations
         let arr = meseros.filter(x =>  x.id !== idx 
-                                && x.restaurant === myRest 
+                                && x.restaurantId === myRest 
                                 &&  x.nombre.toUpperCase() === nombre.toUpperCase()
                             ) 
 
         if (arr.length > 0){
-            alert('Ya existe una mesero(a) registrado(a) con ese nombre en este restaurant')
+            alert('Ya existe un(a) mesero(a) registrado(a) con ese nombre en este restaurant')
             return
         }
  
@@ -153,7 +153,7 @@ const Meseros = () => {
         <tbody>
         {
                 meseros
-                .filter( p => p.restaurant === myRest)
+                .filter( p => p.restaurantId === myRest)
                 .map (item => (
                     <tr key={item.id}>                            
                         <td>{item.nombre_completo}</td>

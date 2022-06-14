@@ -12,6 +12,9 @@ import { addPreorden } from '../actions/PreordenAction'
 const LaCarta = () => {
 
 
+
+    const urlImages = require('../config/url.config').resources
+
     //useState
     const [myRest, setMyRest] = useState('')
     const [myCategoria, setMyCategoria] = useState('')
@@ -239,7 +242,7 @@ const LaCarta = () => {
         <div className='tabs-group'>
             {
                         categorias                    
-                        .filter( p => p.restaurant === myRest)
+                        .filter( p => p.restaurantId === myRest)
                         .map (item => (
                             <div className="tabs-item" key={item.id}>                                                            
                                 {
@@ -262,20 +265,20 @@ const LaCarta = () => {
     const listaProductos = (
         <>            
             { productos
-                .filter(p => p.categoria === myCategoria)
+                .filter(p => p.categoriaId === myCategoria)
                 .map(prod => (
                     <div  key={prod.id} className='course'>
 
                         <div className='course-preview'>
                             {
                             productosImagenes
-                                .filter(x => x.producto == prod.id)
+                                .filter(x => x.productoId == prod.id)
                                 .map (prodimagen => (
                                     <div key={prodimagen.id} onClick={() => { setShowModal(true); 
                                         setProducto(prod); 
-                                        setimgProd(prodimagen.imagen)  } }   
+                                        setimgProd(urlImages + prodimagen.imagen)  } }   
                                     >   
-                                        <img  src={prodimagen.imagen} />
+                                        <img  src={urlImages + prodimagen.imagen}     />
                                     </div>
                                 ))                            }
                         </div>

@@ -18,6 +18,8 @@ import deletes from '../images/Delete_48px.png';
 const HomeAdministracion = () => {
 
 
+    const urlImages = require('../config/url.config').resources
+
     //useState
     const [showModal, setShowModal] = useState(false)
     // const [showModalDelete, setShowModalDelete] = useState(false)
@@ -175,10 +177,10 @@ const HomeAdministracion = () => {
             <tbody>
                 {
                     restaurantes
-                    .filter( p => p.user_owner === theOwner)
+                    .filter( p => p.owner === theOwner)
                     .map (item => (
                         <tr key={item.id}>
-                            <td> <img className='logoAdmin' src={item.logo}  alt="imagen"/> </td>
+                            <td> <img className='logoAdmin' src={urlImages + item.logo}  alt="imagen"/> </td>
                             <td><strong>{item.nombre}</strong></td>
                             <td>{item.direccion }</td>
                             <td><strong>{item.status}</strong></td>
@@ -234,7 +236,7 @@ const HomeAdministracion = () => {
                         <input 
                             type="text"
                             placeholder='Capture la direccion del restaurante'
-                            name="nombre"
+                            name="direccion"
                             onChange= { e => setDireccion(e.target.value) }                            
                             value= { direccion }
                             />

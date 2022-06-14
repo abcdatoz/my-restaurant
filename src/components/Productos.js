@@ -16,6 +16,9 @@ import image from '../images/image_48px.png';
 
 const Productos = () => {
 
+
+    const urlImages = require('../config/url.config').resources
+
     //useStates
     const [myRest, setMyRest] = useState('')
     const [myCategoria, setMyCategoria] = useState('')
@@ -49,19 +52,11 @@ const Productos = () => {
     const dispatch = useDispatch()
 
 
-   
-
-
-
-
     //useEffect
     useEffect(() => {       
 
-     
-
         dispatch(getProductos())
         dispatch(getProductoImagenes())
-        
         
     }, [])// eslint-disable-line react-hooks/exhaustive-deps
 
@@ -110,7 +105,7 @@ const Productos = () => {
 
           
         //validations
-        let arr = productos.filter(x =>  x.id !== idx && x.restaurant === myRest &&  x.clave.toUpperCase() === clave.toUpperCase()) 
+        let arr = productos.filter(x =>  x.id !== idx && x.restaurantId === myRest &&  x.clave.toUpperCase() === clave.toUpperCase()) 
 
         if (arr.length > 0){
             alert('Ya existe una producto registrado con esa clave')
@@ -118,7 +113,7 @@ const Productos = () => {
         }
 
 
-        arr = productos.filter(x =>  x.id !== idx && x.restaurant === myRest &&  x.nombre.toUpperCase() === nombre.toUpperCase()) 
+        arr = productos.filter(x =>  x.id !== idx && x.restaurantId === myRest &&  x.nombre.toUpperCase() === nombre.toUpperCase()) 
         
         if (arr.length > 0){
             alert('Ya existe un producto registrado con ese nombre en este restaurant')
@@ -133,9 +128,7 @@ const Productos = () => {
             categoria : myCategoria,
             clave,
             nombre,
-            descripcionA,
-            descripcionB,
-            descripcionC,
+            descripcionA,            
             precio,
             calorias,
             tiempoPreparacion    
@@ -192,11 +185,11 @@ const Productos = () => {
         <div className='card-group'>            
             {
                     restaurantes
-                    .filter( p => p.user_owner === theOwner)
+                    .filter( p => p.owner === theOwner)
                     .map (item => (
                         <div className="mensajes" key={item.id}>
                             <br></br>
-                            <img src={item.logo} className="logoAdmin" alt="imagen"/>                                                           
+                            <img src={urlImages + item.logo} className="logoAdmin" alt="imagen"/>                                                           
                             <span>{item.nombre} </span>  
                             {
                                 item.id === myRest
@@ -223,7 +216,7 @@ const Productos = () => {
         <div className='tabs-group'>            
             {
                     categorias                    
-                    .filter( p => p.restaurant === myRest)
+                    .filter( p => p.restaurantId === myRest)
                     .map (item => (
                         <div className="tabs-item" key={item.id}>                            
                             
@@ -261,7 +254,7 @@ const Productos = () => {
         <tbody>
         {
                 productos
-                .filter( p => p.categoria === myCategoria)
+                .filter( p => p.categoriaId === myCategoria)
                 .map (item => (
                     <tr key={item.id}>                            
                         <td>{item.clave}</td>
@@ -271,7 +264,7 @@ const Productos = () => {
                         <td>{item.calorias }</td>                            
                         <td>{item.tiempoPreparacion }</td>                            
                         <td>{
-                             productoImagenes.filter(x => x.producto === item.id).length > 0 
+                             productoImagenes.filter(x => x.productoId === item.id).length > 0 
                                 ? (<span>si</span>)
                                 : (<span>no</span>)
                         }</td>                            
@@ -381,6 +374,7 @@ const Productos = () => {
                         value= { descripcionA }
                         />
                 </div>                  
+                        
 
                 <div className='form-input'>
                     <label>Precio</label>

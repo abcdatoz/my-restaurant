@@ -6,8 +6,7 @@ export const ADD_MESERO = 'ADD_MESERO';
 export const EDIT_MESERO = 'EDIT_MESERO';
 export const DELETE_MESERO ='DELETE_MESERO';
 
-const urlbase ='http://my-rest-api.abcdatoz.net/api'
-// const urlbase ='http://localhost:8000/api'
+const urlbase = require('../config/url.config').address
 
 export const  getMeseros = () => (dispatch, getState) => {
     axios.get(urlbase + '/meseros/')

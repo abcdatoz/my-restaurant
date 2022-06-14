@@ -142,7 +142,7 @@ const Mesas = () => {
         <tbody>
         {
                 mesas
-                .filter( p => p.restaurant === myRest)
+                .filter( p => p.restaurantId === myRest)
                 .map (item => (
                     <tr key={item.id}>                            
                         <td>{item.nombre}</td>

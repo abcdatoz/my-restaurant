@@ -6,8 +6,7 @@ export const ADD_PRODUCTO = 'ADD_PRODUCTO';
 export const EDIT_PRODUCTO = 'EDIT_PRODUCTO';
 export const DELETE_PRODUCTO ='DELETE_PRODUCTO';
 
-const urlbase ='http://my-rest-api.abcdatoz.net/api'
-// const urlbase ='http://localhost:8000/api'
+const urlbase = require('../config/url.config').address
 
 export const  getProductos = () => (dispatch, getState) => {
     axios.get(urlbase + '/productos/')

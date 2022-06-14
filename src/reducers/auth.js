@@ -17,11 +17,10 @@ export default function foo(state= initialState,action){
         case REGISTER_SUCCESS:
             //localStorage.setItem('token', action.payload.token)            
             return{
-                ...state,                
+                ...state,      
+                ...action.payload,          
                 isAuthenticated: true,
-                username: action.payload.user.username,                           
-                accessToken: action.payload.token,
-                owner: action.payload.user.id,
+                owner: action.payload.id                
             }
         case LOGIN_FAIL:
         case REGISTER_FAIL:

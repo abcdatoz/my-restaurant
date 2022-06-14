@@ -5,8 +5,7 @@ export const  W_LOGIN_SUCCESS = 'W_LOGIN_SUCCESS'
 export const  W_LOGOUT_SUCCESS = 'W_LOGOUT_SUCCESS'
 export const  W_LOGIN_FAIL = 'W_LOGIN_FAIL'
 
-const urlbase ='http://my-rest-api.abcdatoz.net/api/'
-// const urlbase ='http://localhost:8000/api'
+const urlbase = require('../config/url.config').address
 
 
 export const  login = (usuario, password, idRest) => dispatch => {
@@ -18,7 +17,7 @@ export const  login = (usuario, password, idRest) => dispatch => {
 
             let arr = res.data 
 
-            let waiter = arr.filter(x=> x.nombre ===usuario & x.password === password && x.restaurant === idRest)
+            let waiter = arr.filter(x=> x.nombre ===usuario & x.password === password && x.restaurantId === idRest)
 
             console.log(waiter)
 

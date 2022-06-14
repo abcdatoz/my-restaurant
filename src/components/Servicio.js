@@ -101,7 +101,7 @@ const Servicio = () => {
         setMesaNombre(arrMesas[0].nombre)
         setVerMiOrden(false)
       
-        let arr = ordenes.filter(x => x.mesa === item & x.status === 1)   
+        let arr = ordenes.filter(x => x.mesaId === item & x.estatus === 1)   
 
         if (arr.length > 0){
             setOrden(arr[0].id)            
@@ -118,7 +118,7 @@ const Servicio = () => {
         let total = 0
 
 
-        let arr =  ordenesdetalles.filter (x => x.orden === orden)
+        let arr =  ordenesdetalles.filter (x => x.ordenId === orden)
 
         for (let i = 0; i < arr.length; i++) {            
             total += arr[i].subtotal            
@@ -247,7 +247,7 @@ const Servicio = () => {
         }else{
 
             let arr =  ordenesdetalles
-                        .filter( p => p.orden === orden)
+                        .filter( p => p.ordenId === orden)
                         .map( x => { return x.ronda })
             let lastRonda = Math.max(...arr) 
             
@@ -279,8 +279,7 @@ const Servicio = () => {
     const cerrarServicio = () => {
 
         let data = {
-            orden: orden,
-            status: 2,            
+            estatus: 2,            
             detalles: []
         }
 
@@ -362,7 +361,7 @@ const Servicio = () => {
             <div className='tabs-group-vertical'>            
             {
                     categorias                    
-                    .filter( p => p.restaurant === waiter.idRestaurant)
+                    .filter( p => p.restaurantId === waiter.idRestaurant)
                     .map (item => (
                         <div className="tabs-item-vertical" key={item.id}>                            
                             
@@ -399,7 +398,7 @@ const Servicio = () => {
     <div className='ListaProductos'>
     <table>
             { productos
-                .filter(p => p.categoria === myCategoria)
+                .filter(p => p.categoriaId === myCategoria)
                 .map(prod => (
                     <tr  key={prod.id}>                        
 
@@ -455,7 +454,7 @@ const Servicio = () => {
             </a>                     
             
             {   
-                ordenesdetalles.filter (x => x.orden === orden).length > 0
+                ordenesdetalles.filter (x => x.ordenId === orden).length > 0
                 ? (
                     <button className='cerrarPedido' onClick={() => {  cerrarServicio() } } >
                         cerrar servicio en esta mesa
@@ -475,14 +474,14 @@ const Servicio = () => {
         
             {
                 ordenesdetalles
-                    .filter (x => x.orden === orden)
+                    .filter (x => x.ordenId === orden)
                     .map( element => (
                     <tr key={element.id} className="detallePedido">                            
                         <td align='center'>
                             Ronda: {element.ronda}
                         </td>
                         <td align='center'>{element.cantidad}</td>                        
-                        <td> { productos.filter(x=>x.id === element.producto)[0].nombre }  </td>
+                        <td> { productos.filter(x=>x.id === element.productoId)[0].nombre }  </td>
                         <td align='right'>${element.precio }</td>                            
                         <td align='right'>${element.cantidad  * element.precio}</td> 
                     </tr>                    
@@ -591,11 +590,11 @@ const Servicio = () => {
                             : (
                                 <div className='mesas-group'>
                                 {mesas
-                                .filter(p => p.restaurant === waiter.idRestaurant)                      
+                                .filter(p => p.restaurantId === waiter.idRestaurant)                      
                                 .map (x => (
                                     <>
 
-                                    { ordenes.filter(ord => ord.mesa === x.id & ord.status === 1).length > 0
+                                    { ordenes.filter(ord => ord.mesaId === x.id & ord.estatus === 1).length > 0
 
                                         ? ( 
                                             <div key={x.id} className='mesa-item servicio' onClick={() => { verDetallesMesa(x.id) }}>

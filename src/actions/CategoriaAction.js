@@ -6,8 +6,7 @@ export const ADD_CATEGORIA = 'ADD_CATEGORIA';
 export const EDIT_CATEGORIA = 'EDIT_CATEGORIA';
 export const DELETE_CATEGORIA ='DELETE_CATEGORIA';
 
-const urlbase ='http://my-rest-api.abcdatoz.net/api'
-// const urlbase ='http://localhost:8000/api'
+const urlbase = require('../config/url.config').address
 
 export const  getCategorias = () => (dispatch, getState) => {
     axios.get(urlbase + '/categorias/')

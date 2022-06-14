@@ -14,6 +14,8 @@ import deletes from '../images/Delete_48px.png';
 
 const Categorias = () => {
 
+    const urlImages = require('../config/url.config').resources
+
     //useStates
     const [myRest, setMyRest] = useState('')
     const [showModal, setShowModal] = useState(false)
@@ -67,7 +69,7 @@ const Categorias = () => {
 
 
     const eliminar = (item) => {
-        let lista = productos.filter(x => x.categoria === item.id)
+        let lista = productos.filter(x => x.categoriaId === item.id)
 
         if (lista.length > 0){
             alert('No se puede eliminar esta categoria porque tiene productos relacionados')
@@ -90,7 +92,7 @@ const Categorias = () => {
 
           
         //validations
-        let arr = categorias.filter(x =>  x.id !== idx && x.restaurant === myRest &&  x.clave.toUpperCase() === clave.toUpperCase()) 
+        let arr = categorias.filter(x =>  x.id !== idx && x.restaurantId === myRest &&  x.clave.toUpperCase() === clave.toUpperCase()) 
 
         if (arr.length > 0){
             alert('Ya existe una categoria registrada con esa clave en este restaurant')
@@ -98,7 +100,7 @@ const Categorias = () => {
         }
 
 
-        arr = categorias.filter(x =>  x.id !== idx && x.restaurant === myRest &&  x.nombre.toUpperCase() === nombre.toUpperCase()) 
+        arr = categorias.filter(x =>  x.id !== idx && x.restaurantId === myRest &&  x.nombre.toUpperCase() === nombre.toUpperCase()) 
         console.log(arr)
         if (arr.length > 0){
             alert('Ya existe una categoria registrada con ese nombre en esta restaurant')
@@ -129,11 +131,11 @@ const Categorias = () => {
         <div className='card-group'>           
             {
                     restaurantes
-                    .filter( p => p.user_owner === theOwner)
+                    .filter( p => p.owner === theOwner)
                     .map (item => (
-                        <div className="mensajes" key={item.id}>
+                        <div className="mensajes" key={item.id}>                            
                             <br></br>
-                            <img className='logoAdmin' src={item.logo}  alt="imagen"/> 
+                            <img className='logoAdmin' src={urlImages + item.logo}  alt="imagen"/> 
                             <span>{item.nombre} </span>
                             {
                                 item.id === myRest
@@ -160,7 +162,7 @@ const Categorias = () => {
         <tbody>
         {
                 categorias
-                .filter( p => p.restaurant === myRest)
+                .filter( p => p.restaurantId === myRest)
                 .map (item => (
                     <tr key={item.id}>                            
                         <td>{item.clave}</td>

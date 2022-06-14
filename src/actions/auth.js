@@ -7,10 +7,8 @@ export const  LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
 export const  REGISTER_FAIL = 'REGISTER_FAIL'
 export const  LOGIN_FAIL = 'LOGIN_FAIL'
 
-
- const urlbase ='http://my-rest-api.abcdatoz.net/api/'
-// const urlbase ='http://localhost:8000/api/'
-
+ 
+const urlbase = require('../config/url.config').address
 
 export const  login = (username, password) => dispatch => {
     
@@ -20,12 +18,14 @@ export const  login = (username, password) => dispatch => {
         }
     };
 
+    console.log (config)
 
     const body = JSON.stringify({username, password})
     
 
-    axios.post( urlbase + 'auth/login', body, config)
+    axios.post( urlbase + '/auth/login', body, config)
     .then(res => {
+        console.log(res)
         dispatch({
             type: LOGIN_SUCCESS,
             payload: res.data
@@ -74,7 +74,7 @@ export const register = ({username, password, email}) =>  dispatch => {
     
     const body = JSON.stringify({username, email, password});
 
-    axios.post( urlbase + 'auth/register',body, config)
+    axios.post( urlbase + '/auth/register',body, config)
     .then(res=> {
          
         dispatch({
@@ -116,13 +116,13 @@ export const tokenConfig = getState => {
         }
     }
 
-    // if (token){
-    //     config.headers['x-access-token'] = token
-    // }
-
     if (token){
-        config.headers['Authorization'] = `Token ${token}`
+        config.headers['x-access-token'] = token
     }
+
+    // if (token){
+    //     config.headers['Authorization'] = `Token ${token}`
+    // }
 
 
     return config
