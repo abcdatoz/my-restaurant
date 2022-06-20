@@ -17,8 +17,7 @@ export const  login = (username, password) => dispatch => {
             'Content-Type': 'application/json'
         }
     };
-
-    console.log (config)
+    
 
     const body = JSON.stringify({username, password})
     

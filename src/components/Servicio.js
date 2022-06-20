@@ -9,8 +9,8 @@ import { login } from '../actions/authWaiters'
 
 import { getOrdenes,addOrden,editOrden } from '../actions/OrdenAction'
 import { getOrdenesDetalles  } from '../actions/OrdenDetalleAction'
-import { getCategorias } from '../actions/CategoriaAction'
-import { getProductos } from '../actions/ProductoAction'
+import { getCategorias, getCategoriasByRestaurant } from '../actions/CategoriaAction'
+import { getProductos, getProductoByRestaurant } from '../actions/ProductoAction'
 import imagen from '../images/BackgroundMenu.png';
 
 
@@ -56,8 +56,8 @@ const Servicio = () => {
     useEffect(() => {            
 
         dispatch(getRestaurants())
-        dispatch(getCategorias())
-        dispatch(getProductos())
+        // dispatch(getCategorias())
+        // dispatch(getProductos())
         dispatch(getMesas())
         dispatch(getOrdenes())
         dispatch(getOrdenesDetalles())        
@@ -83,6 +83,9 @@ const Servicio = () => {
 
         
         dispatch(login(usuario, password, rest)    )
+
+        dispatch(getCategoriasByRestaurant(rest))
+        dispatch(getProductoByRestaurant(rest))
     };
     
 

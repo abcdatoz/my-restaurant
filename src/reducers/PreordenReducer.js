@@ -1,4 +1,4 @@
-import {GET_PREORDENES,ADD_PREORDEN,EDIT_PREORDEN,DELETE_PREORDEN} from '../actions/PreordenAction'
+import {GET_PREORDENES, GET_PREORDENES_RESTAURANT, ADD_PREORDEN,EDIT_PREORDEN,DELETE_PREORDEN} from '../actions/PreordenAction'
 
 const initialState = {
     lista:[]
@@ -7,6 +7,12 @@ const initialState = {
 export default function foo(state=initialState, action){
     switch (action.type){
         case GET_PREORDENES:
+            return {
+                ...state,
+                lista: action.payload
+
+            };
+        case GET_PREORDENES_RESTAURANT:
             return {
                 ...state,
                 lista: action.payload

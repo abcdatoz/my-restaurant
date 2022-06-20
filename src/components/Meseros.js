@@ -11,6 +11,8 @@ import deletes from '../images/Delete_48px.png';
 
 const Meseros = () => { 
 
+    const urlImages = require('../config/url.config').resources
+
    //useStates
    const [myRest, setMyRest] = useState('')
    const [showModal, setShowModal] = useState(false)
@@ -120,11 +122,11 @@ const Meseros = () => {
         <div className='card-group'>            
             {
                     restaurantes
-                    .filter( p => p.user_owner === theOwner)
+                    .filter( p => p.owner === theOwner)
                     .map (item => (
                         <div className="mensajes" key={item.id}>
                             <br></br>
-                            <img className='logoAdmin' src={item.logo}  alt="imagen"/> 
+                            <img className='logoAdmin' src={urlImages + item.logo}  alt="imagen"/> 
                             <span>{item.nombre} </span>
                             {
                                 item.id === myRest
@@ -238,6 +240,10 @@ const Meseros = () => {
     return (    
         <div>
             <Header />
+
+            <br />
+            <br />
+
             {SeleccionaRestaurant}
 
             {Listado}

@@ -1,4 +1,4 @@
-import {GET_PRODUCTOS,ADD_PRODUCTO,EDIT_PRODUCTO,DELETE_PRODUCTO} from '../actions/ProductoAction'
+import {GET_PRODUCTOS, GET_PRODUCTOS_RESTAURANT, ADD_PRODUCTO,EDIT_PRODUCTO,DELETE_PRODUCTO} from '../actions/ProductoAction'
 
 const initialState = {
     lista:[]
@@ -7,6 +7,12 @@ const initialState = {
 export default function foo(state=initialState, action){
     switch (action.type){
         case GET_PRODUCTOS:
+            return {
+                ...state,
+                lista: action.payload
+            };
+
+        case GET_PRODUCTOS_RESTAURANT:
             return {
                 ...state,
                 lista: action.payload

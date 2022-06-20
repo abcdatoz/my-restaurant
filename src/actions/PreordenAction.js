@@ -2,6 +2,7 @@ import axios from 'axios'
 // import { tokenConfig } from './auth'
 
 export const GET_PREORDENES = 'GET_PREORDENES';
+export const GET_PREORDENES_RESTAURANT = 'GET_PREORDENES_RESTAURANT';
 export const ADD_PREORDEN = 'ADD_PREORDEN';
 export const EDIT_PREORDEN = 'EDIT_PREORDEN';
 export const DELETE_PREORDEN ='DELETE_PREORDEN';
@@ -26,6 +27,19 @@ export const  getPreordenes = () => (dispatch) => {
             })
         .catch(err => { console.log("error message :" + err.message) })
 };  
+
+
+export const getPreordenesByRestaurant = (id) => (dispatch, getState)=>{
+    axios.get(urlbase + `/preordenByRestaurant/${id}/`)
+        .then( res => {
+            dispatch({
+                type: GET_PREORDENES_RESTAURANT,
+                payload: res.data
+            });            
+        })
+        .catch(err => { console.log("error message :" + err.message) })
+};
+
 
 export const addPreorden = (registro) => (dispatch) => {
     axios.post (urlbase + '/preordenes/', registro, config)

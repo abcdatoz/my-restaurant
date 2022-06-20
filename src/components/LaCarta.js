@@ -1,9 +1,9 @@
 import React, { useEffect, useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getRestaurants } from '../actions/RestaurantActions'
-import { getCategorias } from '../actions/CategoriaAction'
-import { getProductos } from '../actions/ProductoAction'
-import { getProductoImagenes } from '../actions/ProductoImagenAction'
+import { getCategorias, getCategoriasByRestaurant } from '../actions/CategoriaAction'
+import {  getProductos, getProductoByRestaurant } from '../actions/ProductoAction'
+import { getProductoImagenes, getProductoImagenesByRestaurant } from '../actions/ProductoImagenAction'
 import Modal from './common/Modal';
 import portada from '../images/sushiMakizushi.jpg';
 
@@ -28,6 +28,7 @@ const LaCarta = () => {
     
     const [showModalOrden, setShowModalOrden] = useState(false)
     const [nombreCliente, setNombreCliente] = useState('')
+    const [observaciones, setObservaciones] = useState('')
 
     const [producto, setProducto] = useState({});
     const [imgProd, setimgProd] = useState('');
@@ -47,9 +48,9 @@ const LaCarta = () => {
     //useEffect
     useEffect(() => {
         dispatch(getRestaurants())
-        dispatch(getCategorias())
-        dispatch(getProductos())
-        dispatch(getProductoImagenes())      
+        // dispatch(getCategorias())
+        // dispatch(getProductos())
+        // dispatch(getProductoImagenes())      
     }, [])// eslint-disable-line react-hooks/exhaustive-deps
 
 
@@ -111,6 +112,9 @@ const LaCarta = () => {
         setMyRest(arr[0].id)
         setNombreRestaurant(arr[0].nombre)
         setLogo(arr[0].logo)
+        dispatch(getProductoByRestaurant(arr[0].id))
+        dispatch(getCategoriasByRestaurant(arr[0].id))
+        dispatch(getProductoImagenesByRestaurant(arr[0].id))
     }
 
     const totalPedido = () => {
@@ -225,15 +229,17 @@ const LaCarta = () => {
 
         let data = {
             restaurant: myRest,
-            nombreCliente: nombreCliente,            
+            nombreCliente: nombreCliente,
+            observaciones: observaciones,            
             detalles: myOrden
-        }
+        }   
 
         dispatch(addPreorden(data) )
         
         setShowModalOrden(false)
         setMyOrden([])
         setNombreCliente('')
+        setObservaciones('')
         
         
     }
@@ -432,6 +438,16 @@ const LaCarta = () => {
                 onChange= { e => setNombreCliente(e.target.value) }                            
                 value= { nombreCliente }
             />   
+            <br /><br /> 
+            <strong>Observaciones:</strong> <br /><br />
+            <input 
+                className='inputNombrede'
+                type="text"
+                placeholder='observaciones acerca el pedido'
+                name="observaciones"
+                onChange= { e => setObservaciones(e.target.value) }                            
+                value= { observaciones }
+            /> 
             <br /><br /> 
             <button type="button" className='EnviarPedido' onClick={enviarOrden}>✔ Enviar Orden </button>                                                 
                                                                

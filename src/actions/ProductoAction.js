@@ -2,6 +2,7 @@ import axios from 'axios'
 import { tokenConfig } from './auth'
 
 export const GET_PRODUCTOS = 'GET_PRODUCTOS';
+export const GET_PRODUCTOS_RESTAURANT = 'GET_PRODUCTOS_RESTAURANT';
 export const ADD_PRODUCTO = 'ADD_PRODUCTO';
 export const EDIT_PRODUCTO = 'EDIT_PRODUCTO';
 export const DELETE_PRODUCTO ='DELETE_PRODUCTO';
@@ -18,6 +19,18 @@ export const  getProductos = () => (dispatch, getState) => {
             })
         .catch(err => { console.log("error message :" + err.message) })
 };  
+
+
+export const getProductoByRestaurant = (id) => (dispatch, getState)=>{
+    axios.get(urlbase + `/productosRestaurant/${id}/`)
+        .then( res => {
+            dispatch({
+                type: GET_PRODUCTOS_RESTAURANT,
+                payload: res.data
+            });            
+        })
+        .catch(err => { console.log("error message :" + err.message) })
+};
 
 export const addProducto = (registro) => (dispatch, getState) => {
     axios.post (urlbase + '/productos/', registro, tokenConfig(getState))

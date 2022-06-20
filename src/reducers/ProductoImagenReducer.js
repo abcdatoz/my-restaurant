@@ -1,4 +1,4 @@
-import {GET_PRODUCTOIMAGENES,ADD_PRODUCTOIMAGEN,EDIT_PRODUCTOIMAGEN,DELETE_PRODUCTOIMAGEN} from '../actions/ProductoImagenAction'
+import {GET_PRODUCTOIMAGENES, GET_PRODUCTOIMAGENES_RESTAURANT,ADD_PRODUCTOIMAGEN,EDIT_PRODUCTOIMAGEN,DELETE_PRODUCTOIMAGEN} from '../actions/ProductoImagenAction'
 
 const initialState = {
     lista:[]
@@ -7,6 +7,12 @@ const initialState = {
 export default function foo(state=initialState, action){
     switch (action.type){
         case GET_PRODUCTOIMAGENES:
+            return {
+                ...state,
+                lista: action.payload
+            };
+
+        case GET_PRODUCTOIMAGENES_RESTAURANT:
             return {
                 ...state,
                 lista: action.payload

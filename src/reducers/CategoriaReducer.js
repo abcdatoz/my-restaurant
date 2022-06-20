@@ -1,4 +1,4 @@
-import {GET_CATEGORIAS,ADD_CATEGORIA,EDIT_CATEGORIA,DELETE_CATEGORIA} from '../actions/CategoriaAction'
+import {GET_CATEGORIAS, GET_CATEGORIAS_RESTAURANT , ADD_CATEGORIA,EDIT_CATEGORIA,DELETE_CATEGORIA} from '../actions/CategoriaAction'
 
 const initialState = {
     lista:[]
@@ -7,6 +7,12 @@ const initialState = {
 export default function foo(state=initialState, action){
     switch (action.type){
         case GET_CATEGORIAS:
+            return {
+                ...state,
+                lista: action.payload
+            };
+        
+        case GET_CATEGORIAS_RESTAURANT:
             return {
                 ...state,
                 lista: action.payload

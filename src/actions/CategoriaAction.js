@@ -2,6 +2,7 @@ import axios from 'axios'
 import { tokenConfig } from './auth'
 
 export const GET_CATEGORIAS = 'GET_CATEGORIAS';
+export const GET_CATEGORIAS_RESTAURANT = 'GET_CATEGORIAS_RESTAURANT';
 export const ADD_CATEGORIA = 'ADD_CATEGORIA';
 export const EDIT_CATEGORIA = 'EDIT_CATEGORIA';
 export const DELETE_CATEGORIA ='DELETE_CATEGORIA';
@@ -18,6 +19,18 @@ export const  getCategorias = () => (dispatch, getState) => {
             })
         .catch(err => { console.log("error message :" + err.message) })
 };  
+
+
+export const getCategoriasByRestaurant = (id) => (dispatch, getState)=>{
+    axios.get(urlbase + `/categoriasRestaurant/${id}/`)
+        .then( res => {
+            dispatch({
+                type: GET_CATEGORIAS_RESTAURANT,
+                payload: res.data
+            });            
+        })
+        .catch(err => { console.log("error message :" + err.message) })
+};
 
 export const addCategoria = (registro) => (dispatch, getState) => {
     axios.post (urlbase + '/categorias/', registro, tokenConfig(getState))

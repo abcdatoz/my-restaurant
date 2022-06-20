@@ -10,6 +10,8 @@ import deletes from '../images/Delete_48px.png';
 
 const Mesas = () => {
 
+    const urlImages = require('../config/url.config').resources
+
     //useStates
     const [myRest, setMyRest] = useState('')
     const [showModal, setShowModal] = useState(false)
@@ -110,11 +112,11 @@ const Mesas = () => {
         <div className='card-group'>            
             {
                     restaurantes
-                    .filter( p => p.user_owner === theOwner)
+                    .filter( p => p.owner === theOwner)
                     .map (item => (
                         <div className="mensajes" key={item.id}>
                             <br></br>
-                            <img className='logoAdmin' src={item.logo}  alt="imagen" width="70px" height="70px"/> 
+                            <img className='logoAdmin'  src={urlImages + item.logo}  alt="imagen" width="70px" height="70px"/> 
                             <span>{item.nombre} </span>
                             {
                                 item.id === myRest
