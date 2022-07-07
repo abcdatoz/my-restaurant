@@ -404,7 +404,7 @@ const Servicio = () => {
                 .filter(p => p.categoriaId === myCategoria)
                 .map(prod => (
                     <tr  key={prod.id}>                        
-
+            
                         <td className='tituloTable'>{prod.nombre}</td>
                         <td className='tituloTable'><strong className='textoColor'>${prod.precio}</strong></td>
                         <td>
@@ -474,6 +474,7 @@ const Servicio = () => {
             <th align='center'>Nombre</th>                                
             <th align='center'>Precio</th>                                
             <th align='center'>Subtotal</th>                               
+            <th align='center'></th>
         
             {
                 ordenesdetalles

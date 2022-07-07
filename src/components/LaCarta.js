@@ -376,7 +376,7 @@ const LaCarta = () => {
                             <td align='center'><strong>{element.cantidad}</strong></td>
                             <td>{element.nombre }</td>                                                    
                             <td align='right'>${element.precio }</td>                            
-                            <td align='right'>${element.cantidad  * element.precio}</td>  
+                            <td align='right'><strong>${element.cantidad  * element.precio}</strong></td>  
                             <td align='center'>
                                 <button className='botonmas'  onClick={() => {  addIt(element) } } >
                                     +
@@ -428,26 +428,30 @@ const LaCarta = () => {
         >
         
         <div class="modal-content">                                
-            <hr />  
-            <strong>A nombre de:</strong> <br /><br />
-            <input 
-                className='inputNombrede'
-                type="text"
-                placeholder='Nombre del cliente'
-                name="nombreCliente"
-                onChange= { e => setNombreCliente(e.target.value) }                            
-                value= { nombreCliente }
-            />   
-            <br /><br /> 
-            <strong>Observaciones:</strong> <br /><br />
-            <input 
-                className='inputNombrede'
-                type="text"
-                placeholder='observaciones acerca el pedido'
-                name="observaciones"
-                onChange= { e => setObservaciones(e.target.value) }                            
-                value= { observaciones }
-            /> 
+            
+            <div className='input-modal-content'> 
+                <input 
+                    required=""
+                    type="text"
+                    name="nombreCliente"
+                    onChange= { e => setNombreCliente(e.target.value) }                            
+                    value= { nombreCliente }
+                />  
+                <label> Nombre del cliente</label>
+            </div>
+            
+            <br></br>
+            
+            <div className='input-modal-content'>
+                <input 
+                    type="text"
+                    name="observaciones"
+                    onChange= { e => setObservaciones(e.target.value) }                            
+                    value= { observaciones }
+                /> 
+                <label>Observaciones acerca el pedido</label>
+            </div>            
+            
             <br /><br /> 
             <button type="button" className='EnviarPedido' onClick={enviarOrden}>✔ Enviar Orden </button>                                                 
                                                                

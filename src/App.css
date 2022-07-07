@@ -23,14 +23,18 @@ body {
   flex-wrap: wrap;
   min-height: 100vh; 
   font-family: 'Muli', sans-serif;
+  /*
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 100vh;*/
 }
 /*---------- PORTADA ----------*/
 .portada{
   text-align: center;
 }
 .portada img{
-  width: 100%;
-  --object-fit: contain;
+  width: 25%;
 }
 .portada h1{
   font-size: 40;
@@ -475,24 +479,19 @@ body {
 }
 
 
-
-
-
-
-/*Información de la portada*/
-
-/*MEDIDAS EN DISPOSITIVOS*/
-
-/*iPhone 4 y 4s*/
+/*Moviles*/
 @media only screen 
   and (min-width: 0px) 
   and (max-width: 480px) {
+    .portada img{
+      width: 100%;
+    }
     .banner-img-wp{
       padding: 0;
     }
     .banner-img{
-      width: 200px;
-      height: 200px;
+      width: 300px;
+      height: 300px;
     }
     .mensajes{
       line-height: 80%;
@@ -501,7 +500,7 @@ body {
       object-fit: none;
     }
     .course {
-      width: 320px;
+      width: 90%;
     }
     .photo{
       top: 60%;
@@ -577,7 +576,7 @@ body {
         padding: 0;
       }
       .formato td, th{
-        font-size: 50%;
+        font-size: 70%;
       }
       .GenerarOrden{
         font-size: 70%;
@@ -588,6 +587,14 @@ body {
       .noVisible{
         visibility: hidden;
         border: none;
+      }
+      .modal__featured{
+        visibility: hidden;
+        display: none;
+      }
+      .modal__circle{
+        visibility: hidden;
+        display: none;
       }
       .modal__product{
         visibility: hidden;
@@ -612,150 +619,33 @@ body {
       transition: all .2s ease-in-out;
       }
       .tituloTable{
+        font-size: 10px;
+        text-transform: uppercase;
+      }
+      .input-modal-content label{
+        font-size: 11px;
+      }
+      .styled-table td{
         font-size: 9px;
+      }
+      .font{
+        font-size: 11px;
+        color: var(--message-restaurant);        
       }
 }
 
-/*iPhone 6, 6s, 7 y 8, iPhone SE (2020)*/
-/*@media only screen 
-  and (min-width: 360px) 
-  and (max-width: 667px)  { 
-    .banner-img-wp{
-      padding: 0;
-    }
-    .banner-img{
-      width: 290px;
-      height: 290px;
-    }    
-    .portada{
-      object-fit: none;
-    }
-    .mensajes{
-      line-height: 90%;
-    }
-    .course {
-      width: 320px;
-    }
-    .photo{
-      top: 55%;
-      --transform:translate(-50%, -300%);
-    }
-    .photo p{
-      font-size: 10px;
-    }
-    .photo img {
-      width: 200px;
-      height: 200px;
-    }
-    .photo strong{
-      font-size: 9px;
-    }
-    .contenido_modal{
-      font-size: 11px;
-      color: var(--button-generate-pedido);
-    }
-    .contenido_modal strong{
-      color: gray;
-    }
-    .table_responsive table{
-      border:  0;
-    }
-    .table_responsive thead{
-      border: none;
-      clip: rect(0 0 0 0);
-      height: 1px;
-      margin: -1px;
-      overflow: hidden;
-      padding: 0;
-      width: 1px;
-    }
-    .table_responsive tr{      
-      margin-bottom: .625em;
-    }
-    .table_responsive td{
-      font-size: 9px;
-      text-align: left;
-    }
-    .table_responsive td::before{
-      content: attr(data-label);
-      float: left;
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-    .table_responsive td:last-child {
-      border-bottom: 0;
-    }    
-    .table_responsive th{
-      font-size: 8px;
-    }
-    .boton-{
-    border: none;
-    border-bottom: none;
-    font-size: 30px;
-    padding: 0;
-    background-color: transparent;
-    color: var(--color-red);   
-    }   
-    .boton-:hover,
-    .boton-:focus{
-      border-color: hsla(0, 0%, 100%, .6);
-      transform: translateY(-.2rem);
-      outline: none !important;
-    } 
-    .botonmas{
-      background-color: transparent;
-      color: var(--button-generate-pedido);
-      font-size: 24px;
-      border: none;
-      border-bottom: none;
-      padding: 0;
-    }
-    .formato td, th{
-      font-size: 50%;
-    }
-    .GenerarOrden{
-      font-size: 70%;
-    }
-}*/
-
-/*iPhone 6+, 7+ y 8+*/
-/*@media only screen 
-  and (min-width: 414px) 
-  and (max-width: 736px)  { 
-    .banner-img-wp{
-      padding: 0;
-    }
-    .banner-img{
-      width: 300px;
-      height: 300px;
-    }    
-    .portada{
-      object-fit: none;
-    }
-    .mensajes{
-      line-height: 90%;
-    }
-    .course {
-      width: 400px;
-    }
-    .formato td, th{
-      font-size: 50%;
-    }
-    .GenerarOrden{
-      font-size: 70%;
-    }
-}*/
-
-/*iPhone X, iPhone 11 pro, iPhone 13 Mini, iPhone 11 Pro Max*/
 @media only screen 
   and (min-width: 481px) 
-  and (max-width: 768px)  { 
+  and (max-width: 800px)  { 
+    .portada img{
+      width: 100%;
+    }
     .banner-img-wp{
       padding: 0;
     }
     .banner-img{
-      width: 320px;
-      height: 320px;
+      width: 400px;
+      height: 400px;
     }    
     .portada{
       object-fit: none;
@@ -764,314 +654,50 @@ body {
       line-height: 200%;
     }
     .course {
-      width: 335px;
+      width: 95%;
     }
     .formato td, th{
-      font-size: 50%;
+      font-size: 80%;
     }
     .GenerarOrden{
       font-size: 70%;
-    }
-    .modal__featured {
-      position: relative;
-      -ms-flex: 1;
-          flex: 1;
-      min-width: 230px;
-      padding: 20px;
-      overflow: hidden;
-      border-top-left-radius: 5px;
-      border-bottom-left-radius: 5px; 
-    }
-    .modal__circle {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 200%;
-      width: 200%;
-      background-color: #FA944F;
-      border-radius: 50%;
-      -ms-transform: translateX(-50%) translateY(-25%);
-          transform: translateX(-50%) translateY(-25%); 
     }
     .tabs-group-vertical{
       height: 60px;
     }
+    .contenido_modal{
+      font-size: 13px;
+      color: var(--button-generate-pedido);
+    }
+    .contenido_modal strong{
+      color: gray;
+    }
+    .styled-table td{
+      font-size: 11px;
+    }
+    .font{
+      color: var(--message-restaurant);
+    }
 }
-/*https://es.stackoverflow.com/questions/50334/c%C3%B3mo-detectar-si-el-dispositivo-es-iphone-con-css*/
 
-/*iPhone 11, 11pro max, iPhone XR,iPhone XS Max */
-/*@media only screen 
-  and (min-width: 414px) 
-  and (max-width: 896px)  { 
-    .banner-img-wp{
-      padding: 0;
-    }
-    .banner-img{
-      width: 350px;
-      height: 350px;
-    }    
-    .portada{
-      object-fit: none;
-    }
-    .mensajes{
-      line-height: 200%;
-    }
-    .course {
-      width: 400px;
-    }
-    .formato td, th{
-      font-size: 50%;
-    }
-    .GenerarOrden{
-      font-size: 70%;
-    }
-}*/
-
-/*iPhone 12 ,iPhone 12 Pro, iPhone 12 pro Max, iPhone 13, iPhone 13 PRO*/
-/*@media only screen 
-  and (min-width: 390px) 
-  and (max-width: 844px)  { 
-    .banner-img-wp{
-      padding: 0;
-    }
-    .banner-img{
-      width: 300px;
-      height: 300px;
-    }    
-    .portada{
-      object-fit: none;
-    }
-    .mensajes{
-      line-height: 200%;
-    }
-    .course {
-      width: 370px;
-    }
-    .formato td, th{
-      font-size: 50%;
-    }
-    .GenerarOrden{
-      font-size: 70%;
-    }
-}*/
-/*iPhonE 12 mini*/
-/*@media only screen 
-  and (min-width: 360px) 
-  and (max-width: 780px)  { 
-    .banner-img-wp{
-      padding: 0;
-    }
-    .banner-img{
-      width: 280px;
-      height: 280px;
-    }    
-    .portada{
-      object-fit: none;
-    }
-    .mensajes{
-      line-height: 200%;
-    }
-    .course {
-      width: 320px;
-    }
-    .formato td, th{
-      font-size: 50%;
-    }
-    .GenerarOrden{
-      font-size: 70%;
-    }
-}*/
-
-/*iPhone 12 pro max, iPhone 13 PRO MAX*/
-/*@media only screen 
-  and (min-width: 428px) 
-  and (max-width: 926px)  { 
-    .banner-img-wp{
-      padding: 0;
-    }
-    .banner-img{
-      width: 380px;
-      height: 380px;
-    }    
-    .portada{
-      object-fit: none;
-    }
-    .mensajes{
-      line-height: 200%;
-    }
-    .course {
-      width: 388px;
-    }
-    .formato td, th{
-      font-size: 50%;
-    }
-    .GenerarOrden{
-      font-size: 70%;
-    }
-}*/
-
-
-/*ANDROID*/
-/*Xiaomi Mi 11i, Xiaomi 12 2022*/
-/*@media only screen 
-  and (min-width: 360px) 
-  and (max-width: 800px)  { 
-    .banner-img-wp{
-      padding: 0;
-    }
-    .banner-img{
-      width: 300px;
-      height: 300px;
-    }    
-    .portada{
-      object-fit: none;
-    }
-    .mensajes{
-      line-height: 200%;
-    }
-    .sec-title text-center{
-      line-height: 10%;
-    }
-    .course {
-      width: 320px;
-    }
-    .formato td, th{
-      font-size: 50%;
-    }
-    .GenerarOrden{
-      font-size: 70%;
-    }
-}*/
-
-/*Xiaomi Redmi Note 9 Pro*/
-/*@media only screen 
-  and (min-width: 393px) 
-  and (max-width: 873px)  { 
-    .banner-img-wp{
-      padding: 0;
-    }
-    .banner-img{
-      width: 320px;
-      height: 320px;
-    }    
-    .portada{
-      object-fit: none;
-    }
-    .mensajes{
-      line-height: 90%;
-    }
-    .course {
-      width: 353px;
-    }
-    .formato td, th{
-      font-size: 50%;
-    }
-    .GenerarOrden{
-      font-size: 70%;
-    }
-}*/
-
-/*Xiaomi Redmi Note 7, Xiaomi Redmi Note 8, Xiaomi Redmi Note 8 Pro*/
-/*@media only screen 
-  and (min-width: 393px) 
-  and (max-width: 851px)  { 
-    .banner-img-wp{
-      padding: 0;
-    }
-    .banner-img{
-      width: 320px;
-      height: 320px;
-    }    
-    .portada{
-      object-fit: none;
-    }
-    .mensajes{
-      line-height: 80%;
-    }
-    .course {
-      width: 353px;
-    }
-    .formato td, th{
-      font-size: 50%;
-    }
-    .GenerarOrden{
-      font-size: 70%;
-    }
-}*/
-
-/*Samsung Galaxy A12, Samsung Galaxy S22+, Samsung Galaxy S22 ULTRA (2022),
-Samsung Galaxy S22 (2022), Samsung Galaxy S21 Ultra, Samsung Galaxy S20,
-Samsung Galaxy S21+, Samsung Galaxy S21, Samsung Galaxy S10, Samsung Galaxy S9+,
-Samsung Galaxy S8+, Samsung Galaxy J6*/
-/*@media only screen 
-  and (min-width: 360px) 
-  and (max-width: 800px)  { 
-    .banner-img-wp{
-      padding: 0;
-    }
-    .banner-img{
-      width: 320px;
-      height: 320px;
-    }    
-    .portada{
-      object-fit: none;
-    }
-    .mensajes{
-      line-height: 250%;
-    }
-    .course {
-      width: 320px;
-    }
-    .formato td, th{
-      font-size: 50%;
-    }
-    .GenerarOrden{
-      font-size: 70%;
-    }
-}*/
-
-/*Samsung Galaxy Note20 Ultra, Samsung Note10+ Samsung Galaxy S10+,
-Samsung Galaxy Note8*/
-/*@media only screen 
-  and (min-width: 412px) 
-  and (max-width: 883px)  { 
-    .banner-img-wp{
-      padding: 0;
-    }
-    .banner-img{
-      width: 220px;
-      height: 220px;
-    }    
-    .portada{
-      object-fit: none;
-    }    
-    .course {
-      width: 380px;
-    }
-    .formato td, th{
-      font-size: 50%;
-    }
-    .GenerarOrden{
-      font-size: 70%;
-    }
-}*/
-
-/*Samsung Galaxy Z Fold 2 (2020)*/
 @media only screen 
-  and (min-width: 769px) 
-  and (max-width: 1279px)  { 
+  and (min-width: 801px) 
+  and (max-width: 1100px)  { 
+    .portada img{
+      width: 100%;
+    }
     .banner-img-wp{
       padding: 0;
     }
     .banner-img{
-      width: 450px;
-      height: 450px;
+      width: 460px;
+      height: 460px;
     }    
     .portada{
       object-fit: none;
     }
     .course {
-      width: 844px;
+      width: 95%;
     }
     .photo{
       top: 50%;
@@ -1094,220 +720,31 @@ Samsung Galaxy Note8*/
       color: gray;
     }
     .formato td, th{
-      font-size: 50%;
+      font-size: 80%;
     }
     .GenerarOrden{
       font-size: 70%;
     }
-    .modal__featured {
-      position: relative;
-      -ms-flex: 1;
-          flex: 1;
-      min-width: 230px;
-      padding: 20px;
-      overflow: hidden;
-      border-top-left-radius: 5px;
-      border-bottom-left-radius: 5px; 
+    .styled-table td{
+      font-size: 12px;
     }
-    .modal__circle {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 200%;
-      width: 200%;
-      background-color: #FA944F;
-      border-radius: 50%;
-      -ms-transform: translateX(-50%) translateY(-25%);
-          transform: translateX(-50%) translateY(-25%); 
+    .font{
+      color: var(--message-restaurant);
     }
 }
 
-/*Samsung Galaxy Fold (2019)*/
-/*@media only screen 
-  and (min-width: 768px) 
-  and (max-width: 1076px)  { 
-    .banner-img-wp{
-      padding: 0;
-    }
-    .banner-img{
-      width: 470px;
-      height: 470px;
-    }    
-    .portada{
-      object-fit: none;
-    }
-    .course {
-      width: 728px;
-    }
-    .photo{
-      top: 50%;
-    }
-    .photo p{
-      font-size: 12px;
-    }
-    .photo img {
-      width: 200px;
-      height: 200px;
-    }
-    .photo strong{
-      font-size: 11px;
-    }
-    .contenido_modal{
-      font-size: 13px;
-      color: var(--button-generate-pedido);
-    }
-    .contenido_modal strong{
-      color: gray;
-    }
-    .formato td, th{
-      font-size: 50%;
-    }
-    .GenerarOrden{
-      font-size: 70%;
-    }
-}*/
-
-/*Samsung Galaxy S20+*/
-/*@media only screen 
-  and (min-width: 384px) 
-  and (max-width: 854px)  { 
-    .banner-img-wp{
-      padding: 0;
-    }
-    .banner-img{
-      width: 250px;
-      height: 250px;
-    }    
-    .portada{
-      object-fit: none;
-    }
-    .course {
-      width: 344px;
-    }
-    .formato td, th{
-      font-size: 50%;
-    }
-    .GenerarOrden{
-      font-size: 70%;
-    }
-}*/
-/*Samsung S6, Samsung S6 edge, Samsung S7, Samsung S7 edge, Samsung Galaxy On8,
-Samsung Galaxy J7 Prime, Samsung Galaxy J7*/
-/*@media only screen 
-  and (min-width: 360px) 
-  and (max-width: 640px)  { 
-    .banner-img-wp{
-      padding: 0;
-    }
-    .banner-img{
-      width: 280px;
-      height: 280px;
-    }    
-    .portada{
-      object-fit: none;
-    }
-    .mensajes{
-      line-height: 100%;
-    }
-    .course {
-      width: 320px;
-    }
-    .formato td, th{
-      font-size: 50%;
-    }
-    .GenerarOrden{
-      font-size: 70%;
-    }
-}*/
-/*Samsung Galaxy S8*/
-/*@media only screen 
-  and (min-width: 360px) 
-  and (max-width: 740px)  { 
-    .banner-img-wp{
-      padding: 0;
-    }
-    .banner-img{
-      width: 260px;
-      height: 260px;
-    }    
-    .portada{
-      object-fit: none;
-    }
-    .course {
-      width: 320px;
-    }
-    .formato td, th{
-      font-size: 50%;
-    }
-    .GenerarOrden{
-      font-size: 70%;
-    }
-}*/
-
-/*Apple iPad PRO 11*/
-/*@media only screen 
-  and (min-width: 834px) 
-  and (max-width: 1194px)  { 
-    .banner-img-wp{
-      padding: 0;
-    }
-    .banner-img{
-      width: 500px;
-      height: 500px;
-    }    
-    .portada{
-      object-fit: none;
-    }
-    .mensajes{
-      line-height: 400%;
-    }
-    .course {
-      width: 794px;
-    }
-    .formato td, th{
-      font-size: 50%;
-    }
-    .GenerarOrden{
-      font-size: 70%;
-    }
-}*/
-/*Samsung Galaxy Tab S7*/
-/*@media only screen 
-  and (min-width: 800px) 
-  and (max-width: 1280px)  { 
-    .banner-img-wp{
-      padding: 0;
-    }
-    .banner-img{
-      width: 500px;
-      height: 500px;
-    }    
-    .portada{
-      object-fit: none;
-    }
-    .mensajes{
-      line-height: 400%;
-    }
-    .course {
-      width: 760px;
-    }
-    .formato td, th{
-      font-size: 50%;
-    }
-    .GenerarOrden{
-      font-size: 70%;
-    }
-}*/
-/*Surface Pro 7*/
 @media only screen 
-  and (min-width: 1280px) 
+  and (min-width: 1101px) 
   and (max-width: 1900px)  { 
+    .portada img{
+      width: 100%;
+    }
     .banner-img-wp{
       padding: 0;
     }
     .banner-img{
-      width: 700px;
-      height: 700px;
+      width: 600px;
+      height: 600px;
     }    
     .portada{
       object-fit: none;
@@ -1316,42 +753,95 @@ Samsung Galaxy J7 Prime, Samsung Galaxy J7*/
       line-height: 400%;
     }
     .course {
-      width: 872px;
+      width: 95%;
     }
     .formato td, th{
-      font-size: 50%;
+      font-size: 80%;
     }
     .GenerarOrden{
       font-size: 70%;
+    }
+    .contenido_modal{
+      font-size: 15px;
+      color: var(--button-generate-pedido);
+    }
+    .contenido_modal strong{
+      color: gray;
+    }
+    .font{
+      color: var(--message-restaurant);
     }
 }
-/*Samsung Galaxy A51/71*/
-/*@media only screen 
-  and (min-width: 412px) 
-  and (max-width: 914px)  { 
-    .banner-img-wp{
-      padding: 0;
-    }
-    .banner-img{
-      width: 250px;
-      height: 250px;
-    }    
-    .portada{
-      object-fit: none;
-    }
-    .mensajes{
-      line-height: 200%;
-    }
-    .course {
-      width: 380px;
-    }
-    .formato td, th{
-      font-size: 50%;
-    }
-    .GenerarOrden{
-      font-size: 70%;
-    }
-}*/
+@media only screen 
+and(min-width: 1901px)
+and (max-width: 2500px){
+  .portada img{
+    width: 50%;
+  }
+  .banner-img-wp{
+    padding: 0;
+  }
+  .banner-img{
+    width: 460px;
+    height: 460px;
+  }    
+  .portada{
+    object-fit: none;
+  }
+  .course {
+    width: 95%;
+  }
+  .photo{
+    top: 50%;
+  }
+  .photo p{
+    font-size: 12px;
+  }
+  .photo img {
+    width: 200px;
+    height: 200px;
+  }
+  .photo strong{
+    font-size: 11px;
+  }
+  .contenido_modal{
+    font-size: 17px;
+    color: var(--button-generate-pedido);
+  }
+  .contenido_modal strong{
+    color: gray;
+  }
+  .formato td, th{
+    font-size: 80%;
+  }
+  .GenerarOrden{
+    font-size: 70%;
+  }
+  .font{
+    color: var(--message-restaurant);
+  }
+}
+.modal__circle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 200%;
+  width: 200%;
+  background-color: #FA944F;
+  border-radius: 50%;
+  -ms-transform: translateX(-50%) translateY(-25%);
+      transform: translateX(-50%) translateY(-25%); 
+}
+.modal__featured {
+  position: relative;
+  -ms-flex: 1;
+      flex: 1;
+  min-width: 230px;
+  padding: 20px;
+  overflow: hidden;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px; 
+}
 
   .boton-{
     border: none;
@@ -1634,6 +1124,33 @@ Samsung Galaxy J7 Prime, Samsung Galaxy J7*/
   justify-content: right;
   text-align: center;  
 }
+.modal-content{
+  position:relative;
+}
+.input-modal-content{
+  position:relative;
+}
+.input-modal-content label{
+	top:0px;
+	left:0px;
+	color: #0d0d25;	
+    pointer-events:none;
+	transition: all 0.5s ease-in-out;
+}
+.input-modal-content input{
+  border:0;
+  border-bottom:1px solid #555;  
+  background:transparent;
+  width:100%;
+  color: var(--item-select);
+  text-align: center;
+  text-transform: capitalize;
+}
+.input-modal-content input:focus{
+  border: none;
+  outline: none;
+  border-bottom: 1px solid var(--button-generate-pedido);
+}
 .inputNombrede{
   border-radius: 5px;
   width: 250px;
@@ -1641,9 +1158,9 @@ Samsung Galaxy J7 Prime, Samsung Galaxy J7*/
   border: none;
   outline:none;
   text-align: center;
-  background-color: var(--button-primary);
+  --background-color: var(--content-white);
   cursor: pointer;  
-  color: var(--content-white);
+  --color: var(--button-primary);
 }
 .inputNombrede:active{
   border: none;
@@ -1755,7 +1272,7 @@ overflow-y: auto;
     margin-bottom: 125px;
     background-color: var(--content-white);
     border-radius: 5px;
-    box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.1); 
+    --box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.1); 
   }
 
   .modal__product {
@@ -1944,7 +1461,7 @@ select:focus {
         -ms-flex-align: center;
             align-items: center;
     justify-content: space-around;
-    line-height: 30px;
+    line-height: 40px;
 }
 /*Cerrar pedido*/
 .cerrarPedido{
@@ -2067,13 +1584,13 @@ text-decoration: none;
   background-color: #ddd;
 }
 .styled-table th{
-  background-color: var(--content-table-service);
+  background-color: var(--item-select);
   color: var(--content-white);
 }
 .styled-table td{
   border: 1px solid #ddd;
   padding: 8px;
-  font-size: 9px;
+  --font-size: 10px;
   text-align: center;
 }
 .logoAdmin{

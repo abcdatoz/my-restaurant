@@ -81,175 +81,69 @@
   width: 50%;
 }
 /*MEDIDAS EN DISPOSITIVOS*/
-/*iPhone 5, 5s, 5c y 5SE*/
 @media only screen 
-  and (min-width: 320px) 
-  and (max-width: 568px) {
+  and (min-width: 0px) 
+  and (max-width: 480px) {
     .modal-main {      
-      height: 300px;
-      width: 250px;
+      height: 45%;
+      width: 80%;
     }
     .modal-titulo {      
       font-size: 10px;
     }
 }
-/*iPhone 6, 6s, 7 y 8, iPhone SE (2020)*/
 @media only screen 
-  and (min-width: 375px) 
+  and (min-width: 481px) 
   and (max-width: 667px)  { 
     .modal-main {      
-      height: 350px;
-      width: 350px;
+      height: 62%;
+      width: 80%;
     }
     .modal-titulo {      
       font-size: 11px;
     }
 }
-/*iPhone 11, 11pro max, iPhone XR,iPhone XS Max */
 @media only screen 
-  and (min-width: 414px) 
-  and (max-width: 896px)  { 
-    .modal-main {      
-      height: 400px;
-      width: 380px;
-    }
-    .modal-titulo {      
-      font-size: 11px;
-    }
-}
-/*iPhone 12 pro max, iPhone 13 PRO MAX*/
-@media only screen 
-  and (min-width: 428px) 
-  and (max-width: 926px)  { 
-    .modal-main {      
-      height: 400px;
-      width: 400px;
-    }
-    .modal-titulo {      
-      font-size: 12px;
-    }
-}
-/*ANDROID*/
-/*Xiaomi Mi 11i, Xiaomi 12 2022*/
-@media only screen 
-  and (min-width: 360px) 
+  and (min-width: 668px) 
   and (max-width: 800px)  { 
     .modal-main {      
-      height: 400px;
-      width: 330px;
+      height: 60%;
+      width: 80%;
     }
     .modal-titulo {      
       font-size: 11px;
     }
 }
-/*Xiaomi Redmi Note 9 Pro*/
 @media only screen 
-  and (min-width: 393px) 
-  and (max-width: 873px)  { 
+  and (min-width: 801px) 
+  and (max-width: 1100px)  { 
     .modal-main {      
-      height: 350px;
-      width: 350px;
-    }
-    .modal-titulo {      
-      font-size: 11px;
-    }
-}
-/*Samsung Galaxy Z Fold 2 (2020)*/
-@media only screen 
-  and (min-width: 884px) 
-  and (max-width: 1104px)  { 
-    .modal-main {      
-      height: 850px;
-      width: 850px;
-    }
-    .modal-titulo {      
-      font-size: 15px;
-    }
-}
-/*Samsung Galaxy Tab S7*/
-@media only screen 
-  and (min-width: 800px) 
-  and (max-width: 1280px)  { 
-    .modal-main {      
-      height: 760px;
-      width: 760px;
-    }
-    .modal-titulo {      
-      font-size: 16px;
-    }
-}
-/*Samsung Galaxy S20+*/
-@media only screen 
-  and (min-width: 384px) 
-  and (max-width: 854px)  { 
-    .modal-main {      
-      height: 360px;
-      width: 360px;
-    }
-    .modal-titulo {      
-      font-size: 10px;
-    }
-}
-/*Apple iPad Air 4 (2020)*/
-@media only screen 
-  and (min-width: 820px) 
-  and (max-width: 1180px)  { 
-    .modal-main {      
-      height: 780px;
-      width: 780px;
-    }
-    .modal-titulo {      
-      font-size: 15px;
-    }
-}
-/*Apple iPad PRO 11*/
-@media only screen 
-  and (min-width: 834px) 
-  and (max-width: 1194px)  { 
-    .modal-main {      
-      height: 800px;
-      width: 800px;
-    }
-    .modal-titulo {      
-      font-size: 15px;
-    }
-}
-/*Samsung Galaxy Tab S7*/
-@media only screen 
-  and (min-width: 800px) 
-  and (max-width: 1280px)  { 
-    .modal-main {      
-      height: 760px;
-      width: 760px;
-    }
-    .modal-titulo {      
-      font-size: 16px;
-    }
-}
-/*Surface Pro 7*/
-@media only screen 
-  and (min-width: 912px) 
-  and (max-width: 1368px)  { 
-    .modal-main {      
-      height: 870px;
-      width: 870px;
-    }
-    .modal-titulo {      
-      font-size: 17px;
-    }
-}
-/*Samsung Galaxy A51/71*/
-@media only screen 
-  and (min-width: 412px) 
-  and (max-width: 914px)  { 
-    .modal-main {      
-      height: 400px;
-      width: 380px;
+      height: 60%;
+      width: 75%;
     }
     .modal-titulo {      
       font-size: 12px;
     }
 }
-
-
-
+@media only screen 
+  and (min-width: 1101px) 
+  and (max-width: 1900px)  { 
+    .modal-main {      
+      height: 55%;
+      width: 50%;
+    }
+    .modal-titulo {      
+      font-size: 11px;
+    }
+}
+@media only screen 
+  and (min-width: 1901px) 
+  and (max-width: 2500px)  { 
+    .modal-main {      
+      height: 60%;
+      width: 50%;
+    }
+    .modal-titulo {      
+      font-size: 11px;
+    }
+}

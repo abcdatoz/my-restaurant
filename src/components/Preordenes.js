@@ -182,7 +182,7 @@ const Preordenes = () => {
                                     :(
                                         <>
                                         <div>
-                                            <p className='ordende'>Orden de { preordenes.filter(p => p.id === preorden)[0].nombreCliente}</p>                                                
+                                            <p className='sec-sub-title font'>Orden de <strong>{ preordenes.filter(p => p.id === preorden)[0].nombreCliente}</strong></p>                                                
                                         </div>                                            
                                         </>
                                     )
