@@ -109,15 +109,15 @@ const Mesas = () => {
 
 
     const SeleccionaRestaurant = (
-        <div className='card-group'>            
+        <div className='tabs-group'>            
             {
                     restaurantes
                     .filter( p => p.owner === theOwner)
                     .map (item => (
-                        <div className="mensajes" key={item.id}>
+                        <div className="tabs-item" key={item.id}>
                             <br></br>
-                            <img className='logoAdmin'  src={urlImages + item.logo}  alt="imagen" width="70px" height="70px"/> 
-                            <span>{item.nombre} </span>
+                            
+                            <span className='tab-item btn-icon' onClick={() =>{ setMyRest(item.id)} }>{item.nombre} <img className='logoAdmin'  src={urlImages + item.logo}  alt="imagen" width="70px" height="70px"/> </span>
                             {
                                 item.id === myRest
                                     ? null
@@ -174,28 +174,28 @@ const Mesas = () => {
         <Modal 
             show={showModal} 
             handleClose = {() => setShowModal(false) } 
-            titulo = {mode} 
+            titulo = 'Editar Mesas' 
         >
         
+        <strong>Proporcione información de la mesa: </strong>  
+        <br></br>
         
             <form>
 
- 
-
-
-                <div className='form-input'>
-                    <label>Nombre</label>
+                <div className='input-modal-content'>
+                    
                     <input 
                         type="text"
-                        placeholder='Capture el nombre de la mesa'
+                        required=""
                         name="nombre"
                         onChange= { e => setNombre(e.target.value) }                            
                         value= { nombre }
-                        />
+                    />
+                    <label>Nombre</label>
                 </div>               
+                <br></br>
 
-
-                <div className='form-input'>
+                <div className='input-modal-content'>
                     <label>Status</label>
                     <select 
                             name="status"
@@ -206,7 +206,7 @@ const Mesas = () => {
                         </select>
                 </div>   
 
-
+                <br></br><br></br><br></br>
 
                 <div className="form-buttons">
                     <button className='EnviarPedido' type="button" onClick={guardar}>✔ Guardar</button>                        

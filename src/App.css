@@ -869,15 +869,16 @@ and (max-width: 2500px){
 
 /*Seleccionar Categoría*/
 .tabs-group{
-  display: inline-flex;
+  --display: inline-flex;
+  display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  --justify-content: center;
   --position: -webkit-sticky;
   --position: sticky;
   background: var(--content-white);
-  position: -webkit-sticky;
-  position: sticky;
-  top: 5px;
+  --position: -webkit-sticky;
+  --position: sticky;
+  top: 20px;
   z-index: 1;
 }
 .tabs-item{
@@ -926,6 +927,32 @@ and (max-width: 2500px){
     -webkit-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
 }
+
+.tab-items {
+  --position: relative;
+    --display: -webkit-box;
+    --display: -ms-flexbox;
+    display: flex;
+    ---webkit-box-pack: center;
+        ---ms-flex-pack: center;
+            justify-content: center;
+    ---webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    --overflow: hidden;
+    --cursor: pointer;
+    --width: 90px;
+    height: 10px;
+    background-color: var(--item-unselect);
+    border-radius: 80px;
+    padding: 0 18px;
+    will-change: transform;
+    ---webkit-transition: all .2s ease-in-out;
+    --transition: all .2s ease-in-out;
+}
+
+
+
 .tab-item:hover{
   box-shadow: 0 5px 15px 0 rgba(0,0,0,0.45);
 }
@@ -1503,12 +1530,12 @@ select:focus {
 
 /*Información de las Cards*/
 .card{
-  width: 100px;
- height: 15px;
+ width: 100px;
+ height: 10px;
  border-radius: 10px;
  background: var(--content-white);
  position: relative;
- padding: 1.8rem;
+ padding: 1.4rem;
  border: 2px solid #c3c6ce;
  transition: 0.5s ease-out;
  overflow: visible;
@@ -1557,6 +1584,7 @@ select:focus {
   padding: 0;
   margin: 0;
   height: 60px;
+  position: relative;
 }
 .mainnav li {
 color: var(--message-restaurant);
@@ -1595,15 +1623,21 @@ text-decoration: none;
 }
 .logoAdmin{
   border-radius: 50%;
-  width: 70px;
-  height: 70px;
+  width: 30px;
+  height: 30px;
 }
 .admin{
   background: var(--color-generate-orden);
 }
 
 .card-group{
-  --display: flex;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 1;
+  margin: 30px;  
 }
 .card-item{
   padding: 20px;
@@ -1623,3 +1657,43 @@ text-decoration: none;
 .textoColor{
   color: var(--color-cards-admin);
 }
+
+/*Categorias*/
+.mensajesCategorias{
+  --color: var(--mesage-name-restaurant);
+  --background-image: linear-gradient(0deg, rgb(13 13 37 /8%), rgb(13 13 37 /8%));
+  --background-size: 100% 20px;
+  --background-position: 0 90%;
+  --background-repeat: no-repeat;
+  --display: inline;
+  --transition: 0.8s cubic-bezier(0.22,0.78,0.45,1.02);
+}
+.tab-items-categorias {
+  --position: relative;
+    --display: -webkit-box;
+    --display: -ms-flexbox;
+    --display: flex;
+    ---webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    --overflow: hidden;
+    cursor: pointer;
+    --width: 90px;
+    height: 15px;
+    background-color: var(--item-unselect);
+    border-radius: 80px;
+    --padding: 0 28px;
+    will-change: transform;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    top: 20px;
+    left: 20px;
+}
+.vision{
+  visibility: hidden;
+}
+.currency:before{ content:'$'; }
+.currency:after{ content: '.00'; }

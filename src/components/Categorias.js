@@ -127,16 +127,19 @@ const Categorias = () => {
     
 
 
-    const SeleccionaRestaurant = (
-        <div className='card-group'>           
-            {
+    const SeleccionaRestaurant = (  
+        <>
+        <h5></h5>  
+        <div className='tabs-group'>  
+               
+            {                
                     restaurantes
                     .filter( p => p.owner === theOwner)
                     .map (item => (
-                        <div className="mensajes" key={item.id}>                            
+                        <div className="tabs-item" key={item.id}>                            
                             <br></br>
-                            <img className='logoAdmin' src={urlImages + item.logo}  alt="imagen"/> 
-                            <span>{item.nombre} </span>
+                            
+                            <span className='tab-item btn-icon' onClick={() =>{ setMyRest(item.id)}}>{item.nombre} <img className='logoAdmin' src={urlImages + item.logo}  alt="imagen"/>  </span>
                             {
                                 item.id === myRest
                                     ? null
@@ -148,16 +151,18 @@ const Categorias = () => {
                         </div>
                     ))
                 }
-            </div>
+        </div>
+        </>
     )
+
     
 
     const Listado = (
         <table className='styled-table'>
         <thead>            
-            <th width="20%">clave</th>                
+            <th width="25%">clave</th>                
             <th width="50%">Nombre</th>                                
-            <th width="20%"> acciones </th>
+            <th width="25%"> acciones </th>
         </thead>     
         <tbody>
         {
@@ -192,36 +197,39 @@ const Categorias = () => {
         <Modal 
             show={showModal} 
             handleClose = {() => setShowModal(false) } 
-            titulo = {mode} 
+            titulo = 'Nueva Categoría'
         >
-        
-        
+            <strong>Proporcione información de la nueva categoría: </strong>     
+            <br></br>       
+            
             <form>
+                <br></br>
+                <br></br>
 
-
-                <div className='form-input'>
-                    <label>Clave</label>
+                <div className='input-modal-content'>                    
                     <input 
                         type="text"
-                        placeholder='Capture la clave de la categoria'
-                        name="clave"
+                        required=""                        
+                        name="Clave"
                         onChange= { e => setClave(e.target.value) }                            
                         value= { clave }
-                        />
+                    />
+                    <label>Clave</label>
                 </div>
+                <br></br>
 
-
-                <div className='form-input'>
-                    <label>Nombre</label>
+                <div className='input-modal-content'>
                     <input 
                         type="text"
-                        placeholder='Capture el nombre de la categoria'
-                        name="nombre"
+                        required=""
+                        name="Nombre"
                         onChange= { e => setNombre(e.target.value) }                            
                         value= { nombre }
-                        />
-                </div>                  
+                    />
+                    <label>Nombre</label>
+                </div>    
 
+                <br></br><br></br>
                 <div className="form-buttons">
                     <button type="button" className='EnviarPedido' onClick={guardar}> ✔ Guardar</button>                        
                 </div>

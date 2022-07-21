@@ -119,15 +119,15 @@ const Meseros = () => {
 
 
     const SeleccionaRestaurant = (
-        <div className='card-group'>            
+        <div className='tabs-group'>            
             {
                     restaurantes
                     .filter( p => p.owner === theOwner)
                     .map (item => (
-                        <div className="mensajes" key={item.id}>
+                        <div className="tabs-item" key={item.id}>
                             <br></br>
-                            <img className='logoAdmin' src={urlImages + item.logo}  alt="imagen"/> 
-                            <span>{item.nombre} </span>
+
+                            <span className='tab-item btn-icon' onClick={() =>{ setMyRest(item.id)} }>{item.nombre} <img className='logoAdmin' src={urlImages + item.logo}  alt="imagen"/> </span>
                             {
                                 item.id === myRest
                                     ? null
@@ -185,46 +185,50 @@ const Meseros = () => {
         <Modal 
             show={showModal} 
             handleClose = {() => setShowModal(false) } 
-            titulo = {mode} 
+            titulo = 'Nuevo Mesero'
         >
-        
+            <strong>Proporcione información del nuevo mesero: </strong>  
+            <br></br>
         
             <form>
 
-                <div className='form-input'>
-                    <label>Nombre Completo</label>
+                <div className='input-modal-content'>
+                    
                     <input 
                         type="text"
-                        placeholder='introduzca el nombre del mesero'
+                        required=""
                         name="nombreCompleto"
                         onChange= { e => setNombreCompleto(e.target.value) }                            
                         value= { nombreCompleto }
-                        />
+                    />
+                    <label>Nombre Completo</label>
                 </div>        
+                <br></br>
 
 
-
-                <div className='form-input'>
-                    <label>usuario</label>
+                <div className='input-modal-content'>                    
                     <input 
                         type="text"
                         placeholder='nombre de usuario'
                         name="nombre"
                         onChange= { e => setNombre(e.target.value) }                            
                         value= { nombre }
-                        />
+                    />
+                    <label>usuario</label>
                 </div>
+                <br></br>
 
-                <div className='form-input'>
-                    <label>contraseña</label>
+                <div className='input-modal-content'>                    
                     <input 
                         type="text"
-                        placeholder='introduzca la contraseña'
+                        required=""
                         name="password"
                         onChange= { e => setPassword(e.target.value) }                            
                         value= { password }
-                        />
+                    />
+                    <label>Contraseña</label>
                 </div>
+                <br></br><br></br>
 
                 <div className="form-buttons">
                     <button className='EnviarPedido' type="button" onClick={guardar}>✔ Guardar</button>                        

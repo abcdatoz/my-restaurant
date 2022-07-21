@@ -41,38 +41,49 @@ export class Login extends Component {
 
         return(
             <>
-                <form onSubmit={this.onSubmit}>
-                    <div className="form-group">
-                        <label>username</label>
-                        <input 
-                            type = "text"
-                            className = "form-control"
-                            name = "username"
-                            onChange = {this.onChange}
-                            value = {username}
-                         />
-                    </div>
+            <div className='modal_menu'>
+                <div className='modal__container'>
+                    <div className='modal__featured'>
+                        <div className='modal__content'>
+                            <h2>Login</h2>
+                            <form onSubmit={this.onSubmit}>
 
-                    <div className="form-group">
-                        <label>Password</label>
-                        <input 
-                            type = "password"
-                            className = "form-control"
-                            name = "password"
-                            onChange = {this.onChange}
-                            value = {password}
-                         />
-                    </div>
+                                <div className="form-list">
+                                    <label>Usuario</label>
+                                    <input 
+                                        type = "text"                                        
+                                        name = "username"
+                                        onChange = {this.onChange}
+                                        value = {username}
+                                    />
+                                </div>
 
-                    <div className="form-group">
-                            <button type="submit">
-                                Login
-                            </button>
+                                <div className="form-list">
+                                    <label>Contraseña</label>
+                                    <input 
+                                        type = "password"                                        
+                                        name = "password"
+                                        onChange = {this.onChange}
+                                        value = {password}
+                                    />
+                                </div>
+                                <br></br>
+
+                                <div>
+                                        <button type="submit" className='button'>
+                                            Entrar
+                                        </button>
+                                </div>
+
+                            <p><Link to="/">home</Link> </p>
+                        </form>
+
                         </div>
+                    </div>
+                </div>
+            </div>
 
-                        <p><Link to="/">home</Link> </p>
-                </form>
-
+                
             </>
         )
 

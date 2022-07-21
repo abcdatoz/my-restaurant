@@ -182,16 +182,22 @@ const Productos = () => {
 
 
     const SeleccionaRestaurant = (
-        <div className='card-group'>            
+        <>
+        <h5> </h5>
+        <div className='tabs-group'>                  
             {
                     restaurantes
                     .filter( p => p.owner === theOwner)
                     .map (item => (
-                        <div className="mensajes" key={item.id}>
-                            <br></br>
-                            <img src={urlImages + item.logo} className="logoAdmin" alt="imagen"/>                                                           
-                            <span>{item.nombre} </span>  
-                            {
+                        <div className="tabs-item" key={item.id}>
+                            <div>
+                                                                                          
+                                <span className='tab-item btn-icon' onClick={() => { 
+                                                setMyRest(item.id);  
+                                                setMyCategoria('')
+                                            
+                                            }}>{item.nombre} <img src={urlImages + item.logo} className="logoAdmin" alt="imagen"/> </span> 
+                                            {
                                 item.id === myRest
                                     ? null
                                     : (<button className='botonmas' onClick={() => { 
@@ -199,15 +205,21 @@ const Productos = () => {
                                             setMyCategoria('')
                                         
                                          } }>
-                                             <img className='iconEdit' src={edit}  alt="imagen"/>
+                                             <img className='iconEdit' src={edit}  alt="imagen" />
                                          </button>)
                             }
+                            </div>
+                             
+                            <br></br>
+                            <br></br><br></br>
                             
                         </div>
                     ))
                 }
 
             </div>
+        </>
+            
     )
 
 
@@ -241,15 +253,15 @@ const Productos = () => {
        
         <table className='styled-table'>
         <thead>            
-            <th width="10%">clave</th>                
+            <th width="10%">Clave</th>                
             <th width="20%">Nombre</th>                                
-            <th width="20%">descripcionA</th>                                
+            <th width="20%">Descripcion</th>                                
             <th width="10%">Precio</th>                                
             <th width="10%">Calorias</th>                                
             <th width="10%">Tiempo de Preparación</th>    
-            <th width="10%">tieneImagen?</th>    
+            <th width="10%">¿Tiene Imagen?</th>    
 
-            <th width="20%"> acciones </th>
+            <th width="20%"> ACCIONES </th>
         </thead>     
         <tbody>
         {
@@ -260,7 +272,7 @@ const Productos = () => {
                         <td>{item.clave}</td>
                         <td>{item.nombre }</td>                            
                         <td>{item.descripcionA }</td>                            
-                        <td>{item.precio }</td>                            
+                        <td className='currency'>{item.precio }</td>                            
                         <td>{item.calorias }</td>                            
                         <td>{item.tiempoPreparacion }</td>                            
                         <td>{
@@ -302,8 +314,7 @@ const Productos = () => {
 
 
             
-        <div className="form-input">
-                    <label>Imagen</label>
+        <div className="input-modal-content">                    
                     <input 
                         className="form-control"
                         type="file"
@@ -312,9 +323,10 @@ const Productos = () => {
                         onChange = { e => setImagen(e.target.files[0])}
                         required
                     />
+                    <label>Imagen</label>
                 </div> 
 
-
+            <br></br><br></br>
             <div className="form-buttons">
                 <button className='EnviarPedido' type="button" onClick={guardarImagen}> ✔ Guardar </button>                        
             </div>
@@ -333,82 +345,86 @@ const Productos = () => {
         <Modal 
             show={showModal} 
             handleClose = {() => setShowModal(false) } 
-            titulo = {mode === 'new' ? 'Agregar producto' : ' editar producto' } 
+            titulo = {mode === 'new' ? 'Agregar producto' : ' Editar producto' } 
         >
         
+        <strong>Proporcione información del nuevo producto: </strong>  
+        <br></br>
         
             <form>
 
 
-                <div className='form-input'>
-                    <label>Clave</label>
+                <div className='input-modal-content'>                    
                     <input 
                         type="text"
-                        placeholder='Capture la clave del producto'
+                        required=""
                         name="clave"
                         onChange= { e => setClave(e.target.value) }                            
                         value= { clave }
-                        />
+                    />
+                    <label>Clave</label>
                 </div>
+                <br></br>
 
-
-                <div className='form-input'>
-                    <label>Nombre</label>
+                <div className='input-modal-content'>                    
                     <input 
                         type="text"
-                        placeholder='Capture el nombre del producto'
+                        required=""
                         name="nombre"
                         onChange= { e => setNombre(e.target.value) }                            
                         value= { nombre }
-                        />
+                    />
+                    <label>Nombre</label>
                 </div>                  
-
+                <br></br>
                 
-                <div className='form-input'>
-                    <label>Descripción</label>
+                <div className='input-modal-content'>                    
                     <input 
                         type="text"
-                        placeholder='Capture la descripción del producto'
+                        required=""
                         name="descripcionA"
                         onChange= { e => setDescripcionA(e.target.value) }                            
                         value= { descripcionA }
-                        />
+                    />
+                    <label>Descripción</label>
                 </div>                  
-                        
+                <br></br>    
 
-                <div className='form-input'>
-                    <label>Precio</label>
+                <div className='input-modal-content'>                    
                     <input 
                         type="number"
-                        placeholder='Capture el precio del producto'
+                        required=""
                         name="precio"
                         onChange= { e => setPrecio(e.target.value) }                            
                         value= { precio }
-                        />
+                    />
+                    <label>Precio</label>
                 </div>    
+                <br></br>
 
-                <div className='form-input'>
-                    <label>Calorías</label>
+                <div className='input-modal-content'>                    
                     <input 
                         type="text"
-                        placeholder='Capture las calorías que contiene el producto'
+                        required=""
                         name="calorias"
                         onChange= { e => setCalorias(e.target.value) }                            
                         value= { calorias }
-                        />
+                    />
+                    <label>Calorías</label>
                 </div>    
+                <br></br>
 
-                <div className='form-input'>
-                    <label>Tiempo de Preparación</label>
+                <div className='input-modal-content'>                    
                     <input 
                         type="text"
-                        placeholder='Capture el tiempo de preparación del producto'
+                        required=""
                         name="tiempoPreparacion"
                         onChange= { e => setTiempoPreparacion(e.target.value) }                            
                         value= { tiempoPreparacion }
-                        />
+                    />
+                    <label>Tiempo de Preparación</label>
                 </div>    
-
+                <br></br><br></br>
 
                 <div className="form-buttons">
                     <button className='EnviarPedido' type="button" onClick={guardar}>✔ Guardar </button>                        

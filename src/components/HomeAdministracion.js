@@ -211,55 +211,58 @@ const HomeAdministracion = () => {
             <Modal 
                 show={showModal} 
                 handleClose = {() => setShowModal(false) } 
-                titulo = 'Nuevo Restaurant'
+                titulo = 'Nuevo Restaurante'
             >
-                <div class="modal-content">                                
-                    <hr />                               
-                    
-                </div>
-                <strong>Proporcione información del nuevo Restaurant: </strong>
-                
-               <form>
-                    <div className='form-input'>
-                        <label>Nombre</label>
+            
+            <strong>Proporcione información del nuevo Restaurant: </strong>
+
+            <div className='modal-content'>
+
+                <form>
+                    <div className='input-modal-content'>                            
                         <input 
-                            type="text"
-                            placeholder='Capture el nombre del restaurante'
+                            required=""
+                            type="text"                                
                             name="nombre"
                             onChange= { e => setNombre(e.target.value) }                            
                             value= { nombre }
-                            />
+                        />
+                        <label>Nombre del Restaurant</label>
                     </div>
+                    <br></br>
 
-                    <div className='form-input'>
-                        <label>Direccion</label>
+                    <div className='input-modal-content'>                    
                         <input 
                             type="text"
-                            placeholder='Capture la direccion del restaurante'
+                            required=""
                             name="direccion"
                             onChange= { e => setDireccion(e.target.value) }                            
                             value= { direccion }
-                            />
-                    </div>   
+                        />
+                        <label>Dirección del Restaurant</label>
+                    </div> 
+                    <br></br>  
 
-                    <div className="form-input">
-                        <label>Logo</label>
-                        <input 
-                            className="form-control"
+                    <div className='input-modal-content'>                        
+                        <input                             
                             type="file"
                             name="logo"
                             accept="image/png, image/jpeg"
                             onChange = { e => setLogo(e.target.files[0])}
                             required
                         />
+                        <label>Logo del Restaurant</label>
                     </div>
 
+                    <br></br>
 
                     <div className="form-buttons">
                         <button type="button" className='EnviarPedido' onClick={guardar}>✔ Guardar</button>                        
                     </div>
 
                 </form>
+
+            </div>
                 
             </Modal>
 
